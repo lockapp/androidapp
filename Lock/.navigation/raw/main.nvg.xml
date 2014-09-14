@@ -6,7 +6,7 @@
     <entry>
       <key      
         class = "com.android.navigation.ActivityState"      
-        className = "com.lock.rodrigo.lock.Encrypt.ReceiveAndEncryptActivity">
+        className = "com.rodrigo.lock.app.Encrypt.ReceiveAndEncryptActivity">
         <location        
           id = "point0"        
           x = "0"        
@@ -20,7 +20,7 @@
     <entry>
       <key      
         class = "com.android.navigation.ActivityState"      
-        className = "com.lock.rodrigo.lock.InstructionsActivity">
+        className = "com.rodrigo.lock.app.InstructionsActivity">
         <location        
           idref = "point0"/>
       </key>
@@ -32,7 +32,7 @@
     <entry>
       <key      
         class = "com.android.navigation.ActivityState"      
-        className = "com.lock.rodrigo.lock.ErrorActivity">
+        className = "com.rodrigo.lock.app.ErrorActivity">
         <location        
           idref = "point0"/>
       </key>
@@ -44,7 +44,7 @@
     <entry>
       <key      
         class = "com.android.navigation.ActivityState"      
-        className = "com.lock.rodrigo.lock.ConfigActivity">
+        className = "com.rodrigo.lock.app.ConfigActivity">
         <location        
           idref = "point0"/>
       </key>
@@ -56,7 +56,7 @@
     <entry>
       <key      
         class = "com.android.navigation.ActivityState"      
-        className = "com.lock.rodrigo.lock.SeeImage.SeeImageActivity">
+        className = "com.rodrigo.lock.app.SeeImage.SeeImageActivity">
         <location        
           idref = "point0"/>
       </key>
@@ -68,7 +68,7 @@
     <entry>
       <key      
         class = "com.android.navigation.ActivityState"      
-        className = "com.lock.rodrigo.lock.MainActivity">
+        className = "com.rodrigo.lock.app.MainActivity">
         <location        
           idref = "point0"/>
       </key>
@@ -92,7 +92,7 @@
     <entry>
       <key      
         class = "com.android.navigation.ActivityState"      
-        className = "com.lock.rodrigo.lock.DecryptActivity">
+        className = "com.rodrigo.lock.app.DecryptActivity">
         <location        
           idref = "point0"/>
       </key>

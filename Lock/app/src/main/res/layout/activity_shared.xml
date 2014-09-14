@@ -77,7 +77,7 @@
                         android:layout_width="96dp"
                         android:layout_height="96dp">
 
-                        <com.lock.rodrigo.lock.UI.TouchHighlightImageButton
+                        <com.rodrigo.lock.app.UI.TouchHighlightImageButton
                             android:scaleType = "centerCrop"
                             android:layout_width="96dp"
                             android:layout_height="96dp"

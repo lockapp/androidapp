@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/indicator_heigth"
         android:layout_gravity="center_horizontal|bottom">
-        <com.lock.rodrigo.lock.UI.pageIndicator.CirclePageIndicator
+        <com.rodrigo.lock.app.UI.pageIndicator.CirclePageIndicator
             android:id="@+id/indicator"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"

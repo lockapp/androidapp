@@ -38,7 +38,7 @@
             android:layout_alignParentEnd="true"
             android:id="@+id/mLoginFormView">
 
-            <com.lock.rodrigo.lock.Core.Utils.HackyViewPager
+            <com.rodrigo.lock.app.Core.Utils.HackyViewPager
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/view_pager"

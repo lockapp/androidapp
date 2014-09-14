@@ -124,7 +124,7 @@
                         android:orientation="vertical">
 
 
-                        <com.lock.rodrigo.lock.UI.PasswordEditText
+                        <com.rodrigo.lock.app.UI.PasswordEditText
                             android:id="@+id/password1"
                             style="@style/InputText"
                             android:layout_width="match_parent"
@@ -141,7 +141,7 @@
                             android:background="#ffc8c8c8" />
 
 
-                        <com.lock.rodrigo.lock.UI.PasswordEditText
+                        <com.rodrigo.lock.app.UI.PasswordEditText
                             android:id="@+id/password2"
                             style="@style/InputText"
                             android:layout_width="match_parent"
