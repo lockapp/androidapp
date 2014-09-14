@@ -1,0 +1,62 @@
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"    >
+
+    <android.support.v4.view.ViewPager
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+        android:layout_gravity="center_vertical" />
+
+
+
+    <FrameLayout
+        android:id="@+id/frameindicator"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/indicator_heigth"
+        android:layout_gravity="center_horizontal|bottom">
+        <com.lock.rodrigo.lock.UI.pageIndicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:paddingTop="20dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"/>
+
+       <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/next"
+            android:background="@null"
+            android:layout_gravity="right|bottom"
+            android:src="@drawable/next"
+           android:scaleType="fitCenter"
+           android:padding="10dp"
+           android:paddingLeft="10dp"
+           android:paddingTop="10dp"
+           android:paddingRight="10dp"
+           android:paddingBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/skip"
+            android:id="@+id/saltar"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/ok1"
+            android:id="@+id/entendido"
+            android:gravity="center" />
+    </FrameLayout>
+
+
+</FrameLayout>

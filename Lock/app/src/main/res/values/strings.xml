@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_share">Share</string>
+    <string name="app_name">Lock</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="default_settings">default settings</string>
+    <string name="secure_view">Secure View</string>
+    <string name="action_newpicture">New Image</string>
+    <string name="action_addtogallery">Add to gallery</string>
+    <string name="title_activity_error">Error</string>
+    <string name="lock">Lock</string>
+    <string name="lockm">LOCK</string>
+    <string name="unlock">Unlock</string>
+    <string name="unlockm">UNLOCK</string>
+    <string name="empty_password">Empty password</string>
+    <string name="re_password">re-enter password</string>
+    <string name="nomatch_password">The passwords do not match.</string>
+    <string name="save_changes">The changes have been saved. </string>
+    <string name="new_expiration">New expiration date:  %1$s</string>
+    <string name="error_noblock">Could not lock file</string>
+    <string name="error_nofind">The file is not in the device</string>
+    <string name="open_all">Have been opened all pictures.</string>
+    <string name="working">Working</string>
+    <string name="workingL">Lock in progress</string>
+    <string name="workingU">Unlocking in progress</string>
+    <string name="error">Error</string>
+    <string name="unlocked">It has been successfully unlocked</string>
+    <string name="error_open">Could not open the file %1$s because: %2$s</string>
+    <string name="error_open2">Could not open the file. Because:%1$s</string>
+    <string name="error_unlock">Could not unlock the file %1$s because: %2$s</string>
+    <string name="error_lock">Could not unlock the file %1$s Because: %2$s</string>
+    <string name="error_lock2">Could not lock the file. Because: %1$s</string>
+    <string name="error_version">Outdated version of the program, install a new Verson...</string>
+    <string name="error_defeated">File has expired</string>
+    <string name="error_nosecureview">This file does not support the secure view, try extract it</string>
+    <string name="error_password">Make sure the password is correct</string>
+    <string name="error_delete">Can not delete the file. For the reason: %1$s</string>
+    <string name="error_delete2">Can not delete the file %1$s. For the reason: %2$s</string>
+    <string name="locked_correct">It has been locked correctly</string>
+    <string name="error_notfound">File not found</string>
+    <string name="error_notfound2">File %1$s not found</string>
+    <string name="open">Open</string>
+    <string name="openm">OPEN</string>
+    <string name="extract">extract</string>
+    <string name="extractm">EXTRACT</string>
+    <string name="password">Password</string>
+    <string name="repassword">Re-enter the password</string>
+    <string name="error_mal">Something went wrong. Very, very, very wrong.</string>
+    <string name="expiration_date">Expiration date</string>
+    <string name="only_device">Only open in this device</string>
+    <string name="configL">ENCRYPTION SETTING</string>
+    <string name="configU">DECRYPT SETTING</string>
+    <string name="image_mode">Image mode</string>
+    <string name="always_password">Always use the same password</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="files">%1$s Files</string>
+    <string name="file">1 File</string>
+    <string name="tut">TUTORIAL</string>
+    <string name="cons">CONTACT</string>
+    <string name="donar">DONATE</string>
+
+    <string name="send_to">Send to</string>
+    <string name="exp">These features are experimental, and still are not entirely safe.</string>
+
+    <string name="intro_title1">Protect any file.</string>
+    <string name="intro_desc1">Select the files on your device you want to block, and selects share with Lock</string>
+
+    <string name="intro_title2">Then Lock work.</string>
+    <string name="intro_desc2">You can look the advance, from a notification. And once it finished you will find the locked file.</string>
+
+    <string name="intro_title3">To unlock it is just as easy.</string>
+    <string name="intro_desc3">To unlock, select share and then Lock.</string>
+
+    <string name="r0">This app is free, no ads and you can find the source code on &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>. If you think it was useful it would be good that you send some money for coffee. Donate is an the best way to contribute with new features, every little bit counts.\n  Below you can find some FAQs</string>
+
+    <string name="q1">Is safe Lock?</string>
+    <string name="r1">The short answer is yes\nBut in reality it is a little longer, in many parts of the application speaks to block because many users are not related to terms like encrypt, but what really happens is that your data encrypted using AES, the same state-of-the-art encryption algorithm used as the national standard in the United States. 1Password uses 128-bit keys for encryption, which means that it would take millions of years for a criminal to decrypt your data using a brute force attack.</string>
+
+    <string name="q2">Are my data well protected?</string>
+    <string name="r2">Unlike other applications Lock has just one permission. It can only access external storage (SD Card) to encrypt your files. It has no access to the internet, SMS or other networks. Therefore Lock has no way to send your data out of your phone.\nFurthermore Lock code is hosted on github and who wants to can him..</string>
+
+    <string name="q3">Can I share encrypted images?</string>
+    <string name="r3">Yes, If to share an encrypted image you have to open it and find the share icon in the action bar of the Lock image viewer.\n Currently this is the only way to do this, because many applications when you send images downsize so the encrypted content is lost. But we are working on improving this experience.</string>
+
+    <string name="intro_tittle0">Check out the Lock operation.</string>
+    <string name="intro_desc0">With Lock You can lock any file easily and securely.</string>
+
+    <string name="ok1">Understand</string>
+    <string name="skip">Skip</string>
+</resources>

@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion '19.1.0'
+
+    defaultConfig {
+        applicationId "com.rodrigo.lock.app"
+        minSdkVersion 13 // culpa de los xml animacion de flip /api 13 por setCustomAnimations
+        targetSdkVersion 19
+        versionCode 1
+        versionName "0.0.0"
+        renderscriptTargetApi 19
+        renderscriptSupportMode true
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('prog uard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    maven { url "http://dl.bintray.com/populov/maven" }
+    mavenCentral()
+    maven { url 'http://JRAF.org/static/maven/2' }
+}
+
+
+
+dependencies {
+    // do not use dynamic updating.
+    // compile 'com.android.support:support-v4:20.0.0'
+    //compile 'com.android.support:appcompat-v7:19.0.0'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // You must install or update the Support Repository through the SDK manager to use this dependency.
+    // compile 'com.android.support:support-v4:20.0.0'
+//    compile 'com.android.support:appcompat-v13:20.0.0'
+
+    // You must install or update the Support Repository through the SDK manager to use this dependency.
+    compile 'com.android.support:support-v13:20.0.0'
+    compile 'com.android.support:gridlayout-v7:19.0.0'
+    compile 'com.android.support:appcompat-v7:19.0.0'
+    //compile group:'com.android.support', name:'appcompat-v7', version:'18.0.+'
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
+    compile 'com.jakewharton:butterknife:5.1.0'
+    compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
+    compile 'org.jraf:android-switch-backport:1.3.1'
+    //compile 'com.github.castorflex.smoothprogressbar:library:0.5.2'
+
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
+}

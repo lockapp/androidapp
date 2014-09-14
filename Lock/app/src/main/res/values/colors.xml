@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blur_color_superpuesto">#aa6e7982</color>
+    <color name="blur_color_superpuesto2">#66000000</color>
+<!-- 66000000 bfe5e5e5  e4292f33 ca292f33-->
+
+
+    <color name="bg_primario">#6E7982</color>
+    <color name="bg_secundario_claro1">#EBEBEB</color>
+    <color name="bg_secundario_claro2">#85929D</color>
+    <color name="bg_secundario_oscuro">#2F3943</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="edit_text_bg">#EBEBEB</color>
+    <color name="edit_text_text">#484848</color>
+
+    <color name="bg_config">#f2f2f2</color>
+
+
+    <color name="inputtable_text_light">#484848</color>
+
+
+    <color name="edittext_primary">#ff428bca</color>
+    <color name="edittext_border_flat">#ffd0d0d0</color>
+    <color name="edittext_border">#ccc</color>
+    <color name="edittext_disabled">#ffe0e0e0</color>
+
+
+
+
+    <color name="btn_primary_color">#fff</color>
+    <color name="btn_primary_bg">#428bca</color>
+    <color name="btn_primary_border">#285e8e</color>
+    <color name="btn_primary_bg_press_top">#2E6DA4</color>
+    <color name="btn_primary_bg_press_bottom">#3276B1</color>
+    <color name="brand_primary">#85929D</color>
+    <color name="brand_press_primary">#2F3943</color>
+
+
+
+    <color name="transparent_bar">#80000000</color>
+
+
+
+</resources>

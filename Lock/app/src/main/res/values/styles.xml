@@ -1,0 +1,91 @@
+<resources>
+
+
+    <!--- for scroll -->
+    <style name="TransparentTheme" parent="@style/Theme.Bar_offstyle">
+        <item name="android:actionBarStyle">@style/ActionBarStyle.Transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ActionBarStyle.Transparent" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@null</item>
+        <item name="android:titleTextStyle">@style/ActionBarStyle.Transparent.TitleTextStyle</item>
+    </style>
+
+    <style name="ActionBarStyle.Transparent.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    <!-- end scroo -->
+
+
+
+    <!-- Base application theme.
+    <style name="AppTheme" parent="Theme.Bar_offstyle">
+        <item name="android:actionBarStyle">@style/Theme.Bar_offstyle</item>
+        <item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>
+
+    </style>
+
+-->
+
+
+
+
+    <!-- the theme applied to the application or activity
+    <style name="CustomActionBarTheme" parent="@style/Theme.Bar_offstyle">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+-->
+
+    <style name="TextShadow">
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+
+    <style name="Spinner">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/spinner</item>
+        <item name="android:indeterminateDuration">2500</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <style name="ListSpinner" parent="Spinner">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">64dp</item>
+    </style>
+
+
+
+    <style name="InputText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:autoText">false</item>
+        <item name="android:capitalize">none</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/edit_text_text</item>
+        <item name="android:textCursorDrawable">@drawable/edit_text_cursor</item>
+     <!--   <item name="android:textSize">22sp</item>
+      -->
+        <item name="android:background">@drawable/edittext_background</item>
+    </style>
+
+
+
+    <style name="btnPrimary" parent="@android:style/Widget.Button">
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary</item>
+    </style>
+
+
+
+</resources>

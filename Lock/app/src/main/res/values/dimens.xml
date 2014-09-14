@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_small_margin">5dp</dimen>
+    <dimen name="activity_big_margin">32dp</dimen>
+    <dimen name="thumbnail_height">120dp</dimen>
+
+    <dimen name="FlatToggleButton_space">14dp</dimen>
+    <dimen name="FlatToggleButton_radius">18dp</dimen>
+
+    <dimen name="header_bar">170dp</dimen>
+    <dimen name="indicator_heigth" >48dp</dimen>
+
+    <dimen name="size_dropdwon" >42dp</dimen>
+
+</resources>
