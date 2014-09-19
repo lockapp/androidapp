@@ -280,7 +280,7 @@ public class FileController  {
         if(this.inFileList.size() == 1){
             return inFileList.getFirst().getName();
         }else{
-            return (inFileList.size() + " Archivos");
+            return (String.format(contex.getResources().getString(R.string.files), inFileList.size() ));
         }
     }
 

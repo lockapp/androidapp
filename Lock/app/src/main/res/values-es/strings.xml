@@ -67,7 +67,7 @@
     <string name="intro_title1">Protege cualquier archivo.</string>
     <string name="intro_desc1">Selecciona los archivos de tu dispositivo que quieres bloquear, y seleciona compartir con Lock</string>
 
-    <string name="intro_title2">Luego Lock hará su trabajo..</string>
+    <string name="intro_title2">Luego Lock hará su trabajo.</string>
     <string name="intro_desc2">Podrás fijarte en una notificación su avance. Y una vez termine podrás encontrar el archivo bloqueado.</string>
 
     <string name="intro_title3">Para desbloquear es igual de sencillo.</string>
