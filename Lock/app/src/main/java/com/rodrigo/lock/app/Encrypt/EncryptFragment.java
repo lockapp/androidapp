@@ -183,7 +183,7 @@ public class EncryptFragment extends Fragment {
                     imgIter++;
                     imgIter = imgIter % controler.getInFiles().size();
                     actualImg = ImgUtils.TransformImage(controler.getInFiles().get(imgIter).getAbsolutePath());
-                   // ImgUtils.createBlur(padre, bmImg);
+                    //ImgUtils.createBlur(padre, actualImg);
 
                     padre.runOnUiThread(new Runnable() {
                         public void run() {

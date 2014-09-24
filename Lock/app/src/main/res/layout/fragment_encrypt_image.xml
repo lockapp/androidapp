@@ -124,47 +124,57 @@
                         android:orientation="vertical">
 
 
-                        <com.rodrigo.lock.app.UI.PasswordEditText
-                            android:id="@+id/password1"
-                            style="@style/InputText"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:ems="10"
-                            android:hint="@string/password"
-                            android:inputType="textPassword"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColorHint="#999999" />
-
-                        <View
+                        <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="fill_parent"
-                            android:layout_height="1dp"
-                            android:background="#ffc8c8c8" />
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/shadow">
+
+                            <com.rodrigo.lock.app.UI.PasswordEditText
+                                android:id="@+id/password1"
+                                style="@style/InputText"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:ems="10"
+                                android:hint="@string/password"
+                                android:inputType="textPassword"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColorHint="#999999" />
+
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="#ffc8c8c8" />
+
+                            <com.rodrigo.lock.app.UI.PasswordEditText
+                                android:id="@+id/password2"
+                                style="@style/InputText"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:layout_gravity="center_horizontal"
+                                android:ems="10"
+                                android:hint="@string/repassword"
+                                android:inputType="textPassword"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColorHint="#999999"/>
+                        </LinearLayout>
 
 
-                        <com.rodrigo.lock.app.UI.PasswordEditText
-                            android:id="@+id/password2"
-                            style="@style/InputText"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:layout_gravity="center_horizontal"
-                            android:ems="10"
-                            android:hint="@string/repassword"
-                            android:inputType="textPassword"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColorHint="#999999" />
-                        <View
-                            android:layout_width="fill_parent"
-                            android:layout_height="1.5dp"
-                            android:background="#ffc8c8c8" />
-
-                        <Button
-                            android:id="@+id/bloquear"
-                            style="@style/btnPrimary"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
+                        <LinearLayout
                             android:layout_marginTop="24dp"
-                            android:text="@string/lockm" />
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/shadow">
+
+                            <Button
+                                android:id="@+id/bloquear"
+                                style="@style/btnPrimary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="@string/lockm" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
