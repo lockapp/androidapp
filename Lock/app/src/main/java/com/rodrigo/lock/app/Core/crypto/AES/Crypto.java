@@ -38,38 +38,6 @@ public class Crypto {
 
     }
 
-    public String decrypt(String myEncryptedText) throws Exception {
-        try {
-            if (myEncryptedText != null) {
-                return aes.decrypt(myEncryptedText, key);
-            } else {
-                return null;
-            }
-        } catch (Exception ex) {
-            throw new Exception("Tal vez la contraseña es incorrecta");
-        }
-    }
-
-    public void decryptFile(String pathEncriptFile, String pathToDecryptFile) throws Exception {
-        aes.decrypt(new FileInputStream(pathEncriptFile), new FileOutputStream(pathToDecryptFile), key);
-    }
-
-    public void encryptFile(String pathDecryptFile, String pathToEncrypt) throws Exception {
-        aes.encrypt(new FileInputStream(pathDecryptFile), new FileOutputStream(pathToEncrypt), key);
-    }
-
-    public void encryptImg(InputStream in, OutputStream out) throws Exception {
-        aes.encrypt(in, out, key);
-    }
-
-    public void decryptImg(InputStream in, OutputStream out) throws Exception {
-        try {
-            aes.decrypt(in, out, key);
-        } catch (Exception ex) {
-            throw new Exception("Tal vez la contraseña es incorrecta");
-        }
-    }
-
     public Cipher getCiphertoEnc(OutputStream out) throws Exception {
         return (aes.getCiphertoEncZip(out, key));
     }

@@ -8,41 +8,56 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Bar_offstyle" >
         <activity
-            android:name="com.rodrigo.lock.app.MainActivity"
+            android:name=".presentation.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/TransparentTheme">
+            android:theme="@style/TransparentTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.rodrigo.lock.app.InstructionsActivity"
+            android:name=".presentation.InstructionsActivity"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
-            android:name="com.rodrigo.lock.app.ConfigActivity"
+            android:name=".presentation.ConfigActivity"
             android:label="@string/app_name" >
         </activity>
+
+        <!-- recibe image and video -->
         <activity
-            android:name="com.rodrigo.lock.app.Encrypt.ReceiveAndEncryptActivity"
+            android:name=".presentation.Encrypt.ReciveImageAndVideo"
             android:excludeFromRecents="true"
+            android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="application/*" />
-                <data android:mimeType="video/*" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
                 <action android:name="android.intent.action.SEND_MULTIPLE" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="image/*" />
+                <data android:mimeType="video/*" />
             </intent-filter>
+            <intent-filter >
+                <action android:name="android.intent.action.SEND_MULTIPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter >
+                <action android:name="android.intent.action.SEND_MULTIPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="video/*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.Encrypt.ReceiveOther"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:noHistory="true"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -60,28 +75,54 @@
                 <data android:pathPattern=".*\\.pbx" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.Encrypt.ReceiveAndEncryptActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:noHistory="true"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
 
-        <service android:name="com.rodrigo.lock.app.Core.Controladores.ServiceManejador" android:exported="false" />
+        <service
+            android:name=".services.ExtractService"
+            android:exported="false" />
 
         <activity
-            android:name="com.rodrigo.lock.app.DecryptActivity"
+            android:name=".presentation.DecryptActivity"
             android:excludeFromRecents="true"
             android:label="@string/unlock"
             android:noHistory="true"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.rodrigo.lock.app.SeeImage.SeeImageActivity"
+            android:name=".presentation.SeeMedia.ListMediaActivity"
             android:excludeFromRecents="true"
             android:label="@string/secure_view"
             android:noHistory="true"
             android:theme="@style/AppThemeTransparent" >
         </activity>
         <activity
-            android:name="com.rodrigo.lock.app.ErrorActivity"
+            android:name=".presentation.ErrorActivity"
             android:label="@string/title_activity_error" >
         </activity>
+        <activity
+            android:name=".presentation.SeeMedia.PlayVideoActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@style/NoActionBar" >
+        </activity>
 
+        <service
+            android:name=".services.SeeMediaService"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name=".presentation.SeeMedia.GridMediaActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@style/TransparentThemeOnlyTitle" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

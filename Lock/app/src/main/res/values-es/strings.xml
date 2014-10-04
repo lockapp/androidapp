@@ -89,4 +89,9 @@
 
     <string name="ok1">Entendido</string>
     <string name="skip">Saltar</string>
+
+    <string name="VideoView_error_text_invalid_progressive_playback">Este vídeo no se puede transmitir al dispositivo.</string>
+    <string name="VideoView_error_text_unknown" >No se puede reproducir el vídeo.</string>
+    <string name="VideoView_error_button">"Aceptar"</string>
+
 </resources>

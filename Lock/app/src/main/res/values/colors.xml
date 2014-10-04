@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="bg_blue">#007ee5</color>
+    <color name="bg_blinkfeed">#4EA770</color>
+    <color name="bg_listgallery_start">#ff000000</color>
+    <color name="bg_listgallery_medium">#141414</color>
+    <color name="bg_listgallery_end">#ff000000</color>
+
     <color name="blur_color_superpuesto">#aa6e7982</color>
     <color name="blur_color_superpuesto2">#66000000</color>
 <!-- 66000000 bfe5e5e5  e4292f33 ca292f33-->

@@ -74,7 +74,7 @@
                     android:layout_height="1.5dp"
                     android:background="#ffc8c8c8" />
 
-                <com.rodrigo.lock.app.UI.PasswordEditText
+                <com.rodrigo.lock.app.presentation.UI.PasswordEditText
                     android:id="@+id/password"
                     style="@style/InputText"
                     android:layout_width="match_parent"

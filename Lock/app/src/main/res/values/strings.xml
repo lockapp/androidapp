@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="action_share">Share</string>
     <string name="app_name">Lock</string>
     <string name="hello_world">Hello world!</string>
@@ -60,34 +61,27 @@
     <string name="tut">TUTORIAL</string>
     <string name="cons">CONTACT</string>
     <string name="donar">DONATE</string>
-
     <string name="send_to">Send to</string>
     <string name="exp">These features are experimental, and are still not entirely safe.</string>
-
     <string name="intro_title1">It protects any  files.</string>
     <string name="intro_desc1">Select the files on your device that you want to block, and select share with Lock</string>
-
     <string name="intro_title2">Lock will then do its job.</string>
     <string name="intro_desc2">You may view the advance in a notification. And once it finished, you can find the locked file.</string>
-
     <string name="intro_title3">To unlock it is just as easy.</string>
     <string name="intro_desc3">To unlock, select share and then Lock.</string>
-
     <string name="r0">This app is free, without ads, and you can find the source code on &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>. If you find that this was useful, it would be good of you to donate a few pennies to the coffee. Donating is the best way to contribute to new features and every little bit counts. You can find some FAQs below.</string>
-
     <string name="q1">Is Lock safe?</string>
     <string name="r1">The short answer is yes.\nBut in reality, this is a bit longer; in many parts of the application it talks about blocking due to many users not being familiar with term such as encrypting, but what really happens is that your information is encrypted using AES; the same state-of-the-art encryption algorithm used as the national standard in the United States. Lock uses 128-bit keys for encryption, which means that it would take millions of years for a criminal to decrypt your data using a brute force attack.</string>
-
     <string name="q2">Is my information protected?</string>
     <string name="r2">The difference from other applications is that it has only one permission. It can only access external storage (SD Card) to encrypt your files. It has no access to the internet, SMS or other networks. Therefore Lock has no way to send your data out of your phone.\nOn the other hand, Lock is hosted on github and anyone who wishes to may see it.</string>
-
     <string name="q3">Can I share encrypted images?</string>
     <string name="r3">Yes, to share an encrypted image, you have to open it and find the share icon in the action bar of the image viewer that incorporates Lock.\nAt this time, this is the only way to do this, as many applications, at the time of sending images, reduce their size, causing the encrypted content to be lost, so you cannot share encrypted images from the gallery. But improvement of  this experience is in the works.</string>
-
     <string name="intro_tittle0">Take a look at the Lock operation.</string>
     <string name="intro_desc0">With Lock, you can lock any file easily and safely</string>
-
     <string name="ok1">Understand</string>
     <string name="skip">Skip</string>
-</resources>
+    <string name="VideoView_error_text_invalid_progressive_playback">This video isn\'t valid for streaming to this device.</string>
+    <string name="VideoView_error_text_unknown">Can\'t play this video.</string>
+    <string name="VideoView_error_button">OK</string>
 
+</resources>

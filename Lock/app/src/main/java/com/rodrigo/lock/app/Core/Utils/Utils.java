@@ -36,28 +36,10 @@ public class Utils {
 
 
 
-    public static boolean isEncExtension(String extension) {
-        return  extension.equals("pbx");
-    }
-
-
     public static String getEncExtension() {
         return  ("pbx");
     }
 
-
-
-    public static boolean isExtensionImage(String extension) {
-        return (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("jfi") || extension.equals("jif")
-                || extension.equals("png")
-                || extension.equals("gif"));
-    }
-
-    public static boolean isExtensionVideo(String extension) {
-        return (extension.equals("avi") || extension.equals("mov") || extension.equals("movie") || extension.equals("mp2") || extension.equals("mpa") || extension.equals("mpe")
-                || extension.equals("mpeg") || extension.equals("mpv2") || extension.equals("qt")
-                || extension.equals("mpg"));
-    }
 
 
     public static void delete(File file) throws IOException{

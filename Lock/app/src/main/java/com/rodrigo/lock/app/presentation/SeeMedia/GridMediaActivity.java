@@ -1,0 +1,324 @@
+package com.rodrigo.lock.app.presentation.SeeMedia;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.rodrigo.lock.app.Core.Clases.Archivo;
+import com.rodrigo.lock.app.Core.Clases.FileType;
+import com.rodrigo.lock.app.R;
+import com.rodrigo.lock.app.presentation.UI.HeaderGridView;
+import com.rodrigo.lock.app.presentation.UI.scrollActionbar.AlphaForegroundColorSpan;
+
+import java.io.File;
+import java.util.LinkedList;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
+public class GridMediaActivity extends MediaActivity {
+
+    @InjectView(R.id.gridview)   HeaderGridView gridView;
+    @InjectView(R.id.textheader1)   TextView titulo1;
+    @InjectView(R.id.textheader2)   TextView titulo2;
+
+    MediaAdapter adapter;
+    LinkedList<Archivo> archivos;
+    int cantimages;
+
+
+    @InjectView(R.id.header)  View mHeader;
+    private int mHeaderHeight;
+    private int mMinHeaderTranslation;
+    private int mActionBarTitleColor;
+    private SpannableString mSpannableString;
+    private AlphaForegroundColorSpan mAlphaForegroundColorSpan;
+    private View mPlaceHolderView;
+
+    private int mActionBarHeight;
+    private TypedValue mTypedValue = new TypedValue();
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_mediabar);
+        mMinHeaderTranslation = -mHeaderHeight + getActionBarHeight();
+
+        setContentView(R.layout.activity_grid_media);
+        ButterKnife.inject(this);
+
+        mPlaceHolderView = getLayoutInflater().inflate(R.layout.fake_header, gridView, false);
+        gridView.addHeaderView(mPlaceHolderView);
+
+        archivos = mediaCryptoController.getAbiertos();
+        adapter = new MediaAdapter(this);
+        gridView.setAdapter(adapter);
+
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                //Toast.makeText(getApplicationContext(), "posicion = " + (position-3), Toast.LENGTH_LONG).show();
+                viewMedia(position-3);
+            }
+        });
+
+        mActionBarTitleColor = getResources().getColor(R.color.white);
+
+        mSpannableString = new SpannableString(getResources().getString(R.string.secure_view));
+        mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(mActionBarTitleColor);
+
+
+        setupGridView();
+        updateText(mediaCryptoController.isComplete());
+
+    }
+
+
+    private void setupGridView() {
+
+        gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int scrollY = getScrollY();
+                //sticky actionbar
+                mHeader.setTranslationY(Math.max(-scrollY, mMinHeaderTranslation));
+                //header_logo --> actionbar icon
+                float ratio = clamp(mHeader.getTranslationY() / mMinHeaderTranslation, 0.0f, 1.0f);
+                //actionbar title alpha
+                //getActionBarTitleView().setAlpha(clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F));
+                //---------------------------------
+                //better way thanks to @cyrilmottier
+                float alpha = clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F);
+                setTitleAlpha(alpha);
+                titulo1.setAlpha(1.0F-alpha);
+                titulo2.setAlpha(1.0F-alpha);
+
+
+            }
+        });
+    }
+
+
+
+    private void setTitleAlpha(float alpha) {
+        mAlphaForegroundColorSpan.setAlpha(alpha);
+        mSpannableString.setSpan(mAlphaForegroundColorSpan, 0, mSpannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        getActionBar().setTitle(mSpannableString);
+    }
+
+    public static float clamp(float value, float max, float min) {
+        return Math.max(Math.min(value, min), max);
+    }
+
+
+    public int getScrollY() {
+        View c = gridView.getChildAt(0);
+        if (c == null) {
+            return 0;
+        }
+
+        int firstVisiblePosition = gridView.getFirstVisiblePosition();
+        int top = c.getTop();
+
+        int headerHeight = 0;
+        if (firstVisiblePosition >= 1) {
+            headerHeight = mPlaceHolderView.getHeight();
+        }
+
+        return -top + firstVisiblePosition * c.getHeight() + headerHeight;
+    }
+
+
+
+    public int getActionBarHeight() {
+        if (mActionBarHeight != 0) {
+            return mActionBarHeight;
+        }
+        getTheme().resolveAttribute(android.R.attr.actionBarSize, mTypedValue, true);
+        mActionBarHeight = TypedValue.complexToDimensionPixelSize(mTypedValue.data, getResources().getDisplayMetrics());
+        return mActionBarHeight;
+    }
+
+
+
+    public void viewMedia(int image){
+        clearCacheFiles = false;
+        deleteMediaController =false;
+        Intent i = new Intent(this,ListMediaActivity.class );
+        i.putExtra("controlerId", idCC);
+        i.putExtra("acutalpage",image);
+        startActivity(i);
+        finish();
+    }
+
+
+    private void updateText(boolean fin){
+        String titulo;
+        if(cantimages == 1){
+            titulo =(getResources().getString(R.string.file));
+        }else{
+            titulo =(String.format(getResources().getString(R.string.files), cantimages));
+        }
+        if (!fin){
+            titulo = titulo + " ...";
+        }
+        titulo2.setText(titulo);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.see_image, menu);
+        return true;
+    }
+
+
+
+    private class MediaAdapter extends BaseAdapter {
+        private LayoutInflater inflater;
+
+        public MediaAdapter(Context context) {
+            inflater = LayoutInflater.from(context);
+            cantimages =archivos.size();
+        }
+
+        public Object getItem(int position) {
+            return null;
+        }
+
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public int getCount() {
+            return cantimages;
+        }
+
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            View v = view;
+            ImageView picture;
+            ImageView imageplay;
+
+            if(v == null) {
+                v = inflater.inflate(R.layout.grid_image, viewGroup, false);
+                v.setTag(R.id.picture, v.findViewById(R.id.picture));
+                v.setTag(R.id.play, v.findViewById(R.id.play));
+            }
+
+            picture = (ImageView)v.getTag(R.id.picture);
+            imageplay = (ImageView)v.getTag(R.id.play);
+
+            Archivo a = archivos.get(i);
+            if (a.getTipo() == FileType.Video){
+                imageplay.setVisibility(View.VISIBLE);
+
+                VideoGetter task = new VideoGetter(picture) ;
+                task.execute(a.getFile());
+                picture.setTag(task);
+
+            }else{
+                imageplay.setVisibility(View.GONE);
+
+                ImageGetter task = new ImageGetter(picture) ;
+                task.execute(i);
+                picture.setTag(task);
+            }
+
+            return v;
+        }
+
+    }
+
+
+    public class ImageGetter extends AsyncTask<Integer, Void, Bitmap> {
+        private ImageView iv;
+        public ImageGetter(ImageView v) {
+            iv = v;
+        }
+
+        @Override
+        protected Bitmap doInBackground(Integer... params) {
+            return mediaCryptoController.getSmallImage(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            super.onPostExecute(result);
+            iv.setImageBitmap(result);
+        }
+    }
+
+
+    public class VideoGetter extends AsyncTask<File, Void, Bitmap> {
+        private ImageView iv;
+        public VideoGetter(ImageView v) {
+            iv = v;
+        }
+
+        @Override
+        protected Bitmap doInBackground(File... params) {
+            Bitmap thumb = ThumbnailUtils.createVideoThumbnail(params[0].getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+            return thumb;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            super.onPostExecute(result);
+            iv.setImageBitmap(result);
+        }
+    }
+
+
+
+
+    @Override
+    public synchronized void notificarCantImages(int cantImages) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                cantimages = mediaCryptoController.getCantImages();
+                adapter.notifyDataSetChanged();
+                updateText(false);
+            }
+        });
+    }
+
+    @Override
+    public synchronized void fin() {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                updateText(true);
+                //hide progress bar
+            }
+        });
+    }
+
+
+}

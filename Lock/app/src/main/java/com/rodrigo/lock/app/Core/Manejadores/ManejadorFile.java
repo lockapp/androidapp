@@ -2,7 +2,7 @@ package com.rodrigo.lock.app.Core.Manejadores;
 
 import android.content.Context;
 
-import com.rodrigo.lock.app.Core.Controladores.FileController;
+import com.rodrigo.lock.app.Core.controllers.FileController;
 
 import java.util.HashMap;
 import java.util.Map;
