@@ -20,6 +20,7 @@ import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -176,6 +177,7 @@ public class EncryptController extends CryptoController {
             /** se encryptan las imagenes**/
             out = new CipherOutputStream(out, algo.getCiphertoEnc(out));
             output = new ZipOutputStream(out);
+            output.setLevel(Deflater.NO_COMPRESSION);
 
 
             double avanza = 0;

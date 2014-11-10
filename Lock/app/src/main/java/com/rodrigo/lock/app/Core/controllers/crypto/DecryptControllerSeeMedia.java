@@ -102,7 +102,7 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
                         faos.write(buffer, 0, len);
                     }
                     faos.close();
-                    faos.close();
+                    //faos.close();
 
                     if (salir){
                         ze = null;

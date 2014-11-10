@@ -13,6 +13,9 @@ import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
 
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
@@ -47,6 +50,7 @@ public class SeeMediaService extends IntentService {
         if (intent != null) {
             int idC = intent.getExtras().getInt("controlerId");
             manejarMedia(idC);
+           // manejarMediaParalelo(idC);
         }
 
         mNotifyManager.cancel(id);
@@ -57,19 +61,18 @@ public class SeeMediaService extends IntentService {
 
     public void manejarMedia(int idC){
         try {
-
             controllerImage= (DecryptControllerSeeMedia)ManejadorCrypto.getControlador(idC);
-
             while (!controllerImage.isComplete()) {
                 controllerImage.loadImage();
             }
-
-
         }catch (Exception e){
-
-        }
+       }
 
     }
+
+
+
+
 
 
 
