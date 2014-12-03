@@ -1,6 +1,5 @@
 package com.rodrigo.lock.app.presentation;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,18 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.rodrigo.lock.app.Core.Clases.Accion;
+import com.rodrigo.lock.app.Core.Interfaces.IPreferences;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
-import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
-import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
-import com.rodrigo.lock.app.services.ExtractService;
-import com.rodrigo.lock.app.services.SeeMediaService;
-import com.rodrigo.lock.app.Core.controllers.crypto.DecryptController;
+import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
 import com.rodrigo.lock.app.Core.controllers.FileController;
 import com.rodrigo.lock.app.Core.controllers.PreferencesController;
-import com.rodrigo.lock.app.Core.Interfaces.IPreferences;
-import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
+import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
+import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.presentation.SeeMedia.GridMediaActivity;
+import com.rodrigo.lock.app.services.ExtractService;
+import com.rodrigo.lock.app.services.SeeMediaService;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -40,6 +38,7 @@ public class DecryptActivity extends LockActivity {
     IPreferences preferences;
     FileController controller;
     String pass1;
+    CryptoController cc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -133,7 +132,6 @@ public class DecryptActivity extends LockActivity {
 
 
 
-    CryptoController cc;
 
 
     private class DesencriptarAsincronaService extends AsyncTask<Void, Void, String> {

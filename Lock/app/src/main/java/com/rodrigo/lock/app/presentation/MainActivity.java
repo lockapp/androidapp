@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -38,15 +40,11 @@ public class MainActivity extends ActionBarActivity {
     @InjectView(R.id.scrollView) NotifyingScrollView mListView;
     @InjectView(R.id.header_picture) ImageView mHeaderPicture;
     @InjectView(R.id.header_logo) ImageView mHeaderLogo;
-    @InjectView(R.id.header) View mHeader;
+    @InjectView(R.id.toolbar) android.support.v7.widget.Toolbar toolbar;
+    @InjectView(R.id.header) FrameLayout header;
+
     @InjectView(R.id.version) TextView version;
     @InjectView(R.id.r0) TextView r0;
-
-    // private View mFakeHeader;
-    private AccelerateDecelerateInterpolator mSmoothInterpolator;
-
-    private RectF mRect1 = new RectF();
-    private RectF mRect2 = new RectF();
 
     private AlphaForegroundColorSpan mAlphaForegroundColorSpan;
     private SpannableString mSpannableString;
@@ -56,26 +54,25 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mSmoothInterpolator = new AccelerateDecelerateInterpolator();
-        int mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_bar);
-        mMinHeaderTranslation = - mHeaderHeight + getActionBarHeight();
-
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+
+        initToolbar();
+        //setSupportActionBar(toolbar);
+
+        int mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_bar);
+        mMinHeaderTranslation = - mHeaderHeight + getActionBarHeight();
 
         if (isFirstTime()){
             tutorial();
         }
 
-        //inicializa variables
+        //inicializa el titulo del action bar
         mActionBarTitleColor = getResources().getColor(R.color.white);
         mSpannableString = new SpannableString(getString(R.string.app_name));
         mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(mActionBarTitleColor);
-
-
         setTitleAlpha(0F);
-        getActionBarIconView().setAlpha(0F);
+
         mListView.setOnScrollChangedListener(mOnScrollChangedListener);
         String versionName="";
         try {
@@ -85,6 +82,7 @@ public class MainActivity extends ActionBarActivity {
         }
         version.setText(versionName);
 
+        //respuesta 0
         r0.setMovementMethod(LinkMovementMethod.getInstance());
         r0.setText(Html.fromHtml(getString(R.string.r0)));
     }
@@ -119,23 +117,20 @@ public class MainActivity extends ActionBarActivity {
 
     private NotifyingScrollView.OnScrollChangedListener mOnScrollChangedListener = new NotifyingScrollView.OnScrollChangedListener() {
         public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
-            int headerHeight = findViewById(R.id.header).getHeight() - getActionBar().getHeight();
+            int headerHeight = findViewById(R.id.header).getHeight() - toolbar.getHeight();
             float ratio = (float) clamp(t, 0, headerHeight) / headerHeight;
             ratio=Math.min(ratio, 1.0F);
 
             int posicionActionBar = Math.max(-t, mMinHeaderTranslation);
             //sticky actionbar
-            mHeader.setTranslationY(posicionActionBar);
+            header.setTranslationY(posicionActionBar);
 
-            interpolate(mHeaderLogo, getActionBarIconView(), mSmoothInterpolator.getInterpolation(ratio));
 
             float subeAparece = clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F);
             setTitleAlpha(subeAparece);
-            getActionBarIconView().setAlpha(subeAparece);
             float bajaAparece = clamp(1.0F - (5.0F * ratio - 4.0F), 0.0F, 1.0F);
             mHeaderPicture.setAlpha(bajaAparece);
             mHeaderLogo.setAlpha(bajaAparece);
-
         }
     };
 
@@ -144,37 +139,14 @@ public class MainActivity extends ActionBarActivity {
     private void setTitleAlpha(float alpha) {
         mAlphaForegroundColorSpan.setAlpha(alpha);
         mSpannableString.setSpan(mAlphaForegroundColorSpan, 0, mSpannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getActionBar().setTitle(mSpannableString);
+       toolbar.setTitle(mSpannableString);
+
     }
+
 
     public static float clamp(float value, float max, float min) {
         return Math.max(Math.min(value, min), max);
     }
-
-    private void interpolate(View view1, View view2, float interpolation) {
-        getOnScreenRect(mRect1, view1);
-        getOnScreenRect(mRect2, view2);
-
-        float scaleX = 1.0F + interpolation * (mRect2.width() / mRect1.width() - 1.0F);
-        float scaleY = 1.0F + interpolation * (mRect2.height() / mRect1.height() - 1.0F);
-        float translationX = 0.5F * (interpolation * (mRect2.left + mRect2.right - mRect1.left - mRect1.right));
-        float translationY = 0.5F * (interpolation * (mRect2.top + mRect2.bottom - mRect1.top - mRect1.bottom));
-
-        view1.setTranslationX(translationX);
-        view1.setTranslationY(translationY - mHeader.getTranslationY());
-        view1.setScaleX(scaleX);
-        view1.setScaleY(scaleY);
-    }
-
-    private RectF getOnScreenRect(RectF rect, View view) {
-        rect.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-        return rect;
-    }
-
-    private ImageView getActionBarIconView() {
-        return (ImageView) findViewById(android.R.id.home);
-    }
-
 
     public int getActionBarHeight() {
         if (mActionBarHeight != 0) {
@@ -186,11 +158,24 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+public void initToolbar(){
+    // Set an OnMenuItemClickListener to handle menu item clicks
+    toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            int id = item.getItemId();
+            if (id == R.id.action_settings) {
+                startActivity (new Intent(MainActivity.this, ConfigActivity.class));
+            }
+            return true;
+        }
+    });
 
+    // Inflate a menu to be displayed in the toolbar
+    toolbar.inflateMenu(R.menu.main);
+}
 
-
-
-
+/*
 
 
     @Override
@@ -212,7 +197,7 @@ public class MainActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+*/
 
     /***
      * Checks that application runs first time and write flag at SharedPreferences

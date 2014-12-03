@@ -13,15 +13,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileHeader implements Serializable {
+    boolean cifrar=true;
     boolean caducidad=false;
-    boolean soloAca=false;
     String fechaCaducidad = null;
+    boolean soloAca=false;
+    boolean prohibirExtraer=false;
+    boolean copiaSinBloquear=false;
 
 
+/*
     public boolean isDefault(){
         return !caducidad && !soloAca;
     }
-
+*/
     public void setFechaCaducidad(int year, int month, int day) {
         String dia;
         if (day < 10)
@@ -65,6 +69,33 @@ public class FileHeader implements Serializable {
         return caducidad;
     }
 
+    public boolean isCifrar() {
+        return cifrar;
+    }
+
+    public void setCifrar(boolean cifrar) {
+        this.cifrar = cifrar;
+    }
+
+    public void setFechaCaducidad(String fechaCaducidad) {
+        this.fechaCaducidad = fechaCaducidad;
+    }
+
+    public boolean isProhibirExtraer() {
+        return prohibirExtraer;
+    }
+
+    public void setProhibirExtraer(boolean prohibirExtraer) {
+        this.prohibirExtraer = prohibirExtraer;
+    }
+
+    public boolean isCopiaSinBloquear() {
+        return copiaSinBloquear;
+    }
+
+    public void setCopiaSinBloquear(boolean copiaSinBloquear) {
+        this.copiaSinBloquear = copiaSinBloquear;
+    }
 
     public void setCaducidad(boolean caducidad) {
         this.caducidad = caducidad;

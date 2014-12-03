@@ -6,11 +6,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Bar_offstyle" >
+        android:theme="@style/PrincipalTheme" >
         <activity
             android:name=".presentation.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/TransparentTheme" >
+            android:theme="@style/NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -99,7 +99,7 @@
             android:excludeFromRecents="true"
             android:label="@string/secure_view"
             android:noHistory="true"
-            android:theme="@style/AppThemeTransparent" >
+            android:theme="@style/AppThemeListMedia" >
         </activity>
         <activity
             android:name=".presentation.ErrorActivity"
@@ -121,7 +121,7 @@
             android:name=".presentation.SeeMedia.GridMediaActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
-            android:theme="@style/TransparentThemeOnlyTitle" >
+            android:theme="@style/ThemeGrid" >
         </activity>
     </application>
 

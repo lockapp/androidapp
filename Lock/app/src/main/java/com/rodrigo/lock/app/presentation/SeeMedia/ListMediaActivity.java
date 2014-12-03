@@ -2,36 +2,24 @@ package com.rodrigo.lock.app.presentation.SeeMedia;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Parcelable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-
 
 import com.rodrigo.lock.app.Core.Clases.FileType;
-import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
-import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
-import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.Core.Utils.HackyViewPager;
+import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.presentation.UI.DepthPageTransformer;
-import com.rodrigo.lock.app.services.ExtractService;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListMediaActivity extends MediaActivity {
     @InjectView(R.id.view_pager)  HackyViewPager mViewPager;
@@ -154,7 +142,11 @@ public class ListMediaActivity extends MediaActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.see_image, menu);
+        if (mediaCryptoController.esExtraible()){
+            getMenuInflater().inflate(R.menu.see_image, menu);
+        }else{
+            getMenuInflater().inflate(R.menu.see_image_no_extract, menu);
+        }
         return true;
     }
 
@@ -199,7 +191,7 @@ public class ListMediaActivity extends MediaActivity {
 
 
 
-    public DecryptControllerSeeMedia getMediaController() {
+    public DecryptControllerSeeMedia getDecryptMediaController() {
         return mediaCryptoController;
     }
 

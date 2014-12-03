@@ -6,14 +6,13 @@ import android.net.Uri;
 
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
-import com.rodrigo.lock.app.Core.Clases.FileType;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
+import com.rodrigo.lock.app.Core.Clases.FileType;
 import com.rodrigo.lock.app.Core.Utils.MediaUtils;
-import com.rodrigo.lock.app.Core.crypto.AES.Crypto;
-import com.rodrigo.lock.app.Core.controllers.FileController;
-import com.rodrigo.lock.app.services.ExtractService;
 import com.rodrigo.lock.app.Core.Utils.Utils;
+import com.rodrigo.lock.app.Core.crypto.AES.Crypto;
 import com.rodrigo.lock.app.R;
+import com.rodrigo.lock.app.services.ExtractService;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,6 +37,13 @@ public class DecryptController extends CryptoController {
     long idImage;
     boolean vistaSegura;
     long offset;
+    boolean esExtraible =true;
+
+
+    public boolean esExtraible(){
+        return esExtraible;
+    }
+
 
 
     //para see image
@@ -64,14 +70,10 @@ public class DecryptController extends CryptoController {
             }else {
                 initSimple();
             }
+
             openCabezales(vistaSegura);
 
-            Crypto algo = new Crypto();
-            algo.init(pass);
-
-            in = new CipherInputStream(in, algo.getCiphertoDec(in));
             input = new ZipInputStream(in);
-
             ze = input.getNextEntry();
             //chequea si desbloqueo
             if (ze == null) {
@@ -85,13 +87,11 @@ public class DecryptController extends CryptoController {
 
 
 
-    int idN;
     @Override
-    public void realizarTrabajo (ExtractService SM, int idN)  throws Exception{
+    public void realizarTrabajo (ExtractService SM)  throws Exception{
         this.SM = SM;
         this.ctx = SM;
         outFileList = new LinkedList<Archivo>();
-        this.idN = idN;
 
         decrypt();
     }
@@ -106,7 +106,11 @@ public class DecryptController extends CryptoController {
             this.idImage = MediaUtils.isImageInGallery(this.inFile, ctx);
 
             //se sacan los archivos
-            extraerTodosLosArchivos();
+            if (esExtraible){
+                extraerTodosLosArchivos();
+            }else{
+                throw new Exception(this.ctx.getResources().getString(R.string.error_noextract));
+            }
 
             //se elimina el original
             try {
@@ -159,15 +163,16 @@ public class DecryptController extends CryptoController {
     }
 
 
-    public void openCabezales(boolean usarVistaSegura) throws Exception {
-        //se chequea la version
+    private void openCabezales(boolean usarVistaSegura) throws Exception {
 
+        //se chequea la version
         byte[] version = new byte[1];
         in.read(version);
-        if ((version[0] != ((byte) 0x00))) {
+        if ((version[0] > ((byte) 0x01))) {
             throw new Exception(ctx.getResources().getString(R.string.error_version));
         }
 
+        //se empiezan a chequear los cabezales
         byte[] cavezalesActivos = new byte[1];
         in.read(cavezalesActivos);
 
@@ -178,13 +183,8 @@ public class DecryptController extends CryptoController {
             }
         }
 
-        //solo aca
-        if ((cavezalesActivos[0] & Byte.parseByte("00000010", 2)) == Byte.parseByte("00000010", 2) ){
-            //cabezal.setSoloAca(true);
-            pass = FileHeader.mergeIdInPassword(pass, ctx);
-        }
 
-        //caducidad
+            //caducidad
         if ((cavezalesActivos[0] & Byte.parseByte("00000001", 2)) == Byte.parseByte("00000001", 2) ){
             //cabezal.setCaducidad(true);
             byte[] caducidad = new byte[4];
@@ -197,11 +197,31 @@ public class DecryptController extends CryptoController {
 
             if (Integer.valueOf(actualDate) > fechaCaducidad) {
                 throw new Exception(this.ctx.getResources().getString(R.string.error_defeated));
+                //eliminar archivo
             }
         }
 
 
 
+        //cifrar
+        if (((cavezalesActivos[0] & Byte.parseByte("00010000", 2)) == Byte.parseByte("00010000", 2) ) || (version[0] == ((byte) 0x00))){
+            //solo aca
+            if ((cavezalesActivos[0] & Byte.parseByte("00000010", 2)) == Byte.parseByte("00000010", 2) ){
+                //cabezal.setSoloAca(true);
+                pass = FileHeader.mergeIdInPassword(pass, ctx);
+            }
+
+            Crypto algo = new Crypto();
+            algo.init(pass);
+            in = new CipherInputStream(in, algo.getCiphertoDec(in));
+        }
+
+
+
+        //prhoibir extraer
+        if ((cavezalesActivos[0] & Byte.parseByte("00001000", 2)) == Byte.parseByte("00001000", 2) ){
+            this.esExtraible = false;
+        }
 
     }
 

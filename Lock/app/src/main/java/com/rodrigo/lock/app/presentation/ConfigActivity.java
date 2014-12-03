@@ -1,27 +1,24 @@
 package com.rodrigo.lock.app.presentation;
 
-import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
+import android.widget.Switch;
 
 import com.devspark.appmsg.AppMsg;
-import com.rodrigo.lock.app.Core.controllers.PreferencesController;
 import com.rodrigo.lock.app.Core.Interfaces.IPreferences;
+import com.rodrigo.lock.app.Core.controllers.PreferencesController;
 import com.rodrigo.lock.app.R;
+
+//import org.jraf.android.backport.switchwidget.Switch;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
-
-import org.jraf.android.backport.switchwidget.Switch;
 
 
 public class ConfigActivity extends ActionBarActivity {

@@ -1,6 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:switchpref="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:background="#ffffff"
@@ -25,8 +23,22 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin">
 
+            <Switch
+                android:id="@+id/cifrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/encrypt" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#dbdbdb"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+
             <!-- afecha de vencimiento-->
-            <org.jraf.android.backport.switchwidget.Switch
+            <Switch
                 android:id="@+id/vencimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,11 +67,40 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
             <!--solo en este dispositivo-->
-            <org.jraf.android.backport.switchwidget.Switch
+            <Switch
                 android:id="@+id/soloaca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/only_device" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#dbdbdb"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+            <!--solo en este dispositivo-->
+            <Switch
+                android:id="@+id/prhoibirextraer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notextract" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#dbdbdb"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+            <!--solo en este dispositivo-->
+            <Switch
+                android:id="@+id/dejarcopiasinbloquear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dejarcopia" />
+
 
         </LinearLayout>
     </ScrollView>

@@ -3,6 +3,7 @@ package com.rodrigo.lock.app.presentation.UI;
 /**
  * Created by Rodrigo on 02/10/2014.
  */
+
 import android.content.Context;
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
@@ -16,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.WrapperListAdapter;
+
 import java.util.ArrayList;
 /**
  * A {@link GridView} that supports adding header rows in a

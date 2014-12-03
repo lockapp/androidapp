@@ -94,4 +94,13 @@
     <string name="VideoView_error_text_unknown" >No se puede reproducir el vídeo.</string>
     <string name="VideoView_error_button">"Aceptar"</string>
 
+
+    <string name="encrypt">Cifrar</string>
+    <string name="notextract">Prohibido extraer</string>
+    <string name="dejarcopia">Dejar copia sin bloquear</string>
+
+    <string name="error_noextract">Este archivo no se permite extraer</string>
+
+
+
 </resources>

@@ -1,7 +1,6 @@
 package com.rodrigo.lock.app.Core.controllers;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
@@ -13,7 +12,6 @@ import com.rodrigo.lock.app.Core.controllers.crypto.DecryptController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.Core.controllers.crypto.EncryptController;
 import com.rodrigo.lock.app.R;
-import com.rodrigo.lock.app.services.ExtractService;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,28 +1,26 @@
 package com.rodrigo.lock.app.presentation.Encrypt;
 
 
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.net.Uri;
-
-import com.devspark.appmsg.AppMsg;
-import com.rodrigo.lock.app.Core.Clases.Accion;
-import com.rodrigo.lock.app.Core.Clases.Archivo;
-import com.rodrigo.lock.app.Core.Clases.FileHeader;
-import com.rodrigo.lock.app.Core.controllers.FileController;
-import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
-import com.rodrigo.lock.app.presentation.DecryptActivity;
-import com.rodrigo.lock.app.R;
-
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.devspark.appmsg.AppMsg;
+import com.rodrigo.lock.app.Core.Clases.Accion;
+import com.rodrigo.lock.app.Core.Clases.Archivo;
+import com.rodrigo.lock.app.Core.Clases.FileHeader;
+import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
+import com.rodrigo.lock.app.Core.controllers.FileController;
+import com.rodrigo.lock.app.R;
+import com.rodrigo.lock.app.presentation.DecryptActivity;
 
 import java.io.File;
 
@@ -34,7 +32,7 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity implements Frag
     //ViewAnimator viewAnimator1;
 
     FileController controler;
-    FileHeader cabezal=null;
+    FileHeader cabezal;
     //boolean isImage;
 
 

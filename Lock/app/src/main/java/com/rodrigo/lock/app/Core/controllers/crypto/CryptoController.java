@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
-import com.rodrigo.lock.app.Core.controllers.FileController;
 import com.rodrigo.lock.app.services.ExtractService;
 
 /**
@@ -20,7 +19,7 @@ public class CryptoController {
     String pass;
 
 
-    public void realizarTrabajo(ExtractService SM, int idN)  throws Exception {
+    public void realizarTrabajo(ExtractService SM)  throws Exception {
     }
 
     public  void checkAndInit() throws Exception{

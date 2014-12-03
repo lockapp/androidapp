@@ -9,14 +9,9 @@ import android.support.v4.app.NotificationCompat;
 
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
-import com.rodrigo.lock.app.Core.controllers.FileController;
-import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
-import com.rodrigo.lock.app.Core.controllers.crypto.DecryptController;
-import com.rodrigo.lock.app.Core.controllers.crypto.EncryptController;
-import com.rodrigo.lock.app.Core.crypto.AES.Crypto;
-import com.rodrigo.lock.app.presentation.ErrorActivity;
 import com.rodrigo.lock.app.R;
+import com.rodrigo.lock.app.presentation.ErrorActivity;
 
 /**
  * Created by Rodrigo on 29/05/14.
@@ -38,10 +33,10 @@ public class ExtractService extends IntentService {
         mNotifyManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
         mBuilder = new NotificationCompat.Builder(this);
         id++;
+        int idcc = intent.getExtras().getInt("controlerId");
+        CryptoController cc= ManejadorCrypto.getControlador(idcc);
+
         try {
-            // If we get killed, after returning from here, restart
-            int idcc = intent.getExtras().getInt("controlerId");
-            CryptoController cc= ManejadorCrypto.getControlador(idcc);
 
             if (cc != null) {
                 if (cc.getAccion() == Accion.Encyptar || cc.getAccion() == Accion.EncryptarConImagen) {
@@ -53,11 +48,8 @@ public class ExtractService extends IntentService {
                 mBuilder.setOngoing(true);
                 startForeground(id, mBuilder.build());
 
-
-
                 cc.checkAndInit();
-                ManejadorCrypto.quitarControldor(idcc);
-                cc.realizarTrabajo(this, id);
+                cc.realizarTrabajo(this);
 
                 finNorification();
             }
@@ -65,6 +57,9 @@ public class ExtractService extends IntentService {
         } catch (Exception e) {
             terminoConError(e.getMessage(), /*fc.getInF().getAbsolutePath()*/"");
         }
+
+        //chequear esto aca
+        ManejadorCrypto.quitarControldor(idcc);
 
     }
 

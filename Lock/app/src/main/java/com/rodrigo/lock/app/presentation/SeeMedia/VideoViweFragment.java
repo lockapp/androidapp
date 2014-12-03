@@ -5,6 +5,7 @@ import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,13 +35,14 @@ public class VideoViweFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View V = inflater.inflate(R.layout.fragment_see_video_thumbnail, container, false);
         ButterKnife.inject(this, V);
+        ViewCompat.setTransitionName(thumbnail, getString(R.string.image_grid));
 
         padre=(ListMediaActivity) getActivity();
         imageid=getArguments().getInt("imageID");
 
         try {
             if (  (0 <= imageid)  && (imageid <padre.getCantimages())){
-                f = ((ListMediaActivity) getActivity()).getMediaController().getFile(imageid);
+                f = ((ListMediaActivity) getActivity()).getDecryptMediaController().getFile(imageid);
                 Bitmap thumb = ThumbnailUtils.createVideoThumbnail(f.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
                 thumbnail.setImageBitmap(thumb);
             }

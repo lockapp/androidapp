@@ -1,12 +1,17 @@
 package com.rodrigo.lock.app.presentation.SeeMedia;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.TypedValue;
@@ -17,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,13 +43,19 @@ public class GridMediaActivity extends MediaActivity {
     @InjectView(R.id.gridview)   HeaderGridView gridView;
     @InjectView(R.id.textheader1)   TextView titulo1;
     @InjectView(R.id.textheader2)   TextView titulo2;
+    @InjectView(R.id.tapaheader)   FrameLayout tapaheader;
+    @InjectView(R.id.logo)   View logo;
+    @InjectView(R.id.progreso)   View progreso;
 
     MediaAdapter adapter;
     LinkedList<Archivo> archivos;
     int cantimages;
 
 
-    @InjectView(R.id.header)  View mHeader;
+    @InjectView(R.id.header)  View header;
+    @InjectView(R.id.toolbar) android.support.v7.widget.Toolbar toolbar;
+
+
     private int mHeaderHeight;
     private int mMinHeaderTranslation;
     private int mActionBarTitleColor;
@@ -58,12 +70,14 @@ public class GridMediaActivity extends MediaActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_grid_media);
+        ButterKnife.inject(this);
+        setSupportActionBar(toolbar);
+
 
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_mediabar);
         mMinHeaderTranslation = -mHeaderHeight + getActionBarHeight();
 
-        setContentView(R.layout.activity_grid_media);
-        ButterKnife.inject(this);
 
         mPlaceHolderView = getLayoutInflater().inflate(R.layout.fake_header, gridView, false);
         gridView.addHeaderView(mPlaceHolderView);
@@ -76,18 +90,19 @@ public class GridMediaActivity extends MediaActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //Toast.makeText(getApplicationContext(), "posicion = " + (position-3), Toast.LENGTH_LONG).show();
-                viewMedia(position-3);
+                viewMedia(parent, v, position, id);
             }
         });
 
-        mActionBarTitleColor = getResources().getColor(R.color.white);
 
+        mActionBarTitleColor = getResources().getColor(R.color.white);
         mSpannableString = new SpannableString(getResources().getString(R.string.secure_view));
         mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(mActionBarTitleColor);
 
 
         setupGridView();
         updateText(mediaCryptoController.isComplete());
+        tapaheader.setAlpha(0);
 
     }
 
@@ -103,17 +118,18 @@ public class GridMediaActivity extends MediaActivity {
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 int scrollY = getScrollY();
                 //sticky actionbar
-                mHeader.setTranslationY(Math.max(-scrollY, mMinHeaderTranslation));
+                header.setTranslationY(Math.max(-scrollY, mMinHeaderTranslation));
                 //header_logo --> actionbar icon
-                float ratio = clamp(mHeader.getTranslationY() / mMinHeaderTranslation, 0.0f, 1.0f);
+                float ratio = clamp(header.getTranslationY() / mMinHeaderTranslation, 0.0f, 1.0f);
                 //actionbar title alpha
                 //getActionBarTitleView().setAlpha(clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F));
                 //---------------------------------
                 //better way thanks to @cyrilmottier
                 float alpha = clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F);
                 setTitleAlpha(alpha);
-                titulo1.setAlpha(1.0F-alpha);
-                titulo2.setAlpha(1.0F-alpha);
+                tapaheader.setAlpha(alpha);
+               /* titulo1.setAlpha(1.0F-alpha);
+                titulo2.setAlpha(1.0F-alpha);*/
 
 
             }
@@ -125,7 +141,7 @@ public class GridMediaActivity extends MediaActivity {
     private void setTitleAlpha(float alpha) {
         mAlphaForegroundColorSpan.setAlpha(alpha);
         mSpannableString.setSpan(mAlphaForegroundColorSpan, 0, mSpannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getActionBar().setTitle(mSpannableString);
+        getSupportActionBar().setTitle(mSpannableString);
     }
 
     public static float clamp(float value, float max, float min) {
@@ -163,14 +179,23 @@ public class GridMediaActivity extends MediaActivity {
 
 
 
-    public void viewMedia(int image){
+    public void viewMedia(AdapterView<?> parent, View v, int position, long id){
         clearCacheFiles = false;
         deleteMediaController =false;
+        int image = position - 3;
+
         Intent i = new Intent(this,ListMediaActivity.class );
         i.putExtra("controlerId", idCC);
         i.putExtra("acutalpage",image);
         startActivity(i);
-        finish();
+
+
+
+       /* ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,  v.findViewById(R.id.picture),  getString(R.string.image_grid));
+        ActivityCompat.startActivity(this,i, options.toBundle());
+        */finish();
+
     }
 
 
@@ -181,8 +206,13 @@ public class GridMediaActivity extends MediaActivity {
         }else{
             titulo =(String.format(getResources().getString(R.string.files), cantimages));
         }
-        if (!fin){
+        if (fin){
+            progreso.setVisibility(View.GONE);
+            logo.setVisibility(View.VISIBLE);
+        }else{
             titulo = titulo + " ...";
+            progreso.setVisibility(View.VISIBLE);
+            logo.setVisibility(View.GONE);
         }
         titulo2.setText(titulo);
     }
@@ -191,7 +221,12 @@ public class GridMediaActivity extends MediaActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.see_image, menu);
+        if (mediaCryptoController.esExtraible()){
+            getMenuInflater().inflate(R.menu.see_image, menu);
+        }else{
+            getMenuInflater().inflate(R.menu.see_image_no_extract, menu);
+        }
+
         return true;
     }
 
@@ -219,6 +254,8 @@ public class GridMediaActivity extends MediaActivity {
         }
 
 
+
+
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             View v = view;
@@ -233,6 +270,7 @@ public class GridMediaActivity extends MediaActivity {
 
             picture = (ImageView)v.getTag(R.id.picture);
             imageplay = (ImageView)v.getTag(R.id.play);
+            ViewCompat.setTransitionName(picture, getString(R.string.image_grid) );
 
             Archivo a = archivos.get(i);
             if (a.getTipo() == FileType.Video){

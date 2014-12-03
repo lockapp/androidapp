@@ -18,7 +18,7 @@
         <ProgressBar
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            style="@style/ListSpinner"
+            style="@style/LockProgressListSpinner"
             android:layout_width="80dp"
             android:layout_height="80dp" />
     </RelativeLayout >

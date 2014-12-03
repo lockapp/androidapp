@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="ab_primary">#6E7982</color>
+    <color name="ab_primary_dark">#5D6871</color>
+    <color name="ab_accent">#056f00</color>
+    <color name="ab_text_primary">#D9000000</color>
+    <color name="ab_text_secondary">#D9000000</color>
+
+    <color name="blinkfeed_text_primary">#ffffffff</color>
+    <color name="blinkfeed_text_secondary">#d9ffffff</color>
+
+
     <color name="bg_blue">#007ee5</color>
     <color name="bg_blinkfeed">#4EA770</color>
+    <color name="bg_blinkfeed_dark">#469665</color>
+    <color name="bg_blinkfeed_ligth">#4EA770</color>
+
     <color name="bg_listgallery_start">#ff000000</color>
     <color name="bg_listgallery_medium">#141414</color>
     <color name="bg_listgallery_end">#ff000000</color>
@@ -46,6 +60,8 @@
 
 
     <color name="transparent_bar">#80000000</color>
+
+
 
 
 

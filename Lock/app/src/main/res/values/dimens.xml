@@ -10,7 +10,7 @@
     <dimen name="FlatToggleButton_radius">18dp</dimen>
 
     <dimen name="header_bar">170dp</dimen>
-    <dimen name="header_mediabar">134dp</dimen>
+    <dimen name="header_mediabar">128dp</dimen>
 
     <dimen name="indicator_heigth" >48dp</dimen>
 

@@ -9,7 +9,6 @@ import android.util.Log;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileType;
-import com.rodrigo.lock.app.Core.controllers.FileController;
 import com.rodrigo.lock.app.Core.Interfaces.NotifyMediaChange;
 import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.R;

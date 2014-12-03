@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--- for grid scroll
+    <style name="TransparentThemeOnlyTitle" parent="@style/Theme.AppCompat">
+        <item name="android:actionBarStyle">@style/ActionBarStyle.TransparentAndNoIcon</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ActionBarStyle.TransparentAndNoIcon" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@null</item>
+        <item name="android:displayOptions">showTitle</item>
+    </style>
+-->
+
+    <!--- for home scroll
+    <style name="TransparentTheme" parent="@style/Theme.Bar_offstyle">
+        <item name="android:actionBarStyle">@style/ActionBarStyle.Transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ActionBarStyle.Transparent" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@null</item>
+        <item name="android:titleTextStyle">@style/ActionBarStyle.Transparent.TitleTextStyle</item>
+    </style>
+
+    <style name="ActionBarStyle.Transparent.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+-->
+
+    <!-- end scroo -->
+
+
+
+    <!-- Estilo para visor de imagenes -->
+    <style name="AppThemeListMedia" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/ActionBarTransparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:icon">@android:color/transparent</item>
+
+    </style>
+
+    <style name="ActionBarTransparent" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/actionbar_bg</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="background">@drawable/actionbar_bg</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <!--   -->
+
+
+    <!-- Estilo de laa aplicacion-->
+    <style name="PrincipalTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@color/ab_primary</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/ab_primary_dark</item>
+        <!-- colorAccent is used as the default value for colorControlActivated
+     which is used to tint widgets -->
+        <item name="colorAccent">@color/ab_accent</item>
+        <item name="android:textColorPrimary">@color/ab_text_primary</item>
+        <item name="android:textColor">@color/ab_text_secondary</item>
+        <!--  <item name="android:navigationBarColor">@color/primary_dark</item>-->
+    </style>
+
+
+
+    <!-- Estilo para may activity, introduccion y play video-->
+    <style name="NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <!-- copy paste
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColor">@color/text_secondary</item>-->
+    </style>
+
+
+    <!-- se usa para el visor e imagenes en forma de grid-->
+    <style name="ThemeGrid" parent="NoActionBar">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@color/bg_blinkfeed</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/bg_blinkfeed_dark</item>
+        <!-- colorAccent is used as the default value for colorControlActivated
+     which is used to tint widgets -->
+        <item name="colorAccent">@color/bg_blinkfeed_ligth</item>
+        <item name="android:textColorPrimary">@color/blinkfeed_text_primary</item>
+        <item name="android:textColor">@color/blinkfeed_text_secondary</item>
+        <!--  <item name="android:navigationBarColor">@color/primary_dark</item>-->
+    </style>
+
+</resources>

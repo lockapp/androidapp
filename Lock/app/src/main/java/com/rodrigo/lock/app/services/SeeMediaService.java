@@ -2,19 +2,13 @@ package com.rodrigo.lock.app.services;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
-import com.rodrigo.lock.app.Core.controllers.FileController;
-import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
-import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
-
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -67,6 +61,7 @@ public class SeeMediaService extends IntentService {
             }
         }catch (Exception e){
        }
+        //se saca del manejador en media activity
 
     }
 

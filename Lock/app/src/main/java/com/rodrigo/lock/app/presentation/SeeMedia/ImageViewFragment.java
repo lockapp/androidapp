@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class ImageViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View V = inflater.inflate(R.layout.fragment_imagesegureview, container, false);
         ButterKnife.inject(this, V);
+        ViewCompat.setTransitionName(photoView, getString(R.string.image_grid));
 
         imageid=getArguments().getInt("imageID");
         padre = ((ListMediaActivity) getActivity());
@@ -58,7 +60,7 @@ public class ImageViewFragment extends Fragment {
         @Override
         protected Bitmap doInBackground(Integer... params) {
             try{
-                return padre.getMediaController().getImage(imageid);
+                return padre.getDecryptMediaController().getImage(imageid);
             }catch (Exception e){
                 return null;
             }

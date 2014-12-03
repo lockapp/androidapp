@@ -1,8 +1,8 @@
 package com.rodrigo.lock.app.presentation;
 
 import android.graphics.drawable.AnimationDrawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;

@@ -16,12 +16,12 @@ import android.widget.TextView;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileType;
+import com.rodrigo.lock.app.Core.Interfaces.IPreferences;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
+import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.Core.controllers.FileController;
 import com.rodrigo.lock.app.Core.controllers.PreferencesController;
-import com.rodrigo.lock.app.Core.Interfaces.IPreferences;
-import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.presentation.UI.TextureVideoView;
@@ -147,9 +147,7 @@ public class EncryptFragment extends Fragment {
                 controler.chequear();
                 // padre.showProgress(true);
                 controler.setPassword(pass1);
-                if (!this.padre.getCabezal().isDefault()){
-                    controler.setCabezal(this.padre.getCabezal());
-                }
+                controler.setCabezal(this.padre.getCabezal());
 
                 CryptoController cc = controler.getEncryptController();
                 int ccid = ManejadorCrypto.add(cc);

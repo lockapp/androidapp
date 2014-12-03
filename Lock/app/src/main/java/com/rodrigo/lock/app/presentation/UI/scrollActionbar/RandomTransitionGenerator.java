@@ -3,9 +3,10 @@ package com.rodrigo.lock.app.presentation.UI.scrollActionbar;
 /**
  * Created by Rodrigo on 15/08/2014.
  */
+
 import android.graphics.RectF;
-import android.view.animation.Interpolator;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Interpolator;
 
 import java.util.Random;
 

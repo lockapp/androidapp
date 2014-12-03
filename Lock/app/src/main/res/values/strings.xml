@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- transacion name -->
+    <string name="image_grid">imageGrid</string>
 
+    <!--  -->
     <string name="action_share">Share</string>
     <string name="app_name">Lock</string>
     <string name="hello_world">Hello world!</string>

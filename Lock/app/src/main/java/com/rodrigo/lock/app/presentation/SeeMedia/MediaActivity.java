@@ -9,10 +9,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.devspark.appmsg.AppMsg;
-import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
-import com.rodrigo.lock.app.Core.controllers.FileController;
 import com.rodrigo.lock.app.Core.Interfaces.NotifyMediaChange;
-import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
+import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;

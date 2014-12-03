@@ -5,12 +5,12 @@ import android.content.res.AssetManager;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileType;
-import com.rodrigo.lock.app.Core.controllers.FileController;
-import com.rodrigo.lock.app.services.ExtractService;
 import com.rodrigo.lock.app.Core.Utils.MediaUtils;
-import com.rodrigo.lock.app.Core.crypto.AES.Crypto;
 import com.rodrigo.lock.app.Core.Utils.Utils;
+import com.rodrigo.lock.app.Core.controllers.FileController;
+import com.rodrigo.lock.app.Core.crypto.AES.Crypto;
 import com.rodrigo.lock.app.R;
+import com.rodrigo.lock.app.services.ExtractService;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,7 +34,9 @@ import javax.crypto.CipherOutputStream;
      El inicio es distinto dependisndo del tipo de archivo despues
     -1 byte version 00000000
     -1 byte cabezales activos
-        00000(vistasegura)(solo aca)(caducidad)
+        version1: 00000(vistasegura)(solo aca)(caducidad)
+        version2: 000(cifrar)(prhoibirextraer) (vistasegura )(solo aca)(caducidad)
+
     -en caso de cabezal caducidad: 4byte para la fecha que es un int en formato aaaammdd
 
 */
@@ -56,11 +58,9 @@ public class EncryptController extends CryptoController {
     OutputStream out = null;
     ZipOutputStream output = null;
     Crypto algo = null;
-    int idN;
 
     @Override
-    public void realizarTrabajo(ExtractService SM, int idN)  throws Exception{
-        this.idN =idN;
+    public void realizarTrabajo(ExtractService SM)  throws Exception{
         this.SM = SM;
         this.ctx = SM;
         inIDImgFileList = new LinkedList<Long>();
@@ -82,11 +82,6 @@ public class EncryptController extends CryptoController {
             }
         }
 
-        // Log.d("ecrtyptar", "entra a ecrtyptar");
-        if (cabezal != null && cabezal.isSoloAca()) {
-            pass = cabezal.mergeIdInPassword(pass, SM);
-        }
-
         if (Accion.EncryptarConImagen == accion) {
             abrirArchivoImagen();
         } else {
@@ -95,12 +90,22 @@ public class EncryptController extends CryptoController {
 
         grabarCabezales();
 
-        algo = new Crypto();
-        algo.init(pass);
+        if (cabezal.isCifrar()){
+            if ( cabezal.isSoloAca()) {
+                pass = cabezal.mergeIdInPassword(pass, SM);
+            }
+            algo = new Crypto();
+            algo.init(pass);
+            out = new CipherOutputStream(out, algo.getCiphertoEnc(out));
+        }
+        output = new ZipOutputStream(out);
+        output.setLevel(Deflater.NO_COMPRESSION);
 
         grabarListaArchivos();
 
-        finalizarArchivos();
+        if (!cabezal.isCopiaSinBloquear()){
+            finalizarArchivos();
+        }
 
         if (Accion.EncryptarConImagen ==accion) {
             MediaUtils.addImageGallery(new File(toEncrypt), SM);
@@ -116,18 +121,24 @@ public class EncryptController extends CryptoController {
          /*
             -1 byte version 00000000
             -1 byte cabezales activos
-                000000(solo aca)(caducidad)
+                version1: 00000(vistasegura)(solo aca)(caducidad)
+                version2: 000(cifrar)(prhoibirextraer) (vistasegura )(solo aca)(caducidad)
+
             -en cado de cabezal caducidad: 4byte para la fecha que es un int en formato aaaammdd
 
             */
             int tamcabezalCompleto = 2;
 
             byte[] version = new byte[1];
-            Arrays.fill(version, Byte.parseByte("00000000", 2));
+            Arrays.fill(version, Byte.parseByte("00000001", 2));
 
             byte[] cavezalesActivos = new byte[1];
-            String activos = "00000";
+            String activos = "000";
 
+            //cifrar
+            activos =( (cabezal.isCifrar()) ?   activos + "1" : activos + "0");
+            //prhoibir extraer
+            activos = ((cabezal.isProhibirExtraer()) ?   activos + "1" : activos + "0");
             //vista segura
             activos = ((accion == Accion.EncryptarConImagen) ?   activos + "1" : activos + "0");
             //solo aca
@@ -171,14 +182,6 @@ public class EncryptController extends CryptoController {
 
     private void grabarListaArchivos() throws Exception {
         try {
-
-
-            //se agrega la imagen encryptada al final
-            /** se encryptan las imagenes**/
-            out = new CipherOutputStream(out, algo.getCiphertoEnc(out));
-            output = new ZipOutputStream(out);
-            output.setLevel(Deflater.NO_COMPRESSION);
-
 
             double avanza = 0;
             byte[] buffer = new byte[1024];

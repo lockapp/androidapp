@@ -94,5 +94,12 @@
     <string name="VideoView_error_text_unknown" >Can\'t play this video.</string>
     <string name="VideoView_error_button">OK</string>
 
+
+    <string name="encrypt">Encrypt</string>
+    <string name="notextract">No extract</string>
+    <string name="dejarcopia">Not delete the original files</string>
+
+    <string name="error_noextract">This file is not allowed to extract</string>
+
 </resources>
 

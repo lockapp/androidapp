@@ -3,8 +3,6 @@ package com.rodrigo.lock.app.Core.crypto.AES;
 
 import com.rodrigo.lock.app.Core.crypto.AES.CoreCrypto.Utils;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
