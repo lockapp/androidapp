@@ -3,11 +3,17 @@ package com.rodrigo.lock.app.presentation.Encrypt;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
 
+import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
+import com.rodrigo.lock.app.Core.Clases.FileType;
+import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.R;
 
 import java.io.File;
@@ -18,6 +24,7 @@ import java.util.ArrayList;
  */
 public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
 
+    private final static int INTERVAL_UPDATEBG = 1000 * 6  ; //4 segundos
 
     @Override
     public void encontrAraccion() {
@@ -93,6 +100,118 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
     }
 
 
+
+
+
+/*****************************************************************************/
+/**  actualizador de imagenes **/
+/*****************************************************************************/
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if (controler.getAccion() == Accion.EncryptarConImagen){
+            stopRepeatingTask();
+        }
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if (controler.getAccion() == Accion.EncryptarConImagen){
+            startRepeatingTask();
+        }
+
+    }
+
+
+    void startRepeatingTask(){
+        mHandlerTask.run();
+    }
+
+    void stopRepeatingTask() {
+        if (controler.getInFiles().size() > 1){
+            mHandler.removeCallbacks(mHandlerTask);
+            mHandlerTask= null;
+        }
+    }
+
+
+
+
+    int imgIter =0;
+    Runnable mHandlerTask = new Runnable()
+    {
+        @Override
+        public void run() {
+            imgIter = imgIter % controler.getInFiles().size();
+            boolean res = generarProximaIagen();
+            actualizarUI(res);
+
+            if (controler.getInFiles().size() > 1){
+                imgIter++;
+                mHandler.postDelayed(mHandlerTask, INTERVAL_UPDATEBG);
+            }
+
+        }
+    };
+
+
+
+    Archivo actual;
+    Bitmap actualImg;
+
+
+    private Boolean generarProximaIagen() {
+        try {
+            actual = controler.getInFiles().get(imgIter);
+            if (actual.getTipo() == FileType.Imagen){
+                actualImg = MediaUtils.TransformImage(actual.getFile().getAbsolutePath());
+            }
+            return true;
+
+        } catch (Exception e) {
+            Log.d("----->actualizador de imagenes", "dio exepcion al generar nueva imagen");
+            return false;
+        }
+    }
+
+    private void actualizarUI(Boolean result) {
+        try {
+            if (result == true) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (actual.getTipo() == FileType.Imagen) {
+                            bgfondo.setImageBitmap(actualImg);
+                            MediaUtils.ImageViewAnimatedChange(ReciveImageAndVideo.this, bg, actualImg);
+
+                            //  videoVew.stop();
+                            bgfondo.setVisibility(View.VISIBLE);
+                            bg.setVisibility(View.VISIBLE);
+                            //  videoVew.setVisibility(View.GONE);
+
+                        } else {
+/*
+                                videoVew.setScaleType(TextureVideoView.ScaleType.TOP);
+                                videoVew.setDataSource(actual.getFile().getAbsolutePath());
+                                videoVew.setLooping(true);
+                                // videoVew.mute();
+                                bg.setVisibility(View.GONE);
+                                bgfondo.setVisibility(View.GONE);
+                                videoVew.setVisibility(View.VISIBLE);
+
+                                videoVew.play();*/
+                        }
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Log.d("----->actualizador de imagenes", "dio exepcion al acctualizar");
+
+        }
+
+    }
 
 
 

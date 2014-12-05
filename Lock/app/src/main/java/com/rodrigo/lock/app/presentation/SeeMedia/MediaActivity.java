@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.devspark.appmsg.AppMsg;
 import com.rodrigo.lock.app.Core.Interfaces.NotifyMediaChange;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
+import com.rodrigo.lock.app.Core.Utils.Utils;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
@@ -118,7 +119,7 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
             return true;
 
         }else if (id ==R.id.action_share){
-            Intent sendIntent = shareExludingApp();
+            Intent sendIntent = Utils.shareExludingApp(this, Uri.fromFile(mediaCryptoController.getInFile()));
             startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
             return true;
         }else if (id == R.id.action_donar){
@@ -132,38 +133,9 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
 
 
 
-    public  Intent shareExludingApp ()  {
-        String packageNameToExclude =this.getPackageName();
-        List<Intent> targetedShareIntents = new ArrayList<Intent>();
-        Intent share = createShareIntent();
-        List<ResolveInfo> resInfo = this.getPackageManager().queryIntentActivities(createShareIntent(),0);
-        if (!resInfo.isEmpty()) {
-            for (ResolveInfo info : resInfo) {
-                Intent targetedShare = createShareIntent();
-
-                if (!info.activityInfo.packageName.equalsIgnoreCase(packageNameToExclude)) {
-                    targetedShare.setPackage(info.activityInfo.packageName);
-                    targetedShareIntents.add(targetedShare);
-                }
-            }
-
-            Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0),
-                    "Select app to share");
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
-                    targetedShareIntents.toArray(new Parcelable[] {}));
-            return chooserIntent;
-        }
-        return null;
-    }
 
 
-    private     Intent createShareIntent ()  {
-        Intent share = new Intent();
-        share.setAction(Intent.ACTION_SEND);
-        share.setType("application/zip");
-        share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mediaCryptoController.getInFile()));
-        return share ;
-    }
+
 
 
 

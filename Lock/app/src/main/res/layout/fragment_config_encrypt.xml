@@ -27,7 +27,8 @@
                 android:id="@+id/cifrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/encrypt" />
+                android:text="@string/encrypt"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
             <View
                 android:layout_width="fill_parent"
@@ -42,7 +43,8 @@
                 android:id="@+id/vencimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/expiration_date" />
+                android:text="@string/expiration_date"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 
             <LinearLayout
@@ -71,7 +73,10 @@
                 android:id="@+id/soloaca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/only_device" />
+                android:text="@string/only_device"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_margin="16dp"
+                />
 
             <View
                 android:layout_width="fill_parent"
@@ -85,7 +90,10 @@
                 android:id="@+id/prhoibirextraer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/notextract" />
+                android:text="@string/notextract"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_margin="16dp"
+                />
 
             <View
                 android:layout_width="fill_parent"
@@ -99,7 +107,10 @@
                 android:id="@+id/dejarcopiasinbloquear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/dejarcopia" />
+                android:text="@string/dejarcopia"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_margin="16dp"
+                />
 
 
         </LinearLayout>

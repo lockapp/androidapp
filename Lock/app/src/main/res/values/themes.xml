@@ -96,4 +96,22 @@
         <!--  <item name="android:navigationBarColor">@color/primary_dark</item>-->
     </style>
 
+
+
+
+    <!-- Estilo para may activity, introduccion y play video-->
+    <style name="Encrypt" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/ab_primary</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/ab_primary_dark</item>
+        <item name="colorAccent">@color/ab_accent</item>
+    </style>
+
+    <style name="Toolbar" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/ab_primary</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/ab_primary_dark</item>
+        <item name="colorAccent">@color/ab_accent</item>
+    </style>
+
 </resources>

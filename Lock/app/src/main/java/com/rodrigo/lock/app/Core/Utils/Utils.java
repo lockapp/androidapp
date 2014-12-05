@@ -1,11 +1,18 @@
 package com.rodrigo.lock.app.Core.Utils;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Parcelable;
 import android.text.TextUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -179,5 +186,41 @@ public class Utils {
         // Finally, combine the values we have found by using the UUID class to create a unique identifier
         return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
     }
+
+
+    public static Intent shareExludingApp (Context c, Uri uri)  {
+        String packageNameToExclude =c.getPackageName();
+        List<Intent> targetedShareIntents = new ArrayList<Intent>();
+        Intent share = createShareIntent(uri);
+        List<ResolveInfo> resInfo = c.getPackageManager().queryIntentActivities(createShareIntent(uri),0);
+        if (!resInfo.isEmpty()) {
+            for (ResolveInfo info : resInfo) {
+                Intent targetedShare = createShareIntent(uri);
+
+                if (!info.activityInfo.packageName.equalsIgnoreCase(packageNameToExclude)) {
+                    targetedShare.setPackage(info.activityInfo.packageName);
+                    targetedShareIntents.add(targetedShare);
+                }
+            }
+
+            Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0),
+                    "Select app to share");
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
+                    targetedShareIntents.toArray(new Parcelable[] {}));
+            return chooserIntent;
+        }
+        return null;
+    }
+
+    private   static   Intent createShareIntent (Uri uri)  {
+        Intent share = new Intent();
+        share.setAction(Intent.ACTION_SEND);
+        share.setType("application/zip");
+        share.putExtra(Intent.EXTRA_STREAM, uri);
+        return share ;
+    }
+
+
+
 
 }

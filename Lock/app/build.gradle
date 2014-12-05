@@ -53,6 +53,7 @@ dependencies {
     //compile 'com.github.castorflex.smoothprogressbar:library:1.0.0'
     //compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
+    compile 'com.github.ksoichiro:android-observablescrollview:1.2.1'
 /*
                 compile 'com.madgag.spongycastle:prov:1.51.0.0'
                 compile 'com.madgag.spongycastle:pkix:1.51.0.0'

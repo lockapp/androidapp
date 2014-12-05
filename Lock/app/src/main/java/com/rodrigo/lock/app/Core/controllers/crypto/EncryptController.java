@@ -47,6 +47,10 @@ public class EncryptController extends CryptoController {
     LinkedList<Long> inIDImgFileList;
     String toEncrypt;
 
+    public String getToEncrypt() {
+        return toEncrypt;
+    }
+
     public EncryptController(FileController fc) {
         this.toEncrypt = fc.getOutFS();
         this.pass = fc.getPassword();

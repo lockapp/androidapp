@@ -3,7 +3,7 @@
 
     <color name="ab_primary">#6E7982</color>
     <color name="ab_primary_dark">#5D6871</color>
-    <color name="ab_accent">#056f00</color>
+    <color name="ab_accent">#ff4285f4</color>
     <color name="ab_text_primary">#D9000000</color>
     <color name="ab_text_secondary">#D9000000</color>
 
@@ -62,6 +62,7 @@
     <color name="transparent_bar">#80000000</color>
 
 
+    <color name="bg_edittext">#ffffffff</color>
 
 
 

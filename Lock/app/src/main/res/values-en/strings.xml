@@ -100,6 +100,9 @@
     <string name="dejarcopia">Not delete the original files</string>
 
     <string name="error_noextract">This file is not allowed to extract</string>
+    <string name="yourdatasafe">Your data is safe</string>
+    <string name="workcomplete">The work has been finalised</string>
+
 
 </resources>
 
