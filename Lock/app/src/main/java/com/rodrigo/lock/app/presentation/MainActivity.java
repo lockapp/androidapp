@@ -3,7 +3,6 @@ package com.rodrigo.lock.app.presentation;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -12,44 +11,38 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
-import android.util.TypedValue;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.nineoldandroids.view.ViewHelper;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.presentation.UI.scrollActionbar.AlphaForegroundColorSpan;
-import com.rodrigo.lock.app.presentation.UI.scrollActionbar.NotifyingScrollView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class MainActivity extends ActionBarActivity {
-    private static final String TAG = "NoBoringActionBarActivity";
-    private int mActionBarTitleColor;
-    private int mActionBarHeight;
-    private int mMinHeaderTranslation;
+public class MainActivity extends ActionBarActivity  implements ObservableScrollViewCallbacks {
 
-    @InjectView(R.id.scrollView) NotifyingScrollView mListView;
-    @InjectView(R.id.header_picture) ImageView mHeaderPicture;
-    @InjectView(R.id.header_logo) ImageView mHeaderLogo;
-    @InjectView(R.id.toolbar) android.support.v7.widget.Toolbar toolbar;
-    @InjectView(R.id.header) FrameLayout header;
-
-    @InjectView(R.id.version) TextView version;
+   @InjectView(R.id.version) TextView version;
     @InjectView(R.id.r0) TextView r0;
 
-    private AlphaForegroundColorSpan mAlphaForegroundColorSpan;
-    private SpannableString mSpannableString;
 
-    private TypedValue mTypedValue = new TypedValue();
+
+    @InjectView(R.id.header) View mImageView;
+    @InjectView(R.id.toolbar) Toolbar mToolbarView;
+    int mParallaxImageHeight;
+
+    private AlphaForegroundColorSpan mAlphaForegroundColorSpan;
+    private int mActionBarTitleColor;
+    private SpannableString mSpannableString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,23 +50,25 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        initToolbar();
-        //setSupportActionBar(toolbar);
+        //inicializa el titulo del action bar
+        mActionBarTitleColor = getResources().getColor(R.color.white);
+        mSpannableString = new SpannableString(getString(R.string.app_name));
+        mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(mActionBarTitleColor);
+        setTitleAlpha(0.0F);
 
-        int mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_bar);
-        mMinHeaderTranslation = - mHeaderHeight + getActionBarHeight();
+        setSupportActionBar(mToolbarView);
+        setBackgroundAlpha(mToolbarView, 0, getResources().getColor(R.color.bg_primario));
 
         if (isFirstTime()){
             tutorial();
         }
 
-        //inicializa el titulo del action bar
-        mActionBarTitleColor = getResources().getColor(R.color.white);
-        mSpannableString = new SpannableString(getString(R.string.app_name));
-        mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(mActionBarTitleColor);
-        setTitleAlpha(0F);
+        ObservableScrollView scrollView = (ObservableScrollView) findViewById(R.id.scroll);
+        scrollView.setScrollViewCallbacks(this);
 
-        mListView.setOnScrollChangedListener(mOnScrollChangedListener);
+        mParallaxImageHeight = getResources().getDimensionPixelSize(R.dimen.parallax_image_height);
+
+
         String versionName="";
         try {
             versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
@@ -85,6 +80,12 @@ public class MainActivity extends ActionBarActivity {
         //respuesta 0
         r0.setMovementMethod(LinkMovementMethod.getInstance());
         r0.setText(Html.fromHtml(getString(R.string.r0)));
+
+
+
+
+
+
     }
 
     @OnClick(R.id.tutorial)
@@ -102,10 +103,11 @@ public class MainActivity extends ActionBarActivity {
     @OnClick(R.id.contacto)
     public void Contacto() {
         Intent i = new Intent(Intent.ACTION_SEND);
+
         i.setType("message/rfc822");
         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"lock.app.android@gmail.com"});
         i.putExtra(Intent.EXTRA_SUBJECT, "from android");
-        i.putExtra(Intent.EXTRA_TEXT   , "");
+        i.putExtra(Intent.EXTRA_TEXT   , getResources().getString(R.string.enterhere));
         try {
             startActivity(Intent.createChooser(i, "Send mail..."));
         } catch (android.content.ActivityNotFoundException ex) {
@@ -115,52 +117,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    private NotifyingScrollView.OnScrollChangedListener mOnScrollChangedListener = new NotifyingScrollView.OnScrollChangedListener() {
-        public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
-            int headerHeight = findViewById(R.id.header).getHeight() - toolbar.getHeight();
-            float ratio = (float) clamp(t, 0, headerHeight) / headerHeight;
-            ratio=Math.min(ratio, 1.0F);
-
-            int posicionActionBar = Math.max(-t, mMinHeaderTranslation);
-            //sticky actionbar
-            header.setTranslationY(posicionActionBar);
-
-
-            float subeAparece = clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F);
-            setTitleAlpha(subeAparece);
-            float bajaAparece = clamp(1.0F - (5.0F * ratio - 4.0F), 0.0F, 1.0F);
-            mHeaderPicture.setAlpha(bajaAparece);
-            mHeaderLogo.setAlpha(bajaAparece);
-        }
-    };
-
-
-
-    private void setTitleAlpha(float alpha) {
-        mAlphaForegroundColorSpan.setAlpha(alpha);
-        mSpannableString.setSpan(mAlphaForegroundColorSpan, 0, mSpannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-       toolbar.setTitle(mSpannableString);
-
-    }
-
-
-    public static float clamp(float value, float max, float min) {
-        return Math.max(Math.min(value, min), max);
-    }
-
-    public int getActionBarHeight() {
-        if (mActionBarHeight != 0) {
-            return mActionBarHeight;
-        }
-        getTheme().resolveAttribute(android.R.attr.actionBarSize, mTypedValue, true);
-        mActionBarHeight = TypedValue.complexToDimensionPixelSize(mTypedValue.data, getResources().getDisplayMetrics());
-        return mActionBarHeight;
-    }
-
+/*
 
 public void initToolbar(){
     // Set an OnMenuItemClickListener to handle menu item clicks
-    toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+    mToolbarView.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             int id = item.getItemId();
@@ -172,10 +133,10 @@ public void initToolbar(){
     });
 
     // Inflate a menu to be displayed in the toolbar
-    toolbar.inflateMenu(R.menu.main);
+    mToolbarView.inflateMenu(R.menu.main);
 }
+*/
 
-/*
 
 
     @Override
@@ -197,7 +158,7 @@ public void initToolbar(){
         }
         return super.onOptionsItemSelected(item);
     }
-*/
+
 
     /***
      * Checks that application runs first time and write flag at SharedPreferences
@@ -214,6 +175,41 @@ public void initToolbar(){
             editor.commit();
         }
         return !ranBefore;
+    }
+
+
+    private void setTitleAlpha(float alpha) {
+        Log.d("set alpa con -->", "" + alpha);
+        mAlphaForegroundColorSpan.setAlpha(alpha);
+        mSpannableString.setSpan(mAlphaForegroundColorSpan, 0, mSpannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mToolbarView.setTitle(mSpannableString);
+
+    }
+
+    /**** scrool**/
+
+
+    @Override
+    public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
+        int baseColor = getResources().getColor(R.color.bg_primario);
+        float alpha = 1 - (float) Math.max(0, mParallaxImageHeight - scrollY) / mParallaxImageHeight;
+        setBackgroundAlpha(mToolbarView, alpha, baseColor);
+        setTitleAlpha(alpha);
+        ViewHelper.setTranslationY(mImageView, scrollY / 2);
+    }
+
+    @Override
+    public void onDownMotionEvent() {
+    }
+
+    @Override
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+    }
+
+    private void setBackgroundAlpha(View view, float alpha, int baseColor) {
+        int a = Math.min(255, Math.max(0, (int) (alpha * 255))) << 24;
+        int rgb = 0x00ffffff & baseColor;
+        view.setBackgroundColor(a + rgb);
     }
 
 }

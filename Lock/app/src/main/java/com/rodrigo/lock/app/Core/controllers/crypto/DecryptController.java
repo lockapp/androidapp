@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
+import com.rodrigo.lock.app.Core.Clases.DataError;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
 import com.rodrigo.lock.app.Core.Clases.FileType;
 import com.rodrigo.lock.app.Core.Utils.MediaUtils;
@@ -38,7 +39,7 @@ public class DecryptController extends CryptoController {
     boolean vistaSegura;
     long offset;
     boolean esExtraible =true;
-
+    DataError lastError;
 
     public boolean esExtraible(){
         return esExtraible;
@@ -53,8 +54,8 @@ public class DecryptController extends CryptoController {
         this.pass = pass;
         this.accion = accio;
         this.offset=offset;
+        lastError= null;
         //cabezal = new CabezalController();
-
         //checkAndInit();
     }
 
@@ -77,7 +78,8 @@ public class DecryptController extends CryptoController {
             ze = input.getNextEntry();
             //chequea si desbloqueo
             if (ze == null) {
-                throw new Exception(this.ctx.getResources().getString(R.string.error_password));
+                lastError = new DataError(DataError.ERROR.ERROR_PASSWORD, this.ctx.getResources().getString(R.string.error_password));
+                throw new Exception(lastError.getDescripcion());
             }
 
             checkAndInit = true;
@@ -109,7 +111,8 @@ public class DecryptController extends CryptoController {
             if (esExtraible){
                 extraerTodosLosArchivos();
             }else{
-                throw new Exception(this.ctx.getResources().getString(R.string.error_noextract));
+                lastError = new DataError(DataError.ERROR.ERROR_EXTRACT, this.ctx.getResources().getString(R.string.error_noextract));
+                throw new Exception(lastError.getDescripcion());
             }
 
             //se elimina el original
@@ -149,7 +152,8 @@ public class DecryptController extends CryptoController {
             in = new FileInputStream(inFile);
             in.skip(offset);
         } catch (Exception e) {
-            throw new Exception(String.format(ctx.getResources().getString(R.string.error_open), inFile, e.getMessage()));
+            lastError = new DataError(DataError.ERROR.ERROR_OTRO, String.format(ctx.getResources().getString(R.string.error_open), inFile, e.getMessage()));
+            throw new Exception(lastError.getDescripcion());
         }
     }
 
@@ -158,7 +162,8 @@ public class DecryptController extends CryptoController {
         try {
             in = new FileInputStream(inFile);
         } catch (Exception e) {
-            throw new Exception(String.format(ctx.getResources().getString(R.string.error_open), inFile, e.getMessage()));
+            lastError = new DataError(DataError.ERROR.ERROR_OTRO, (String.format(ctx.getResources().getString(R.string.error_open), inFile, e.getMessage())));
+            throw new Exception(lastError.getDescripcion());
         }
     }
 
@@ -169,7 +174,8 @@ public class DecryptController extends CryptoController {
         byte[] version = new byte[1];
         in.read(version);
         if ((version[0] > ((byte) 0x01))) {
-            throw new Exception(ctx.getResources().getString(R.string.error_version));
+            lastError = new DataError(DataError.ERROR.ERROR_VERSION, ctx.getResources().getString(R.string.error_version));
+            throw new Exception(lastError.getDescripcion());
         }
 
         //se empiezan a chequear los cabezales
@@ -179,7 +185,8 @@ public class DecryptController extends CryptoController {
         //vista segura
         if ((cavezalesActivos[0] & Byte.parseByte("00000100", 2)) == Byte.parseByte("00000000", 2) ){
             if (usarVistaSegura){
-                throw new Exception(this.ctx.getResources().getString(R.string.error_nosecureview));
+                lastError = new DataError(DataError.ERROR.ERROR_OTRO, ctx.getResources().getString(R.string.error_nosecureview));
+                throw new Exception(lastError.getDescripcion());
             }
         }
 
@@ -196,7 +203,8 @@ public class DecryptController extends CryptoController {
             String actualDate = df.format(c.getTime());
 
             if (Integer.valueOf(actualDate) > fechaCaducidad) {
-                throw new Exception(this.ctx.getResources().getString(R.string.error_defeated));
+                lastError = new DataError(DataError.ERROR.ERROR_VENCIMIENTO, ctx.getResources().getString(R.string.error_defeated));
+                throw new Exception(lastError.getDescripcion());
                 //eliminar archivo
             }
         }
@@ -278,5 +286,12 @@ public class DecryptController extends CryptoController {
 
     public File getInFile() {
         return inFile;
+    }
+
+
+    public DataError getLastError(){
+        DataError r = lastError;
+        lastError = null;
+        return r;
     }
 }

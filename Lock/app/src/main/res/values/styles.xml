@@ -68,6 +68,10 @@
         <item name="android:background">@drawable/edittext_background</item>
     </style>
 
+    <style name="InputTextHolo" parent="android:Theme.Holo.Light">
+        <item name="android:editTextBackground">@drawable/edit_text_holo_light</item>
+    </style>
+
 
 
     <style name="btnPrimary" parent="@android:style/Widget.Button">

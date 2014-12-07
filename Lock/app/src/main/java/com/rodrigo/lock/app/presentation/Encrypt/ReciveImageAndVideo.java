@@ -126,6 +126,21 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
 
 
     void startRepeatingTask(){
+        mHandlerTask =new Runnable()
+        {
+            @Override
+            public void run() {
+                imgIter = imgIter % controler.getInFiles().size();
+                boolean res = generarProximaIagen();
+                actualizarUI(res);
+
+                if (controler.getInFiles().size() > 1){
+                    imgIter++;
+                    mHandler.postDelayed(mHandlerTask, INTERVAL_UPDATEBG);
+                }
+
+            }
+        };
         mHandlerTask.run();
     }
 
@@ -140,21 +155,7 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
 
 
     int imgIter =0;
-    Runnable mHandlerTask = new Runnable()
-    {
-        @Override
-        public void run() {
-            imgIter = imgIter % controler.getInFiles().size();
-            boolean res = generarProximaIagen();
-            actualizarUI(res);
-
-            if (controler.getInFiles().size() > 1){
-                imgIter++;
-                mHandler.postDelayed(mHandlerTask, INTERVAL_UPDATEBG);
-            }
-
-        }
-    };
+    Runnable mHandlerTask = null;
 
 
 

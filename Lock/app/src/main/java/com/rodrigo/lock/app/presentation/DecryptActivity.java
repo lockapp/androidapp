@@ -54,6 +54,8 @@ public class DecryptActivity extends LockActivity {
         if (controller.getAccion() != Accion.DesencryptarConImagen ){
             dobleopcion.setVisibility(View.GONE);
             extraer2.setVisibility(View.VISIBLE);
+        }else{
+
         }
 
     }
@@ -63,15 +65,10 @@ public class DecryptActivity extends LockActivity {
     @OnClick(R.id.extraer) void extraer() {
         pass1 = password.getText().toString();
 
-        //chequea la contraseña
-        if (TextUtils.isEmpty(pass1)) {
-            password.setError(getResources().getString(R.string.empty_password));
+        this.showProgress(true);
+        controller.setPassword(pass1);
+        new DesencriptarAsincronaService().execute();
 
-        }else{
-            this.showProgress(true);
-            controller.setPassword(pass1);
-            new DesencriptarAsincronaService().execute();
-        }
     }
 
 
@@ -83,16 +80,16 @@ public class DecryptActivity extends LockActivity {
         pass1 = password.getText().toString();
 
         //chequea la contraseña
-        if (TextUtils.isEmpty(pass1)) {
+       /* if (TextUtils.isEmpty(pass1)) {
             password.setError(getResources().getString(R.string.empty_password));
 
-        }else{
+        }*/
 
             this.showProgress(true);
             controller.setPassword(pass1);
             new DesencriptarAsincronaSeeImage().execute();
 
-        }
+
     }
 
 

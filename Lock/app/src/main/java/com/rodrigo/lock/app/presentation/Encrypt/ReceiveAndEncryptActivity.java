@@ -113,6 +113,8 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
     EditText password1;
     @InjectView(R.id.password2)
     EditText password2;
+    @InjectView(R.id.bg_passwords)
+    LinearLayout bg_passwords;
 
     DatePickerDialog datePickerDialog = null;
     public static final String DATEPICKER_TAG = "datepicker";
@@ -340,26 +342,29 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         String pass1 = password1.getText().toString();
         String pass2 = password2.getText().toString();
 
-        if (TextUtils.isEmpty(pass1)) {
-            cancel = true;
-            focusView = password1;
-            password1.setError( getResources().getString(R.string.empty_password));
+        if (cabezal.isCifrar()) {
+
+            if (TextUtils.isEmpty(pass1)) {
+                cancel = true;
+                focusView = password1;
+                password1.setError(getResources().getString(R.string.empty_password));
+            }
+
+            if (TextUtils.isEmpty(pass2)) {
+                cancel = true;
+                focusView = password2;
+                password2.setError(getResources().getString(R.string.re_password));
+            }
+
+
+            if (!pass1.equals(pass2) && !cancel) {
+                cancel = true;
+                focusView = password1;
+                password1.setError(getResources().getString(R.string.nomatch_password));
+                password2.setError(getResources().getString(R.string.nomatch_password));
+            }
+
         }
-
-        if (TextUtils.isEmpty(pass2)) {
-            cancel = true;
-            focusView = password2;
-            password2.setError(getResources().getString(R.string.re_password));
-        }
-
-
-        if (!pass1.equals(pass2) && !cancel) {
-            cancel = true;
-            focusView = password1;
-            password1.setError(getResources().getString(R.string.nomatch_password));
-            password2.setError(getResources().getString(R.string.nomatch_password));
-        }
-
         try {
             if (!cancel) {
                 controler.chequear();
@@ -421,10 +426,12 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         if (cifrar.isChecked()){
             this.cabezal.setCifrar(true);
             soloaca.setEnabled(true);
+            bg_passwords.setVisibility(View.VISIBLE);
         }else{
             this.cabezal.setCifrar(false);
             soloaca.setEnabled(false);
             soloaca.setChecked(false);
+            bg_passwords.setVisibility(View.GONE);
         }
     }
 

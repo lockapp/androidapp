@@ -103,6 +103,8 @@
     <string name="yourdatasafe">Sus datos están seguros</string>
     <string name="workcomplete">El trabajo se ha finalizado</string>
 
+    <string name="enterhere">[Escriba aquí su mensaje]</string>
+
 
 
 </resources>
