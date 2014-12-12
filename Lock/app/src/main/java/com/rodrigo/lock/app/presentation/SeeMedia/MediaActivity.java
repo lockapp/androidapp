@@ -1,10 +1,8 @@
 package com.rodrigo.lock.app.presentation.SeeMedia;
 
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
@@ -16,9 +14,6 @@ import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.services.ExtractService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Rodrigo on 02/10/2014.

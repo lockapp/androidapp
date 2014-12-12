@@ -10,7 +10,7 @@
         <activity
             android:name=".presentation.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar" >
+            android:theme="@style/Principal.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,7 +19,7 @@
         <activity
             android:name=".presentation.InstructionsActivity"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar" >
+            android:theme="@style/Principal.Light.NoActionBar.BlackStatusBar" >
         </activity>
         <activity
             android:name=".presentation.ConfigActivity"
@@ -34,7 +34,7 @@
             android:label="@string/app_name"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Encrypt">
+            android:theme="@style/Principal.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <action android:name="android.intent.action.SEND_MULTIPLE" />
@@ -59,7 +59,7 @@
             android:label="@string/app_name"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Encrypt">
+            android:theme="@style/Principal.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -83,7 +83,7 @@
             android:label="@string/app_name"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Encrypt">
+            android:theme="@style/Principal.Light.NoActionBar">
         </activity>
 
         <service
@@ -102,7 +102,7 @@
             android:excludeFromRecents="true"
             android:label="@string/secure_view"
             android:noHistory="true"
-            android:theme="@style/AppThemeListMedia" >
+            android:theme="@style/Light.NoActionBar.BlinkFeed" >
         </activity>
         <activity
             android:name=".presentation.ErrorActivity"
@@ -112,7 +112,7 @@
             android:name=".presentation.SeeMedia.PlayVideoActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
-            android:theme="@style/NoActionBar" >
+            android:theme="@style/Light.NoActionBar.BlinkFeed" >
         </activity>
 
         <service
@@ -124,7 +124,7 @@
             android:name=".presentation.SeeMedia.GridMediaActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
-            android:theme="@style/ThemeGrid" >
+            android:theme="@style/BlinkFeed" >
         </activity>
     </application>
 

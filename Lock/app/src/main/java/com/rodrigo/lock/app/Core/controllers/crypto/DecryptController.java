@@ -3,6 +3,8 @@ package com.rodrigo.lock.app.Core.controllers.crypto;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
@@ -35,7 +37,7 @@ public class DecryptController extends CryptoController {
     LinkedList<Archivo> outFileList;
     File inFile;
    // String destFileDir;
-    long idImage;
+    private long idImage;
     boolean vistaSegura;
     long offset;
     boolean esExtraible =true;
@@ -105,7 +107,7 @@ public class DecryptController extends CryptoController {
 
             //this.SM.setIndeterminateProgressBar(idN);
             //se chequea si es imagen
-            this.idImage = MediaUtils.isImageInGallery(this.inFile, ctx);
+
 
             //se sacan los archivos
             if (esExtraible){
@@ -116,15 +118,7 @@ public class DecryptController extends CryptoController {
             }
 
             //se elimina el original
-            try {
-                if (this.idImage > 0) {
-                    MediaUtils.deleteImageGallery(idImage, SM);
-                } else {
-                    Utils.delete(this.inFile);
-                }
-            } catch (Exception ex) {
-                // throw  new Exception("No se a puede eliminar el archivo a bloquear, probablemente este abierto. RAZON" + ex.getMessage());
-            }
+            eliminarOriginal();
 
             //si son imagenes se agregan a la galeria
             for (Archivo f :   this.outFileList) {
@@ -143,6 +137,22 @@ public class DecryptController extends CryptoController {
 
 
 
+    }
+
+
+    private void eliminarOriginal(){
+        try {
+            this.idImage = MediaUtils.isImageInGallery(this.inFile, ctx);
+
+            if (this.idImage > 0) {
+                MediaUtils.deleteImageGallery(idImage, ctx);
+            } else {
+                Utils.delete(this.inFile);
+            }
+        } catch (Exception ex) {
+            Log.d("en desencriptar", "error al borrar origina");
+            // throw  new Exception("No se a puede eliminar el archivo a bloquear, probablemente este abierto. RAZON" + ex.getMessage());
+        }
     }
 
 
@@ -203,6 +213,7 @@ public class DecryptController extends CryptoController {
             String actualDate = df.format(c.getTime());
 
             if (Integer.valueOf(actualDate) > fechaCaducidad) {
+                eliminarOriginal();
                 lastError = new DataError(DataError.ERROR.ERROR_VENCIMIENTO, ctx.getResources().getString(R.string.error_defeated));
                 throw new Exception(lastError.getDescripcion());
                 //eliminar archivo
@@ -213,6 +224,12 @@ public class DecryptController extends CryptoController {
 
         //cifrar
         if (((cavezalesActivos[0] & Byte.parseByte("00010000", 2)) == Byte.parseByte("00010000", 2) ) || (version[0] == ((byte) 0x00))){
+            if (TextUtils.isEmpty(pass)){
+                lastError = new DataError(DataError.ERROR.ERROR_PASSWORD, ctx.getResources().getString(R.string.empty_password));
+                throw new Exception(lastError.getDescripcion());
+            }
+
+
             //solo aca
             if ((cavezalesActivos[0] & Byte.parseByte("00000010", 2)) == Byte.parseByte("00000010", 2) ){
                 //cabezal.setSoloAca(true);

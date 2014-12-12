@@ -2,24 +2,18 @@ package com.rodrigo.lock.app.presentation.Encrypt;
 
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
@@ -28,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.devspark.appmsg.AppMsg;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -39,17 +32,15 @@ import com.nineoldandroids.view.ViewHelper;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
-import com.rodrigo.lock.app.Core.Clases.FileType;
 import com.rodrigo.lock.app.Core.Interfaces.IPreferences;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
-import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.Core.controllers.FileController;
 import com.rodrigo.lock.app.Core.controllers.PreferencesController;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.presentation.DecryptActivity;
-import com.rodrigo.lock.app.presentation.UI.TextureVideoView;
+import com.rodrigo.lock.app.presentation.UI.ViewUtils;
 import com.rodrigo.lock.app.services.ExtractService;
 
 import java.io.File;
@@ -75,6 +66,8 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
 
     @InjectView(R.id.fondoconimgen)
     FrameLayout fondoconimgen;
+
+    @InjectView(R.id.warning) View warning;
 
     Handler mHandler= new Handler();
 
@@ -125,7 +118,7 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         controler = ManejadorFile.createControler(getApplicationContext());
         encontrAraccion();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ecrrypt_temp);
+        setContentView(R.layout.activity_ecrrypt);
 
         if (controler.getAccion() == Accion.EncryptarConImagen || controler.getAccion() == Accion.Encyptar) {
             ButterKnife.inject(this);
@@ -407,6 +400,7 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
             }
         }
 
+
         IPreferences preferencias = PreferencesController.getPreferencesController(this);
         if (preferencias.getEncryptarMismaPassword()) {
             password1.setText(preferencias.getPassword());
@@ -427,11 +421,13 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
             this.cabezal.setCifrar(true);
             soloaca.setEnabled(true);
             bg_passwords.setVisibility(View.VISIBLE);
+            warning.setVisibility(View.GONE);
         }else{
             this.cabezal.setCifrar(false);
             soloaca.setEnabled(false);
             soloaca.setChecked(false);
             bg_passwords.setVisibility(View.GONE);
+            warning.setVisibility(View.VISIBLE);
         }
     }
 

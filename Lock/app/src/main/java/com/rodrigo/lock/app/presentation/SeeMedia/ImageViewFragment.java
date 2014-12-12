@@ -69,6 +69,8 @@ public class ImageViewFragment extends Fragment {
         @Override
         protected void onPostExecute(Bitmap result) {
             try {
+                //padre.empezarTransaccion();
+
                 if (result != null){
                     progreso.setVisibility(View.GONE);
                     photoView.setImageBitmap(result);
@@ -82,7 +84,6 @@ public class ImageViewFragment extends Fragment {
             }catch (Exception e){
 
             }
-
         }
 
     }

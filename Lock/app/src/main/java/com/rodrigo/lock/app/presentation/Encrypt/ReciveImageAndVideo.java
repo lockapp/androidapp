@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -168,6 +169,8 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
             actual = controler.getInFiles().get(imgIter);
             if (actual.getTipo() == FileType.Imagen){
                 actualImg = MediaUtils.TransformImage(actual.getFile().getAbsolutePath());
+            } else   if (actual.getTipo() == FileType.Video){
+                actualImg = ThumbnailUtils.createVideoThumbnail(actual.getFile().getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
             }
             return true;
 
@@ -183,7 +186,7 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (actual.getTipo() == FileType.Imagen) {
+                  //      if (actual.getTipo() == FileType.Imagen) {
                             bgfondo.setImageBitmap(actualImg);
                             MediaUtils.ImageViewAnimatedChange(ReciveImageAndVideo.this, bg, actualImg);
 
@@ -192,8 +195,8 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
                             bg.setVisibility(View.VISIBLE);
                             //  videoVew.setVisibility(View.GONE);
 
-                        } else {
-/*
+    /*                    } else {
+
                                 videoVew.setScaleType(TextureVideoView.ScaleType.TOP);
                                 videoVew.setDataSource(actual.getFile().getAbsolutePath());
                                 videoVew.setLooping(true);
@@ -202,8 +205,8 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
                                 bgfondo.setVisibility(View.GONE);
                                 videoVew.setVisibility(View.VISIBLE);
 
-                                videoVew.play();*/
-                        }
+                                videoVew.play();
+                        }*/
                     }
                 });
             }

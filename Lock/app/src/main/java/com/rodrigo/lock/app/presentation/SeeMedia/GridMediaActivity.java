@@ -1,17 +1,16 @@
 package com.rodrigo.lock.app.presentation.SeeMedia;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.TypedValue;
@@ -189,12 +188,12 @@ public class GridMediaActivity extends MediaActivity {
         i.putExtra("acutalpage",image);
         startActivity(i);
 
+/*
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this,  v.findViewById(R.id.picture),  getString(R.string.image_grid));
+        ActivityCompat.startActivity(this, i, options.toBundle());
 
-
-       /* ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,  v.findViewById(R.id.picture),  getString(R.string.image_grid));
-        ActivityCompat.startActivity(this,i, options.toBundle());
-        */finish();
+        finish();*/
 
     }
 

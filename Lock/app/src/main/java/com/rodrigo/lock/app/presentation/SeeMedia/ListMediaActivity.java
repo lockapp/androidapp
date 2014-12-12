@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.rodrigo.lock.app.Core.Clases.FileType;
@@ -23,6 +25,8 @@ import butterknife.OnClick;
 
 public class ListMediaActivity extends MediaActivity {
     @InjectView(R.id.view_pager)  HackyViewPager mViewPager;
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
     private MediaPagerAdapter adapter;
     private static final String ISLOCKED_ARG = "isLocked";
@@ -38,11 +42,12 @@ public class ListMediaActivity extends MediaActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-       // setSupportProgressBarIndeterminateVisibility(true);
         setContentView(R.layout.activity_see_image);
         ButterKnife.inject(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //posponerTransaccion();
 
 
         //se crea el adapter
@@ -63,6 +68,25 @@ public class ListMediaActivity extends MediaActivity {
             mViewPager.setCurrentItem(actualp);
 
     }
+
+/*
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void posponerTransaccion(){
+        postponeEnterTransition();
+        primeraVez = true;
+    }
+
+
+    boolean primeraVez = true;
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void empezarTransaccion(){
+        if (primeraVez){
+            startPostponedEnterTransition();
+            primeraVez =false;
+        }
+
+    }
+*/
 
 
     @Override
@@ -92,12 +116,7 @@ public class ListMediaActivity extends MediaActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (keyCode == KeyEvent.KEYCODE_BACK ) {
-            clearCacheFiles = false;
-            deleteMediaController =false;
-            Intent i = new Intent(this,GridMediaActivity.class );
-            i.putExtra("controlerId", idCC);
-            startActivity(i);
-            finish();
+            retroceder();
             return true;
         }
 
@@ -105,6 +124,14 @@ public class ListMediaActivity extends MediaActivity {
     }
 
 
+    public void retroceder(){
+        clearCacheFiles = false;
+        deleteMediaController =false;
+        Intent i = new Intent(this,GridMediaActivity.class );
+        i.putExtra("controlerId", idCC);
+        startActivity(i);
+        finish();
+    }
 
 
 
@@ -143,11 +170,23 @@ public class ListMediaActivity extends MediaActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (mediaCryptoController.esExtraible()){
-            getMenuInflater().inflate(R.menu.see_image, menu);
+            getMenuInflater().inflate(R.menu.see_image_hide, menu);
         }else{
-            getMenuInflater().inflate(R.menu.see_image_no_extract, menu);
+            getMenuInflater().inflate(R.menu.see_image_no_extract_hide, menu);
         }
         return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            retroceder();
+            return true;
+        }else{
+            return super.onOptionsItemSelected(item);
+        }
+
     }
 
 
@@ -167,24 +206,26 @@ public class ListMediaActivity extends MediaActivity {
     // This snippet hides the system bars.
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void hideSystemUI() {
-        getWindow().getDecorView().setSystemUiVisibility(
+      /*  getWindow().getDecorView().setSystemUiVisibility(
                           View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                           | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
                           | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                           | View.SYSTEM_UI_FLAG_IMMERSIVE
-        );
+        );*/
+        getSupportActionBar().hide();
     }
 
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void showSystemUI() {
-      getWindow().getDecorView().setSystemUiVisibility(
+    /*  getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        );
+        );*/
+       getSupportActionBar().show();
     }
 
 

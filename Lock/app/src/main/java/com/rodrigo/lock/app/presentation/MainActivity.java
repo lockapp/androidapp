@@ -11,7 +11,6 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -179,7 +178,6 @@ public void initToolbar(){
 
 
     private void setTitleAlpha(float alpha) {
-        Log.d("set alpa con -->", "" + alpha);
         mAlphaForegroundColorSpan.setAlpha(alpha);
         mSpannableString.setSpan(mAlphaForegroundColorSpan, 0, mSpannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         mToolbarView.setTitle(mSpannableString);

@@ -12,6 +12,7 @@ import com.devspark.appmsg.AppMsg;
 import com.rodrigo.lock.app.R;
 
 import butterknife.InjectView;
+import static com.devspark.appmsg.AppMsg.LENGTH_SHORT;
 
 /**
  * Created by Rodrigo on 02/06/14.
@@ -21,12 +22,29 @@ public class LockActivity extends ActionBarActivity {
     public @InjectView(R.id.mLoginFormView)    View mLoginFormView;
     @InjectView(R.id.progress)    RelativeLayout mProgressView;
 
+    static class CancelAppMsg implements View.OnClickListener {
+        private final AppMsg mAppMsg;
 
+        CancelAppMsg(AppMsg appMsg) {
+            mAppMsg = appMsg;
+        }
+
+        @Override
+        public void onClick(View v) {
+            mAppMsg.cancel();
+        }
+    }
 
     public void mostrarError(String error){
-        AppMsg appMsg = AppMsg.makeText(this, error,  AppMsg.STYLE_ALERT);
+        final AppMsg.Style style = new AppMsg.Style(LENGTH_SHORT, R.color.color_error);
+        AppMsg appMsg = AppMsg.makeText(this, error,  style);
+        //appMsg.setAnimation(android.R.anim.fade_in, android.R.anim.slide_out_right);
         appMsg.setDuration(8000);
         appMsg.show();
+
+       /* AppMsg appMsg = AppMsg.makeText(this, error,  AppMsg.STYLE_ALERT);
+        appMsg.setDuration(8000);
+        appMsg.show();*/
     }
 
 

@@ -5,7 +5,8 @@
     tools:context="com.rodrigo.pandorabox.app.SeeImageActivity"
     android:orientation="vertical"
     android:background="@drawable/bg_gallery_list"
-    android:id="@+id/bg">
+    android:id="@+id/bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,12 +19,26 @@
             android:layout_height="fill_parent"
             android:id="@+id/mLoginFormView">
 
+
             <com.rodrigo.lock.app.Core.Utils.HackyViewPager
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/view_pager"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                />
+
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:background="@drawable/gradient_header_background"
+                app:theme="@style/Principal.Toolbar"
+                app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar" />
+
         </FrameLayout>
 
     </LinearLayout>

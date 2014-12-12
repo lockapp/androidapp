@@ -8,11 +8,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.provider.MediaStore;
+import android.provider.MediaStore;/*
 import android.support.v8.renderscript.Allocation;
 import android.support.v8.renderscript.Element;
 import android.support.v8.renderscript.RenderScript;
-import android.support.v8.renderscript.ScriptIntrinsicBlur;
+import android.support.v8.renderscript.ScriptIntrinsicBlur;*/
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -230,7 +230,7 @@ public class MediaUtils {
         return inSampleSize;
     }
 
-
+/*
     public static void createBlur(Context context, Bitmap bitmapOriginal ){
         float BLUR_RADIUS = 8f;
         //define this only once if blurring multiple times
@@ -243,7 +243,7 @@ public class MediaUtils {
         script.setInput(input);
         script.forEach(output);
         output.copyTo(bitmapOriginal);
-    }
+    }*/
 
     public static void ImageViewAnimatedChange(Context c, final ImageView v, final Bitmap new_image) {
       //  final Animation anim_out = AnimationUtils.loadAnimation(c, android.R.anim.fade_out);

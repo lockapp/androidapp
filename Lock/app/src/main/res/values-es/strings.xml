@@ -105,6 +105,7 @@
 
     <string name="enterhere">[Escriba aquí su mensaje]</string>
 
+    <string name="warning_encrypt">Si no cifra sus archivos, no estarán seguros.</string>
 
 
 </resources>

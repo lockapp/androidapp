@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6e7982"
+    android:background="@color/bg_primario"
     tools:context="com.rodrigo.pandorabox.app.DecryptSharedActivity">
 
     <!-- <com.lock.rodrigo.lock.UI.AndroidLAnimation
@@ -69,10 +69,7 @@
                 android:orientation="vertical">
 
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1.5dp"
-                    android:background="#ffc8c8c8" />
+
 
                 <com.rodrigo.lock.app.presentation.UI.PasswordEditText
                     android:id="@+id/password"
@@ -86,10 +83,6 @@
                     android:textColorHint="#999999" />
                 <!--  android:drawableLeft="@drawable/ic_action_secure_light" -->
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1.5dp"
-                    android:background="#ffc8c8c8" />
 
 
                 <LinearLayout

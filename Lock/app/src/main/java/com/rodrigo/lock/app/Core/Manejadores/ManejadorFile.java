@@ -14,7 +14,7 @@ public class ManejadorFile {
     static int count = 0;
     static Map<Integer, FileController> archivosEnTrabajo = new HashMap<Integer, FileController>();
 
-    public static FileController createControler (Context c){
+    public static synchronized FileController createControler (Context c){
         FileController fc = new FileController(count, c);
         archivosEnTrabajo.put(count, fc);
         count++;

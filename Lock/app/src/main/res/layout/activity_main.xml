@@ -136,7 +136,7 @@
 
                 <TextView
                     android:paddingTop="@dimen/activity_vertical_margin"
-                    android:textColor="@color/bg_primario"
+                    android:textColor="@color/text_title"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
 
                 <TextView
                     android:paddingTop="@dimen/activity_vertical_margin"
-                    android:textColor="@color/bg_primario"
+                    android:textColor="@color/text_title"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
 
                 <TextView
                     android:paddingTop="@dimen/activity_vertical_margin"
-                    android:textColor="@color/bg_primario"
+                    android:textColor="@color/text_title"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -199,5 +199,5 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-        app:theme="@style/Toolbar" />
+        app:theme="@style/Principal.Toolbar" />
 </FrameLayout>

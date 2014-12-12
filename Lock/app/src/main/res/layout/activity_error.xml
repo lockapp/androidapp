@@ -73,7 +73,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="De verdad esta mal, descripcion no disponible del errror."
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/color_error" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

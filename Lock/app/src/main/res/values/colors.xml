@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="color_error">#fff40056</color>
 
-    <color name="ab_primary">#6E7982</color>
-    <color name="ab_primary_dark">#5D6871</color>
-    <color name="ab_accent">#ff4285f4</color>
-    <color name="ab_text_primary">#D9000000</color>
-    <color name="ab_text_secondary">#D9000000</color>
+
+    <color name="ab_primary">#607D8B</color><!-- 6E7982  -->
+    <color name="ab_primary_dark">#455A64</color><!-- 5D6871  -->
+    <color name="ab_accent">#ff4285f4</color> <!-- ffE14026 ff4285f4 8E1EF8 64ffda 7C4DFF  FF6E40-->
+    <color name="ab_text_primary">#D9000000</color><!--  -->
+    <color name="ab_text_secondary">#D9000000</color><!--  -->
+    <color name="ab_statusbar_black">#ff000000</color><!--  -->
 
     <color name="blinkfeed_text_primary">#ffffffff</color>
     <color name="blinkfeed_text_secondary">#d9ffffff</color>
 
 
     <color name="bg_blue">#007ee5</color>
-    <color name="bg_blinkfeed">#4EA770</color>
-    <color name="bg_blinkfeed_dark">#469665</color>
-    <color name="bg_blinkfeed_ligth">#4EA770</color>
+    <color name="bg_blinkfeed_primary">#4CAF50</color><!-- 4EA770  -->
+    <color name="bg_blinkfeed_dark">#388E3C</color><!-- 469665  -->
+    <color name="bg_blinkfeed_accent">#69F0AE</color><!-- 4EA770  -->
 
     <color name="bg_listgallery_start">#ff000000</color>
     <color name="bg_listgallery_medium">#141414</color>
@@ -25,10 +28,20 @@
 <!-- 66000000 bfe5e5e5  e4292f33 ca292f33-->
 
 
-    <color name="bg_primario">#6E7982</color>
+    <color name="bg_primario">#607D8B</color> <!-- 6E7982  -->
     <color name="bg_secundario_claro1">#EBEBEB</color>
-    <color name="bg_secundario_claro2">#85929D</color>
+    <color name="bg_secundario_claro2">#7796A6</color> <!-- 85929D  -->
     <color name="bg_secundario_oscuro">#2F3943</color>
+
+
+    <color name="btn_primary_color">#fff</color>
+    <color name="btn_primary_bg">#428bca</color>
+    <color name="btn_primary_border">#285e8e</color>
+    <color name="btn_primary_bg_press_top">#2E6DA4</color>
+    <color name="btn_primary_bg_press_bottom">#3276B1</color>
+    <color name="brand_primary">#7796A6</color> <!-- 85929D  -->
+    <color name="brand_press_primary">#2F3943</color>
+
 
 
     <color name="white">#ffffff</color>
@@ -48,14 +61,8 @@
 
 
 
+    <color name="text_title">#2F3943</color>
 
-    <color name="btn_primary_color">#fff</color>
-    <color name="btn_primary_bg">#428bca</color>
-    <color name="btn_primary_border">#285e8e</color>
-    <color name="btn_primary_bg_press_top">#2E6DA4</color>
-    <color name="btn_primary_bg_press_bottom">#3276B1</color>
-    <color name="brand_primary">#85929D</color>
-    <color name="brand_press_primary">#2F3943</color>
 
 
 

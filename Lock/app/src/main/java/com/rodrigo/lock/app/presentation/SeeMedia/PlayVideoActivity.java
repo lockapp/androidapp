@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.Window;
 import android.widget.MediaController;
 
 import com.rodrigo.lock.app.R;
@@ -28,8 +27,6 @@ public class PlayVideoActivity extends MediaActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-//        getActionBar().hide();
         setContentView(R.layout.activity_play_video);
         ButterKnife.inject(this);
 
@@ -56,16 +53,6 @@ public class PlayVideoActivity extends MediaActivity  {
         }
     }
 
-/*
-    public int getNavigationBarSize(){
-        Resources resources = getResources();
-        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            return resources.getDimensionPixelSize(resourceId);
-        }
-        return 0;
-    }
-*/
 
 
 
