@@ -34,7 +34,6 @@ MERGED from org.jraf:android-switch-backport:1.4.0:35:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 MERGED from com.android.support:recyclerview-v7:21.0.3:17:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
-MERGED from com.github.traex.rippleeffect:library:1.2.2:11:5
 	android:label
 		ADDED from AndroidManifest.xml:8:9
 	android:allowBackup
@@ -246,7 +245,6 @@ MERGED from com.android.support:support-v4:21.0.3:15:5
 MERGED from com.github.ksoichiro:android-observablescrollview:1.2.1:21:5
 MERGED from com.android.support:recyclerview-v7:21.0.3:15:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
-MERGED from com.github.traex.rippleeffect:library:1.2.2:7:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0

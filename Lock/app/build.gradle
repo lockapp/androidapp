@@ -7,8 +7,8 @@ android {
         applicationId "com.rodrigo.lock.app"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 4
-        versionName "0.0.3"
+        versionCode 5
+        versionName "0.1.0"
         //renderscriptTargetApi 21
         //renderscriptSupportMode true
     }
@@ -31,13 +31,6 @@ repositories {
 
 
 dependencies {
-    // do not use dynamic updating.
-    // compile 'com.android.support:support-v4:20.0.0'
-    //compile 'com.android.support:appcompat-v7:19.0.0'
-    // You must install or update the Support Repository through the SDK manager to use this dependency.
-    // compile 'com.android.support:support-v4:20.0.0'
-    //    compile 'com.android.support:appcompat-v13:20.0.0'
-    // You must install or update the Support Repository through the SDK manager to use this dependency.
     compile 'com.android.support:support-v4:21.0.0'
     compile 'com.android.support:support-v13:21.0.0'
     compile 'com.android.support:recyclerview-v7:+'
@@ -54,15 +47,13 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
     compile 'com.github.ksoichiro:android-observablescrollview:1.2.1'
-   // compile 'com.rengwuxian.materialedittext:library:1.6.0'
-    compile 'com.github.traex.rippleeffect:library:1.2.2'
+    //compile 'com.github.traex.rippleeffect:library:1.2.2'
 /*
                 compile 'com.madgag.spongycastle:prov:1.51.0.0'
                 compile 'com.madgag.spongycastle:pkix:1.51.0.0'
                 compile 'com.madgag.spongycastle:pg:1.51.0.0'
                 compile 'com.madgag.spongycastle:core:1.51.0.0'
 */
-        // compile 'com.balysv.materialmenu:material-menu-abc:1.2.2'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
 }
