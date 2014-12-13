@@ -12,6 +12,8 @@ import com.rodrigo.lock.app.Core.crypto.AES.Crypto;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.services.ExtractService;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -99,10 +101,10 @@ public class EncryptController extends CryptoController {
                 pass = cabezal.mergeIdInPassword(pass, SM);
             }
             algo = new Crypto();
-            algo.init(pass);
-            out = new CipherOutputStream(out, algo.getCiphertoEnc(out));
+            algo.init256();
+            out = new CipherOutputStream(out, algo.getCiphertoEnc(out, pass));
         }
-        output = new ZipOutputStream(out);
+        output = new ZipOutputStream(new BufferedOutputStream(out));
         output.setLevel(Deflater.NO_COMPRESSION);
 
         grabarListaArchivos();
@@ -193,13 +195,15 @@ public class EncryptController extends CryptoController {
                 //System.out.println("File Added : " + file);
                 ZipEntry ze = new ZipEntry(file.getFile().getName());
                 output.putNextEntry(ze);
+                //BufferedOutputStream out = new BufferedOutputStream(output);
 
                 FileInputStream inf = new FileInputStream(file.getFile());
+                BufferedInputStream in = new BufferedInputStream(inf);
 
                 int len;
-                while ((len = inf.read(buffer)) > 0) {
+                while ((len = in.read(buffer,0,1024)) >= 0) {
                     output.write(buffer, 0, len);
-                    avanza = avanza + len;
+                   // avanza = avanza + len;
                 }
                 inf.close();
                 //feedback.setProgress((int) ((avanza * 100) / tamF) % 99);

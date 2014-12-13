@@ -17,6 +17,8 @@ import com.rodrigo.lock.app.Core.crypto.AES.Crypto;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.services.ExtractService;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -63,7 +65,7 @@ public class DecryptController extends CryptoController {
 
     InputStream in;
     ZipEntry ze;
-    ZipInputStream input = null;
+    ZipInputStream zipInput = null;
 
     boolean checkAndInit = false;
     public void checkAndInit() throws Exception {
@@ -76,8 +78,8 @@ public class DecryptController extends CryptoController {
 
             openCabezales(vistaSegura);
 
-            input = new ZipInputStream(in);
-            ze = input.getNextEntry();
+            zipInput = new ZipInputStream(in);
+            ze = zipInput.getNextEntry();
             //chequea si desbloqueo
             if (ze == null) {
                 lastError = new DataError(DataError.ERROR.ERROR_PASSWORD, this.ctx.getResources().getString(R.string.error_password));
@@ -237,8 +239,13 @@ public class DecryptController extends CryptoController {
             }
 
             Crypto algo = new Crypto();
-            algo.init(pass);
-            in = new CipherInputStream(in, algo.getCiphertoDec(in));
+            if ((version[0] == ((byte) 0x00))) {
+                algo.init128();
+            }else{
+                algo.init256();
+            }
+            in = new CipherInputStream(in, algo.getCiphertoDec(in, pass));
+
         }
 
 
@@ -269,18 +276,22 @@ public class DecryptController extends CryptoController {
                 this.outFileList.add(new Archivo(newFile));
                 new File(newFile.getParent()).mkdirs();
                 FileOutputStream fos = new FileOutputStream(newFile);
+                BufferedOutputStream out = new BufferedOutputStream(fos);
+
+                BufferedInputStream in = new BufferedInputStream(zipInput);
                 int len;
-                while ((len = input.read(buffer)) > 0) {
-                    fos.write(buffer, 0, len);
+                while ((len = in.read(buffer,0,1024)) >= 0) {
+                    out.write(buffer, 0, len);
                     //progress +=len;
                 }
+                out.close();
                 fos.close();
-                ze = input.getNextEntry();
+                ze = zipInput.getNextEntry();
                // SM.updateProgressBar(size, progress);
 
             }
-            input.closeEntry();
-            input.close();
+            zipInput.closeEntry();
+            zipInput.close();
             in.close();
 
 

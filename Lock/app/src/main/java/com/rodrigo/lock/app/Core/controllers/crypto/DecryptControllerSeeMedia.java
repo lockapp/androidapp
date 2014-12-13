@@ -13,6 +13,8 @@ import com.rodrigo.lock.app.Core.Interfaces.NotifyMediaChange;
 import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.R;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.LinkedList;
@@ -80,12 +82,12 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
             try {
                 if (ze == null) {
                     this.complete = true;
-                    input.closeEntry();
-                    input.close();
+                    zipInput.closeEntry();
+                    zipInput.close();
                     fin();
                     //in.close();
                 } else {
-                    byte[] buffer = new byte[16384];
+                    byte[] buffer = new byte[1024];
                     String fileName = ze.getName();
 
 
@@ -94,14 +96,16 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
 
                     File newFile = new File(cacheDirectory, idC + "-" + cantImages + "-"+ fileName);
                     FileOutputStream faos = new FileOutputStream(newFile);
+                    BufferedOutputStream out = new BufferedOutputStream(faos);
 
+                    BufferedInputStream in = new BufferedInputStream(zipInput);
 
                     int len;
-                    while (((len = input.read(buffer)) > -1)&&(!salir)) {
-                        faos.write(buffer, 0, len);
+                    while (((len = in.read(buffer,0,1024)) >= 0)&&(!salir)) {
+                        out.write(buffer, 0, len);
                     }
+                    out.close();
                     faos.close();
-                    //faos.close();
 
                     if (salir){
                         ze = null;
@@ -110,7 +114,7 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
                         abiertos.add( new Archivo(newFile));
                         cantImages++;
                         notificarCantImages(cantImages);
-                        ze = input.getNextEntry();
+                        ze = zipInput.getNextEntry();
                     }
                 }
 
