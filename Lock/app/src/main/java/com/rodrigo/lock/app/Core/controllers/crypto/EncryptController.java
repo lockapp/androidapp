@@ -59,6 +59,7 @@ public class EncryptController extends CryptoController {
         this.cabezal = fc.getCabezal();
         this.inFileList = fc.getInFiles();
         this.accion =fc.getAccion();
+        this.name=fc.getName();
     }
 
     OutputStream out = null;
@@ -101,7 +102,7 @@ public class EncryptController extends CryptoController {
                 pass = cabezal.mergeIdInPassword(pass, SM);
             }
             algo = new Crypto();
-            algo.init256();
+            algo.initV1();
             out = new CipherOutputStream(out, algo.getCiphertoEnc(out, pass));
         }
         output = new ZipOutputStream(new BufferedOutputStream(out));

@@ -38,7 +38,7 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
     }
 
     public DecryptController getDecryptController(Context c)  {
-        return new DecryptController ( c,  inFile,  pass,  accion,  offset);
+        return new DecryptController ( c,  inFile,  pass,  accion,  offset, name);
     }
 
 
@@ -52,8 +52,8 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
         return complete;
     }
 
-    public DecryptControllerSeeMedia(int id, Context ctx, File inFile, String pass, Accion accio, long offset) throws Exception {
-        super(ctx, inFile, pass, accio, offset);
+    public DecryptControllerSeeMedia(int id, Context ctx, File inFile, String pass, Accion accio, long offset, String name) throws Exception {
+        super(ctx, inFile, pass, accio, offset, name);
 
         this.idC =id;
         this.complete = false;
@@ -108,8 +108,12 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
                     faos.close();
 
                     if (salir){
-                        ze = null;
+                        zipInput.closeEntry();
+                        zipInput.close();
                         newFile.delete();
+
+                        ze = null;
+                        this.complete = true;
                     }else {
                         abiertos.add( new Archivo(newFile));
                         cantImages++;

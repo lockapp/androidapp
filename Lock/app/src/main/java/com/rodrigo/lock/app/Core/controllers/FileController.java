@@ -224,7 +224,7 @@ public class FileController  {
 
 
 
-
+/*
     public long getSizesOfFilesinB(){
         long size =0;
 
@@ -285,7 +285,7 @@ public class FileController  {
 
     }
 
-
+*/
 
     public String getName(){
         if(this.inFileList.size() == 1){
@@ -341,7 +341,7 @@ public class FileController  {
 
     /////////////////////
     public CryptoController getDecryptController(Context appContext) throws Exception {
-        DecryptController d =new DecryptController(appContext,getInFiles().getFirst().getFile() ,getPassword(),getAccion(),getOffset()
+        DecryptController d =new DecryptController(appContext,getInFiles().getFirst().getFile() ,getPassword(),getAccion(),getOffset(), getName()
 
 
 
@@ -352,7 +352,7 @@ public class FileController  {
 
 
     public CryptoController getDecryptControllerSeeMedia(Context appContext) throws Exception {
-        DecryptControllerSeeMedia d =new DecryptControllerSeeMedia (getId(), appContext,getInFiles().getFirst().getFile() ,getPassword(),getAccion(),getOffset());
+        DecryptControllerSeeMedia d =new DecryptControllerSeeMedia (getId(), appContext,getInFiles().getFirst().getFile() ,getPassword(),getAccion(),getOffset(), getName());
         return d;
     }
 

@@ -1,8 +1,6 @@
 package com.rodrigo.lock.app.Core.crypto.AES;
 
 
-import com.rodrigo.lock.app.Core.crypto.AES.CoreCrypto128.Utils;
-
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -16,13 +14,13 @@ public class Crypto {
     CoreCrypto aes;
 
 
-    public void init128() throws Exception {
-        CoreCrypto128 _c = new CoreCrypto128();
+    public void initV0() throws Exception {
+        CoreCryptoV0 _c = new CoreCryptoV0();
         aes = _c.new AES();
     }
 
-    public void init256() throws Exception {
-        CoreCrypto256 _c = new CoreCrypto256();
+    public void initV1() throws Exception {
+        CoreCryptoV1 _c = new CoreCryptoV1();
         aes = _c.new AES();
     }
 

@@ -192,8 +192,9 @@ public class GridMediaActivity extends MediaActivity {
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                         this,  v.findViewById(R.id.picture),  getString(R.string.image_grid));
         ActivityCompat.startActivity(this, i, options.toBundle());
+*/
+        //finish();
 
-        finish();*/
 
     }
 
@@ -269,7 +270,7 @@ public class GridMediaActivity extends MediaActivity {
 
             picture = (ImageView)v.getTag(R.id.picture);
             imageplay = (ImageView)v.getTag(R.id.play);
-            ViewCompat.setTransitionName(picture, getString(R.string.image_grid) );
+           // ViewCompat.setTransitionName(picture, getString(R.string.image_grid) );
 
             Archivo a = archivos.get(i);
             if (a.getTipo() == FileType.Video){

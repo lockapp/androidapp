@@ -52,13 +52,14 @@ public class DecryptController extends CryptoController {
 
 
     //para see image
-    public DecryptController(Context ctx, File inFile, String pass, Accion accio, long offset) {
+    public DecryptController(Context ctx, File inFile, String pass, Accion accio, long offset, String name) {
         this.ctx = ctx;
         this.inFile = inFile;
         this.pass = pass;
         this.accion = accio;
         this.offset=offset;
         lastError= null;
+        this.name =name;
         //cabezal = new CabezalController();
         //checkAndInit();
     }
@@ -240,9 +241,9 @@ public class DecryptController extends CryptoController {
 
             Crypto algo = new Crypto();
             if ((version[0] == ((byte) 0x00))) {
-                algo.init128();
+                algo.initV0();
             }else{
-                algo.init256();
+                algo.initV1();
             }
             in = new CipherInputStream(in, algo.getCiphertoDec(in, pass));
 

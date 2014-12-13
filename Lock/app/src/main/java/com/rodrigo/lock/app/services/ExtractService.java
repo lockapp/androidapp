@@ -50,9 +50,9 @@ public class ExtractService extends IntentService {
 
             if (cc != null) {
                 if (cc.getAccion() == Accion.Encyptar || cc.getAccion() == Accion.EncryptarConImagen) {
-                    mBuilder.setContentTitle(getResources().getString(R.string.working)).setContentText(getResources().getString(R.string.workingL)).setSmallIcon(R.drawable.ic_action_secure);
+                    mBuilder.setContentTitle(getResources().getString(R.string.workingL)).setContentText(cc.getName()).setSmallIcon(R.drawable.ic_action_secure);
                 } else {
-                    mBuilder.setContentTitle(getResources().getString(R.string.working)).setContentText(getResources().getString(R.string.workingU)).setSmallIcon(R.drawable.ic_action_not_secure);
+                    mBuilder.setContentTitle(getResources().getString(R.string.workingU)).setContentText(cc.getName()).setSmallIcon(R.drawable.ic_action_not_secure);
                 }
                 mBuilder.setProgress(0, 0, true);
                 mBuilder.setOngoing(true);
@@ -65,7 +65,7 @@ public class ExtractService extends IntentService {
 
 
                 if (cc.getAccion() == Accion.Encyptar || cc.getAccion() == Accion.EncryptarConImagen) {
-                    shareNotification(((EncryptController)cc).getToEncrypt());
+                    shareNotification(((EncryptController)cc).getToEncrypt(), cc.getName());
                 }
             }
 
@@ -120,7 +120,7 @@ public class ExtractService extends IntentService {
 
 
 
-    public void shareNotification(String c){
+    public void shareNotification(String c, String name){
         try{
             //se crea intent to share
             id++;
@@ -142,7 +142,7 @@ public class ExtractService extends IntentService {
                     new NotificationCompat.Builder(this.getApplicationContext())
                             .setSmallIcon(R.drawable.ic_action_secure)
                             .setContentTitle( getString(R.string.yourdatasafe))
-                            .setContentText( getString(R.string.workcomplete))
+                            .setContentText( getString(R.string.workcomplete) + " (" + name + ")")
                             .setContentIntent(contentIntent)
                             .setAutoCancel(true)
                             .addAction(R.drawable.ic_action_share,

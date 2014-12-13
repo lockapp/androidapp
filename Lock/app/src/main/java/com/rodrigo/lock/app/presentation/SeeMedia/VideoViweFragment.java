@@ -35,7 +35,7 @@ public class VideoViweFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View V = inflater.inflate(R.layout.fragment_see_video_thumbnail, container, false);
         ButterKnife.inject(this, V);
-        ViewCompat.setTransitionName(thumbnail, getString(R.string.image_grid));
+        //ViewCompat.setTransitionName(thumbnail, getString(R.string.image_grid));
 
         padre=(ListMediaActivity) getActivity();
         imageid=getArguments().getInt("imageID");

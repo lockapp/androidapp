@@ -49,6 +49,8 @@
                         android:id="@+id/enc_mismapassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textOn="On"
+                        android:textOff="Off"
                         android:text="@string/always_password" />
 
 

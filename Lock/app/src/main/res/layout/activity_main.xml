@@ -140,14 +140,14 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/q3"
+                    android:text="@string/q1"
                     android:textStyle="bold" />
                 <TextView
                     android:textColor="@color/bg_primario"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/r3"/>
+                    android:text="@string/r1"/>
 
                 <TextView
                     android:paddingTop="@dimen/activity_vertical_margin"
@@ -170,14 +170,14 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/q1"
+                    android:text="@string/q3"
                     android:textStyle="bold" />
                 <TextView
                     android:textColor="@color/bg_primario"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/r1"/>
+                    android:text="@string/r3"/>
 
 
 

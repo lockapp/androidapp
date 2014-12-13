@@ -13,6 +13,7 @@ public class CryptoController {
     Context ctx;
     ExtractService SM;
     Accion accion;
+    String name;
 
     //FileController fc;
     FileHeader cabezal;
@@ -35,8 +36,7 @@ public class CryptoController {
     }
 
 
-
-
-
-
+    public String getName() {
+        return name;
+    }
 }

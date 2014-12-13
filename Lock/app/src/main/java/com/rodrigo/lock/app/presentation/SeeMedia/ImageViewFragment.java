@@ -37,7 +37,7 @@ public class ImageViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View V = inflater.inflate(R.layout.fragment_imagesegureview, container, false);
         ButterKnife.inject(this, V);
-        ViewCompat.setTransitionName(photoView, getString(R.string.image_grid));
+        //ViewCompat.setTransitionName(photoView, getString(R.string.image_grid));
 
         imageid=getArguments().getInt("imageID");
         padre = ((ListMediaActivity) getActivity());
@@ -69,7 +69,7 @@ public class ImageViewFragment extends Fragment {
         @Override
         protected void onPostExecute(Bitmap result) {
             try {
-                //padre.empezarTransaccion();
+              //  padre.empezarTransaccion();
 
                 if (result != null){
                     progreso.setVisibility(View.GONE);
