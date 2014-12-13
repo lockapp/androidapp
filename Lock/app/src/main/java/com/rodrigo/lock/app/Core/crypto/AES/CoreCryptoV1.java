@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
@@ -44,12 +45,12 @@ public class CoreCryptoV1 {
 
         private static final String ALGORITHM = "AES";
         private static final String MODE = "CBC";
-        private static final String PADDING = "PKCS7Padding";
+        private static final String PADDING = "PKCS5Padding";
         private static final String CIPHER_TRANSFORMATION = ALGORITHM + "/" + MODE + "/" + PADDING;
 
 
         private byte[] ivBytes;
-        private SecretKey key;
+        private SecretKey   key;
         private Cipher cipher = Cipher.getInstance(CIPHER_TRANSFORMATION);
         private int IV_LENGTH_BYTE;
 
@@ -83,7 +84,6 @@ public class CoreCryptoV1 {
                 throw new IllegalArgumentException("Invalid file length (needs a full block for salt)");
             };
 
-            //String passphrase = CoreCrypto256.Utils.pbkdf2(password, CoreCrypto256.Utils.byteArrayToHexString(salt), 1000, KEY_SIZE_BYTES);
             key = CoreCryptoV1.PBKDF2.pbkdf2(password, salt, 1000);
 
             //se carga el iv
@@ -91,8 +91,6 @@ public class CoreCryptoV1 {
             if (in.read(ivBytes) < IV_LENGTH_BYTE) {
                 throw new IllegalArgumentException("Invalid file length (needs a full block for iv)");
             };
-
-            //setStringToKey(passphrase);
 
             cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(ivBytes));
             return cipher;
@@ -113,34 +111,14 @@ public class CoreCryptoV1 {
         }
 
 
-        public void setStringToKey(String keyText) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-            setKey(keyText.getBytes());
-        }
-
-        public void setKey(byte[] bArray) {
-            byte[] bText = new byte[KEY_SIZE_BYTES];
-            int end = Math.min(KEY_SIZE_BYTES, bArray.length);
-            System.arraycopy(bArray, 0, bText, 0, end);
-            key = new SecretKeySpec(bText, ALGORITHM);
-        }
-
-        public void setIV(byte[] bArray) {
-            byte[] bText = new byte[KEY_SIZE_BYTES];
-            int end = Math.min(KEY_SIZE_BYTES, bArray.length);
-            System.arraycopy(bArray, 0, bText, 0, end);
-            ivBytes = bText;
-        }
-
-        public byte[] generateIV() {
-            byte[] iv = Utils.getRandomBytes(IV_LENGTH_BYTE);
-            return iv;
-        }
 
 
 
-        ///////////////////////////////////////////////////////////////////////
+
+
+
         // Buffer used to transport the bytes from one stream to another
-        byte[] buf = new byte[1024];
+     /*   byte[] buf = new byte[1024];
 
         public void encrypt(InputStream in, OutputStream out, String passphrase) throws Exception {
             //se crea y se guarda el iv
@@ -162,7 +140,7 @@ public class CoreCryptoV1 {
             out.close();
             in.close();
 
-        }
+        }*/
 
 
 
@@ -181,12 +159,15 @@ public class CoreCryptoV1 {
      */
     private static class PBKDF2 {
 
-        public static SecretKey pbkdf2(String password, byte[] salt,  int pbkdf2Iterations)
+        public static SecretKey  pbkdf2(String password, byte[] salt,  int pbkdf2Iterations)
                 throws InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException {
 
-            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(AES.SECRET_KEY_ALGORITHM);
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(AES.SECRET_KEY_ALGORITHM);
             PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray(), salt, pbkdf2Iterations, CoreCryptoV1.KEY_SIZE_BITS);
-            return secretKeyFactory.generateSecret( pbeKeySpec);
+            byte[] keyBytes = keyFactory.generateSecret(pbeKeySpec).getEncoded();
+
+            return new SecretKeySpec(keyBytes, AES.ALGORITHM);
+
         }
 
 
@@ -200,23 +181,12 @@ public class CoreCryptoV1 {
     public static class Utils {
 
         public static byte[] getRandomBytes(int len) {
-            if (len < 0) {
-                len = 8;
-            }
             Random ranGen = new SecureRandom();
             byte[] aesKey = new byte[len];
             ranGen.nextBytes(aesKey);
             return aesKey;
         }
 
-        public static String byteArrayToHexString(byte[] raw) {
-            StringBuilder sb = new StringBuilder(2 + raw.length * 2);
-            sb.append("0x");
-            for (int i = 0; i < raw.length; i++) {
-                sb.append(String.format("%02X", Integer.valueOf(raw[i] & 0xFF)));
-            }
-            return sb.toString();
-        }
 
 
         public static String byteArrayToBase64String(byte[] raw) {
