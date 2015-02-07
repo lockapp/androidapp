@@ -25,6 +25,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileType;
 import com.rodrigo.lock.app.R;
@@ -32,6 +33,7 @@ import com.rodrigo.lock.app.presentation.UI.HeaderGridView;
 import com.rodrigo.lock.app.presentation.UI.scrollActionbar.AlphaForegroundColorSpan;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 
 import butterknife.ButterKnife;
@@ -65,6 +67,8 @@ public class GridMediaActivity extends MediaActivity {
     private int mActionBarHeight;
     private TypedValue mTypedValue = new TypedValue();
 
+    private final Object lock = new Object();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,10 +77,8 @@ public class GridMediaActivity extends MediaActivity {
         ButterKnife.inject(this);
         setSupportActionBar(toolbar);
 
-
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_mediabar);
         mMinHeaderTranslation = -mHeaderHeight + getActionBarHeight();
-
 
         mPlaceHolderView = getLayoutInflater().inflate(R.layout.fake_header, gridView, false);
         gridView.addHeaderView(mPlaceHolderView);
@@ -100,7 +102,11 @@ public class GridMediaActivity extends MediaActivity {
 
 
         setupGridView();
-        updateText(mediaCryptoController.isComplete());
+
+        synchronized (lock) {
+            updateText(mediaCryptoController.isComplete());
+        }
+
         tapaheader.setAlpha(0);
 
     }
@@ -184,8 +190,8 @@ public class GridMediaActivity extends MediaActivity {
         int image = position - 3;
 
         Intent i = new Intent(this,ListMediaActivity.class );
-        i.putExtra("controlerId", idCC);
-        i.putExtra("acutalpage",image);
+        i.putExtra(Constants.CRYPTO_CONTROLLER, idCC);
+        i.putExtra(Constants.MEDIA_ACTIVITY_OPENFILE,image);
         startActivity(i);
 
 /*
@@ -199,7 +205,7 @@ public class GridMediaActivity extends MediaActivity {
     }
 
 
-    private void updateText(boolean fin){
+    private  void updateText(boolean fin){
         String titulo;
         if(cantimages == 1){
             titulo =(getResources().getString(R.string.file));
@@ -261,18 +267,24 @@ public class GridMediaActivity extends MediaActivity {
             View v = view;
             ImageView picture;
             ImageView imageplay;
+            Archivo a = archivos.get(i);
 
             if(v == null) {
                 v = inflater.inflate(R.layout.grid_image, viewGroup, false);
                 v.setTag(R.id.picture, v.findViewById(R.id.picture));
                 v.setTag(R.id.play, v.findViewById(R.id.play));
+            } else{
+                if(a.getFile().getAbsolutePath().equals(v.getTag())){
+                    // If so, return it directly.
+                    return v;
+                }
             }
 
             picture = (ImageView)v.getTag(R.id.picture);
             imageplay = (ImageView)v.getTag(R.id.play);
            // ViewCompat.setTransitionName(picture, getString(R.string.image_grid) );
 
-            Archivo a = archivos.get(i);
+            picture.setImageBitmap(null);
             if (a.getTipo() == FileType.Video){
                 imageplay.setVisibility(View.VISIBLE);
 
@@ -288,6 +300,7 @@ public class GridMediaActivity extends MediaActivity {
                 picture.setTag(task);
             }
 
+            v.setTag(a.getFile().getAbsolutePath() );
             return v;
         }
 
@@ -295,40 +308,55 @@ public class GridMediaActivity extends MediaActivity {
 
 
     public class ImageGetter extends AsyncTask<Integer, Void, Bitmap> {
-        private ImageView iv;
+        private WeakReference<ImageView> mImageViewRef;
+
         public ImageGetter(ImageView v) {
-            iv = v;
+            mImageViewRef = new WeakReference<ImageView>(v);
         }
 
         @Override
         protected Bitmap doInBackground(Integer... params) {
-            return mediaCryptoController.getSmallImage(params[0]);
+            if ( null == mImageViewRef.get() )
+                return null;
+            else
+                return mediaCryptoController.getSmallImage(params[0]);
         }
 
         @Override
         protected void onPostExecute(Bitmap result) {
-            super.onPostExecute(result);
-            iv.setImageBitmap(result);
+            //super.onPostExecute(result);
+            ImageView iv = mImageViewRef.get();
+            if (iv!= null && result!= null)
+                iv.setImageBitmap(result);
         }
     }
 
 
     public class VideoGetter extends AsyncTask<File, Void, Bitmap> {
-        private ImageView iv;
+        private WeakReference<ImageView> mImageViewRef;
+
         public VideoGetter(ImageView v) {
-            iv = v;
+            mImageViewRef = new WeakReference<ImageView>(v);
+
         }
 
         @Override
         protected Bitmap doInBackground(File... params) {
-            Bitmap thumb = ThumbnailUtils.createVideoThumbnail(params[0].getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
-            return thumb;
+            if (null == mImageViewRef.get()){
+                return null;
+            }else {
+                Bitmap thumb = ThumbnailUtils.createVideoThumbnail(params[0].getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+                return thumb;
+            }
         }
 
         @Override
         protected void onPostExecute(Bitmap result) {
-            super.onPostExecute(result);
-            iv.setImageBitmap(result);
+            //super.onPostExecute(result);
+            ImageView iv = mImageViewRef.get();
+            if (iv!= null && result!= null)
+                iv.setImageBitmap(result);
+
         }
     }
 
@@ -336,26 +364,31 @@ public class GridMediaActivity extends MediaActivity {
 
 
     @Override
-    public synchronized void notificarCantImages(int cantImages) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                cantimages = mediaCryptoController.getCantImages();
-                adapter.notifyDataSetChanged();
-                updateText(false);
-            }
-        });
+    public void notificarCantImages(int cantImages) {
+        synchronized (lock) {
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    cantimages = mediaCryptoController.getCantImages();
+                    adapter.notifyDataSetChanged();
+                    updateText(false);
+                }
+            });
+        }
     }
 
     @Override
-    public synchronized void fin() {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                updateText(true);
-                //hide progress bar
-            }
-        });
+    public void fin() {
+        synchronized (lock) {
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    updateText(true);
+                    //hide progress bar
+                }
+            });
+        }
+
     }
 
 

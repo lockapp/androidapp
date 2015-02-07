@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
@@ -42,7 +43,7 @@ public class SeeMediaService extends IntentService {
 
 
         if (intent != null) {
-            int idC = intent.getExtras().getInt("controlerId");
+            int idC = intent.getExtras().getInt(Constants.CRYPTO_CONTROLLER);
             manejarMedia(idC);
            // manejarMediaParalelo(idC);
         }

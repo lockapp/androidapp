@@ -141,13 +141,14 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
 
     public  Bitmap getImage(int idI){
         try {
-            String imageKey =  "big:" + idI;
+           /* String imageKey =  "big:" + idI;
             Bitmap bitmap = mMemoryCache.get(imageKey);
+            */
 
-            if (bitmap == null) {
-                bitmap = MediaUtils.TransformImage( abiertos.get(idI).getFile().getAbsolutePath());
-                mMemoryCache.put(imageKey, bitmap);
-            }
+            //if (bitmap == null) {
+                Bitmap bitmap = MediaUtils.TransformImage( abiertos.get(idI).getFile().getAbsolutePath());
+            /*    mMemoryCache.put(imageKey, bitmap);
+            }*/
 
             return bitmap;
 
@@ -187,7 +188,7 @@ public class DecryptControllerSeeMedia extends DecryptController implements  Not
             String imageKey = a.getFile().getAbsolutePath();
             //File f=new File(cacheDirectory.getAbsolutePath(), imageKey);
             a.getFile().delete();
-            Log.d("-------------------- > archivo eliminado", imageKey);
+            Log.d("archivo eliminado", imageKey);
         }
     }
 

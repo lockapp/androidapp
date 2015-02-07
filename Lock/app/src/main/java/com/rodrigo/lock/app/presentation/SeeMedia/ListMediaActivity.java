@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.FileType;
 import com.rodrigo.lock.app.Core.Utils.HackyViewPager;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
@@ -63,30 +64,12 @@ public class ListMediaActivity extends MediaActivity {
         showSystemUI();
 
         //se pone la pagina actual
-        int actualp = getIntent().getExtras().getInt("acutalpage",-1);
+        int actualp = getIntent().getExtras().getInt(Constants.MEDIA_ACTIVITY_OPENFILE,-1);
         if (actualp!=-1)
             mViewPager.setCurrentItem(actualp);
 
     }
 
-/*
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void posponerTransaccion(){
-        postponeEnterTransition();
-        primeraVez = true;
-    }
-
-
-    boolean primeraVez = true;
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void empezarTransaccion(){
-        if (primeraVez){
-            startPostponedEnterTransition();
-            primeraVez =false;
-        }
-
-    }
-*/
 
 
     @Override
@@ -128,7 +111,7 @@ public class ListMediaActivity extends MediaActivity {
         clearCacheFiles = false;
         deleteMediaController =false;
         Intent i = new Intent(this,GridMediaActivity.class );
-        i.putExtra("controlerId", idCC);
+        i.putExtra(Constants.CRYPTO_CONTROLLER, idCC);
         startActivity(i);
         finish();
     }
@@ -152,7 +135,7 @@ public class ListMediaActivity extends MediaActivity {
             }
 
             Bundle args = new Bundle();
-            args.putInt("imageID", position);
+            args.putInt(Constants.SEE_IMAGE_ID, position);
             f.setArguments(args);
             return f;
         }
@@ -169,11 +152,8 @@ public class ListMediaActivity extends MediaActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (mediaCryptoController.esExtraible()){
-            getMenuInflater().inflate(R.menu.see_image_hide, menu);
-        }else{
-            getMenuInflater().inflate(R.menu.see_image_no_extract_hide, menu);
-        }
+        getMenuInflater().inflate(R.menu.donate, menu);
+
         return true;
     }
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
 
@@ -39,7 +40,7 @@ public class ImageViewFragment extends Fragment {
         ButterKnife.inject(this, V);
         //ViewCompat.setTransitionName(photoView, getString(R.string.image_grid));
 
-        imageid=getArguments().getInt("imageID");
+        imageid=getArguments().getInt(Constants.SEE_IMAGE_ID);
         padre = ((ListMediaActivity) getActivity());
 
         if (  (0 <= imageid)  && (imageid <padre.getCantimages())){

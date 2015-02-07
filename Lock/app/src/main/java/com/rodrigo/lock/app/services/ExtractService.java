@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
@@ -43,7 +44,7 @@ public class ExtractService extends IntentService {
         mNotifyManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
         mBuilder = new NotificationCompat.Builder(this);
         id++;
-        int idcc = intent.getExtras().getInt("controlerId");
+        int idcc = intent.getExtras().getInt(Constants.CRYPTO_CONTROLLER);
         CryptoController cc= ManejadorCrypto.getControlador(idcc);
 
         try {
@@ -133,7 +134,7 @@ public class ExtractService extends IntentService {
             controler.addFile(a);
             controler.resolverAccion();
             Intent i = new Intent(this, DecryptActivity.class);
-            i.putExtra("controlerId", controler.getId());
+            i.putExtra(Constants.FILE_CONTROLLER, controler.getId());
             PendingIntent contentIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_ONE_SHOT);
 
 

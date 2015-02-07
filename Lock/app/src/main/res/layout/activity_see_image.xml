@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.rodrigo.pandorabox.app.SeeImageActivity"
     android:orientation="vertical"
-    android:background="@drawable/bg_gallery_list"
+    android:background="#ff000000"
     android:id="@+id/bg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 

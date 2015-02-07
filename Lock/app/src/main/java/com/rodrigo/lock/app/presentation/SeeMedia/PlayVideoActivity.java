@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.MediaController;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.presentation.UI.VideoView;
 
@@ -30,8 +31,8 @@ public class PlayVideoActivity extends MediaActivity  {
         setContentView(R.layout.activity_play_video);
         ButterKnife.inject(this);
 
-        String pathfile = getIntent().getExtras().getString("videopath");
-        imageid= getIntent().getExtras().getInt("imageID");
+        String pathfile = getIntent().getExtras().getString(Constants.SEE_VIDEO_PATH);
+        imageid= getIntent().getExtras().getInt(Constants.SEE_IMAGE_ID);
 
         try {
             //player.setAudioStreamType(AudioManager.);
@@ -64,8 +65,8 @@ public class PlayVideoActivity extends MediaActivity  {
             clearCacheFiles = false;
             deleteMediaController =false;
             Intent i = new Intent(this,ListMediaActivity.class );
-            i.putExtra("controlerId", idCC);
-            i.putExtra("acutalpage",imageid);
+            i.putExtra(Constants.CRYPTO_CONTROLLER, idCC);
+            i.putExtra(Constants.MEDIA_ACTIVITY_OPENFILE,imageid);
             startActivity(i);
             finish();
             return true;

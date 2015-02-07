@@ -30,6 +30,7 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.nineoldandroids.view.ViewHelper;
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
@@ -170,7 +171,7 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
 
             } else {
                 Intent i = new Intent(this, DecryptActivity.class);
-                i.putExtra("controlerId", controler.getId());
+                i.putExtra(Constants.FILE_CONTROLLER, controler.getId());
                 startActivity(i);
                 //finish();
             }
@@ -353,7 +354,7 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
                 int ccid = ManejadorCrypto.add(cc);
 
                 Intent i = new Intent(this.getApplicationContext(), ExtractService.class);
-                i.putExtra("controlerId", ccid);
+                i.putExtra(Constants.CRYPTO_CONTROLLER, ccid);
                 this.startService(i);
 
                 ManejadorFile.quitarControldor(controler.getId());

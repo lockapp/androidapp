@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Interfaces.IPreferences;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
@@ -46,7 +47,7 @@ public class DecryptActivity extends LockActivity {
         setContentView(R.layout.activity_decrypt);
         ButterKnife.inject(this);
 
-        int idC = getIntent().getExtras().getInt("controlerId");
+        int idC = getIntent().getExtras().getInt(Constants.FILE_CONTROLLER);
         this.controller = ManejadorFile.getControlador(idC);
         preferences = PreferencesController.getPreferencesController(this);
 
@@ -100,11 +101,11 @@ public class DecryptActivity extends LockActivity {
         int ccid = ManejadorCrypto.add(cc);
 
         Intent s = new Intent(getApplicationContext(), SeeMediaService.class);
-        s.putExtra("controlerId", ccid);
+        s.putExtra(Constants.CRYPTO_CONTROLLER, ccid);
         startService(s);
 
         Intent i = new Intent(this,GridMediaActivity.class );
-        i.putExtra("controlerId", ccid);
+        i.putExtra(Constants.CRYPTO_CONTROLLER, ccid);
         startActivity(i);
 
         ManejadorFile.quitarControldor(controller.getId());
@@ -118,7 +119,7 @@ public class DecryptActivity extends LockActivity {
         int ccid = ManejadorCrypto.add(cc);
 
         Intent i = new Intent(getApplicationContext(), ExtractService.class);
-        i.putExtra("controlerId", ccid);
+        i.putExtra(Constants.CRYPTO_CONTROLLER, ccid);
         startService(i);
 
         ManejadorFile.quitarControldor(controller.getId());

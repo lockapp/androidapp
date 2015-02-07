@@ -11,7 +11,9 @@
         android:verticalSpacing="3dp"
         android:horizontalSpacing="3dp"
         android:stretchMode="columnWidth"
-        android:numColumns="3"/>
+        android:numColumns="3"
+        android:drawSelectorOnTop="true"
+        android:listSelector="?android:attr/selectableItemBackground"/>
 
     <FrameLayout
         android:id="@+id/header"

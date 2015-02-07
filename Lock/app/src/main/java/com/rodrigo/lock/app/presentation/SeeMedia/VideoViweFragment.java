@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.R;
 
 import java.io.File;
@@ -38,7 +39,7 @@ public class VideoViweFragment extends Fragment {
         //ViewCompat.setTransitionName(thumbnail, getString(R.string.image_grid));
 
         padre=(ListMediaActivity) getActivity();
-        imageid=getArguments().getInt("imageID");
+        imageid=getArguments().getInt(Constants.SEE_IMAGE_ID);
 
         try {
             if (  (0 <= imageid)  && (imageid <padre.getCantimages())){
@@ -58,9 +59,9 @@ public class VideoViweFragment extends Fragment {
     @OnClick(R.id.play)
     public void vervideo(){
         Intent intent = new Intent(this.getActivity(), PlayVideoActivity.class);
-        intent.putExtra("videopath", f.getAbsolutePath());
-        intent.putExtra("imageID",imageid);
-        intent.putExtra("controlerId", padre.getIdCC());
+        intent.putExtra(Constants.SEE_VIDEO_PATH, f.getAbsolutePath());
+        intent.putExtra(Constants.SEE_IMAGE_ID, imageid);
+        intent.putExtra(Constants.CRYPTO_CONTROLLER, padre.getIdCC());
         ((ListMediaActivity) getActivity()).setClearCacheFiles(false);
         ((ListMediaActivity) getActivity()).setDeleteMediaController(false);
 

@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.devspark.appmsg.AppMsg;
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Interfaces.NotifyMediaChange;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
 import com.rodrigo.lock.app.Core.Utils.Utils;
@@ -32,7 +33,7 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //se busca el decript controler
-        idCC = getIntent().getExtras().getInt("controlerId");
+        idCC = getIntent().getExtras().getInt(Constants.CRYPTO_CONTROLLER);
         mediaCryptoController = (DecryptControllerSeeMedia)ManejadorCrypto.getControlador(idCC);
     }
 
@@ -103,7 +104,7 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
                 CryptoController cc = mediaCryptoController.getDecryptController(this.getApplicationContext());
                 int ccid = ManejadorCrypto.add(cc);
                 Intent i = new Intent(getApplicationContext(), ExtractService.class);
-                i.putExtra("controlerId", ccid);
+                i.putExtra(Constants.CRYPTO_CONTROLLER, ccid);
                 startService(i);
 
                 finish();
@@ -117,6 +118,7 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
             Intent sendIntent = Utils.shareExludingApp(this, Uri.fromFile(mediaCryptoController.getInFile()));
             startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
             return true;
+
         }else if (id == R.id.action_donar){
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU"));
             startActivity(browserIntent);
