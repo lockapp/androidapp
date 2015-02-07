@@ -119,6 +119,7 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
     @Override
     protected void onStart(){
         super.onStart();
+
         if (controler.getAccion() == Accion.EncryptarConImagen){
             startRepeatingTask();
         }
@@ -175,7 +176,7 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
             return true;
 
         } catch (Exception e) {
-            Log.d("----->actualizador de imagenes", "dio exepcion al generar nueva imagen");
+            Log.d("actualizador imagenes", "exepcion al generar nueva imagen");
             return false;
         }
     }
@@ -187,12 +188,14 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
                     @Override
                     public void run() {
                   //      if (actual.getTipo() == FileType.Imagen) {
-                            bgfondo.setImageBitmap(actualImg);
-                            MediaUtils.ImageViewAnimatedChange(ReciveImageAndVideo.this, bg, actualImg);
+                            //bgfondo.setImageBitmap(actualImg);
+                        bg.setVisibility(View.VISIBLE);
+
+                        MediaUtils.ImageViewAnimatedChange(ReciveImageAndVideo.this, bg, actualImg);
 
                             //  videoVew.stop();
-                            bgfondo.setVisibility(View.VISIBLE);
-                            bg.setVisibility(View.VISIBLE);
+                            //bgfondo.setVisibility(View.VISIBLE);
+                            //bg.setVisibility(View.VISIBLE);
                             //  videoVew.setVisibility(View.GONE);
 
     /*                    } else {
@@ -211,7 +214,7 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
                 });
             }
         } catch (Exception e) {
-            Log.d("----->actualizador de imagenes", "dio exepcion al acctualizar");
+            Log.d("actualizador imagenes", "dio exepcion al acctualizar");
 
         }
 

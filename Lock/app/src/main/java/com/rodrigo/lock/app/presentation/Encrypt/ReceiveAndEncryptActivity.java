@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -58,56 +59,40 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
     @InjectView(R.id.textureView)
     com.rodrigo.lock.app.presentation.UI.TextureVideoView videoVew;
 */
-    @InjectView(R.id.bg)
-    ImageView bg;
-
-    @InjectView(R.id.bgfondo)
-    ImageView bgfondo;
-
-    @InjectView(R.id.fondoconimgen)
-    FrameLayout fondoconimgen;
-
+    @InjectView(R.id.bg)    ImageView bg;
+    @InjectView(R.id.lista_cards)    View lista_cards;
+    @InjectView(R.id.fondoconimgen)    FrameLayout fondoconimgen;
     @InjectView(R.id.warning) View warning;
 
     Handler mHandler= new Handler();
-
-
     private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
-    private static final boolean TOOLBAR_IS_STICKY = true;
 
     @InjectView(R.id.toolbar) Toolbar  mToolbar;
-   // @InjectView(R.id.image) View mImageView;
-    @InjectView(R.id.overlay) View mOverlayView;
+    @InjectView(R.id.overlayH) View mOverlayHeader;
     @InjectView(R.id.scroll) ObservableScrollView mScrollView;
     @InjectView(R.id.title) TextView mTitleView;
     int mActionBarSize;
     int mFlexibleSpaceShowFabOffset;
     int mFlexibleSpaceImageHeight;
-    int mFabMargin;
+    int mFlexibleSpaceTitleHeight;
     int mToolbarColor;
-    boolean mFabIsShown;
-
+    float flexibleTextRange;
 
     FileController controler;
     FileHeader cabezal;
 
     /** config **/
     @InjectView(R.id.fecha)   TextView fecha;
-    @InjectView(R.id.cifrar)
-    Switch cifrar;
+    @InjectView(R.id.cifrar)    Switch cifrar;
     @InjectView(R.id.vencimiento)   Switch vencimiento;
-    @InjectView(R.id.layout_vencimiento)
-    LinearLayout layout_vencimiento;
+    @InjectView(R.id.layout_vencimiento)    LinearLayout layout_vencimiento;
     @InjectView(R.id.soloaca)   Switch soloaca;
     @InjectView(R.id.prhoibirextraer)   Switch prhoibirextraer;
     @InjectView(R.id.dejarcopiasinbloquear)   Switch dejarcopiasinbloquear;
 
-    @InjectView(R.id.password1)
-    EditText password1;
-    @InjectView(R.id.password2)
-    EditText password2;
-    @InjectView(R.id.bg_passwords)
-    LinearLayout bg_passwords;
+    @InjectView(R.id.password1)    EditText password1;
+    @InjectView(R.id.password2)    EditText password2;
+    @InjectView(R.id.bg_passwords)    LinearLayout bg_passwords;
 
     DatePickerDialog datePickerDialog = null;
     public static final String DATEPICKER_TAG = "datepicker";
@@ -125,22 +110,16 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
             setSupportActionBar(mToolbar);
 
             initOpcions(savedInstanceState);
-
-
             mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
+            mFlexibleSpaceTitleHeight =  getResources().getDimensionPixelSize(R.dimen.flexible_space_image_scroll);
             mFlexibleSpaceShowFabOffset = getResources().getDimensionPixelSize(R.dimen.flexible_space_show_fab_offset);
             mActionBarSize = getActionBarSize();
             mToolbarColor = getResources().getColor(R.color.bg_primario);
-
-            if (!TOOLBAR_IS_STICKY) {
-                mToolbar.setBackgroundColor(Color.TRANSPARENT);
-            }
+            flexibleTextRange = mFlexibleSpaceTitleHeight - mActionBarSize;
 
             mScrollView.setScrollViewCallbacks(this);
-            mTitleView.setText(getTitle());
             setTitle(null);
             mTitleView.setText(controler.getName());
-
 
             ViewTreeObserver vto = mScrollView.getViewTreeObserver();
             vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -151,10 +130,11 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
                     } else {
                         mScrollView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
-                    mScrollView.scrollTo(0, mFlexibleSpaceImageHeight - mActionBarSize);
+                    //mScrollView.scrollTo(mFlexibleSpaceImageHeight - mActionBarSize,1);
+                    mover(0);
                 }
             });
-            //onScrollChanged(2, true,false);
+
 
         }
 
@@ -267,47 +247,51 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
 
     @Override
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
-        //Log.d("--> en scrool", ""+scrollY);
+        mover(scrollY);
+    }
+
+
+
+
+    public void mover (int scrollY){
         // Translate overlay and image
-        float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
-        int minOverlayTransitionY = mActionBarSize - mOverlayView.getHeight();
-        ViewHelper.setTranslationY(mOverlayView, Math.max(minOverlayTransitionY, Math.min(0, -scrollY)));
+        //float flexibleBGRange = mFlexibleSpaceImageHeight - mActionBarSize;
+        int minOverlayTransitionY = mActionBarSize - fondoconimgen.getHeight();
+
+        //ViewHelper.setTranslationY(mOverlayView, Math.max(minOverlayTransitionY, Math.min(0, -scrollY)));
         ViewHelper.setTranslationY(fondoconimgen, Math.max(minOverlayTransitionY, Math.min(0, -scrollY / 2)));
 
         // Change alpha of overlay
-        ViewHelper.setAlpha(mOverlayView, Math.max(0, Math.min(1, (float) scrollY / flexibleRange)));
+        float alpha =Math.max(0, Math.min(1, (float) scrollY / flexibleTextRange));
+        ViewHelper.setAlpha(mOverlayHeader, alpha );
+        lista_cards.getBackground().setAlpha( (int)(255 * alpha) );
+
 
         // Scale title text
-        float scale = 1 + Math.max(0, Math.min(MAX_TEXT_SCALE_DELTA, (flexibleRange - scrollY) / flexibleRange));
+        float scale = 1 + Math.max(0, Math.min(MAX_TEXT_SCALE_DELTA, (flexibleTextRange - scrollY) / flexibleTextRange));
         ViewHelper.setPivotX(mTitleView, 0);
         ViewHelper.setPivotY(mTitleView, 0);
         ViewHelper.setScaleX(mTitleView, scale);
         ViewHelper.setScaleY(mTitleView, scale);
 
         // Translate title text
-        int maxTitleTranslationY = (int) (mFlexibleSpaceImageHeight - mTitleView.getHeight() * scale);
+        float titleH = Math.max(mActionBarSize, Math.min(mFlexibleSpaceTitleHeight,  mTitleView.getHeight() * scale ));
+        int maxTitleTranslationY = (int) (mFlexibleSpaceTitleHeight - titleH);
+
         int titleTranslationY = maxTitleTranslationY - scrollY;
-        if (TOOLBAR_IS_STICKY) {
-            titleTranslationY = Math.max(0, titleTranslationY);
-        }
+        titleTranslationY = Math.max(0, titleTranslationY);
         ViewHelper.setTranslationY(mTitleView, titleTranslationY);
 
-        if (TOOLBAR_IS_STICKY) {
-            // Change alpha of toolbar background
-            if (-scrollY + mFlexibleSpaceImageHeight <= mActionBarSize) {
-                setBackgroundAlpha(mToolbar, 1, mToolbarColor);
-            } else {
-                setBackgroundAlpha(mToolbar, 0, mToolbarColor);
-            }
+        // Change alpha of toolbar background
+        if (-scrollY + mFlexibleSpaceTitleHeight <= mActionBarSize) {
+            setBackgroundAlpha(mToolbar, 1, mToolbarColor);
         } else {
-            // Translate Toolbar
-            if (scrollY < mFlexibleSpaceImageHeight) {
-                ViewHelper.setTranslationY(mToolbar, 0);
-            } else {
-                ViewHelper.setTranslationY(mToolbar, -scrollY);
-            }
+            setBackgroundAlpha(mToolbar, 0, mToolbarColor);
         }
     }
+
+
+
 
     @Override
     public void onDownMotionEvent() {

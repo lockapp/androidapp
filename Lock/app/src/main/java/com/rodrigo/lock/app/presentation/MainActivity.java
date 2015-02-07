@@ -30,10 +30,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends ActionBarActivity  implements ObservableScrollViewCallbacks {
 
-   @InjectView(R.id.version) TextView version;
+    @InjectView(R.id.version) TextView version;
     @InjectView(R.id.r0) TextView r0;
-
-
 
     @InjectView(R.id.header) View mImageView;
     @InjectView(R.id.toolbar) Toolbar mToolbarView;
@@ -42,6 +40,7 @@ public class MainActivity extends ActionBarActivity  implements ObservableScroll
     private AlphaForegroundColorSpan mAlphaForegroundColorSpan;
     private int mActionBarTitleColor;
     private SpannableString mSpannableString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +152,16 @@ public void initToolbar(){
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             startActivity (new Intent(this, ConfigActivity.class));
+            return true;
+        } else if (id == R.id.action_share) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.rodrigo.lock.app");
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.share_subject));
+            startActivity(Intent.createChooser(intent, "Share"));
+            return true;
+        }  else if (id == R.id.action_rate) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.rodrigo.lock.app")));
             return true;
         }
         return super.onOptionsItemSelected(item);

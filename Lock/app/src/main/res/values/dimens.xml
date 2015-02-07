@@ -16,7 +16,9 @@
 
     <dimen name="size_dropdwon" >42dp</dimen>
 
-    <dimen name="flexible_space_image_height">240dp</dimen>
+    <dimen name="flexible_space_image_height">250dp</dimen>
+    <dimen name="flexible_space_image_scroll">190dp</dimen>
+
     <dimen name="flexible_space_show_fab_offset">120dp</dimen>
     <dimen name="margin_standard">16dp</dimen>
     <dimen name="parallax_image_height">180dp</dimen>

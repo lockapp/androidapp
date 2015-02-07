@@ -56,7 +56,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/ok1"
             android:id="@+id/entendido"
-            android:gravity="center" />
+            android:gravity="center"
+            android:background="?android:attr/selectableItemBackground"
+            />
     </FrameLayout>
 
 

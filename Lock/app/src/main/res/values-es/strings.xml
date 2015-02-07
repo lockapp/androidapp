@@ -108,4 +108,7 @@
     <string name="warning_encrypt">Si no cifra sus archivos, no estarán seguros.</string>
 
 
+   <string name="action_rate">Valorar</string>
+    <string name="share_subject">Hecha un vistazo a esta app!</string>
+
 </resources>

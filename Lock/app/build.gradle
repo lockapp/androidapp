@@ -7,8 +7,8 @@ android {
         applicationId "com.rodrigo.lock.app"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 5
-        versionName "0.1.0"
+        versionCode 6
+        versionName "0.1.1"
         //renderscriptTargetApi 21
         //renderscriptSupportMode true
     }
@@ -47,6 +47,9 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
     compile 'com.github.ksoichiro:android-observablescrollview:1.2.1'
+
+    compile 'com.flaviofaria:kenburnsview:1.0.6'
+
     //compile 'com.github.traex.rippleeffect:library:1.2.2'
 /*
                 compile 'com.madgag.spongycastle:prov:1.51.0.0'
