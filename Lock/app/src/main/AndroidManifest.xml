@@ -26,11 +26,11 @@
             android:label="@string/app_name" >
         </activity>
 
-        <!-- recibe image and video -->
+        <!-- recibe image and video
+         -->
         <activity
             android:name=".presentation.Encrypt.ReciveImageAndVideo"
             android:excludeFromRecents="true"
-            android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden"

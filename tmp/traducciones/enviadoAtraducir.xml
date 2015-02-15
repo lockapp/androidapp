@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_settings">Restablecer opciones</string>
+    <string name="new_expiration">Nueva fecha de vencimiento:  %1$s</string>
+    <string name="error_open">No se ha podido abrir el archivo %1$s por el motivo: %2$s</string>
+    <string name="error_version">Versión del programa obsoleta, instale una nueva versón</string>
+    <string name="error_defeated">El archivo ah caducado</string>
+    <string name="error_nosecureview">Este archivo no soporta la vista segura, intetne extraerlo</string>
+    <string name="error_password">Asegúrese de que la contraseña sea correcta</string>
+    <string name="configU">CONFIGURACION AL DESENCRIPTAR</string>
+    <string name="tut">TUTORIAL</string>
+    <string name="exp">Estas funciones son experimentales, y aún no son del todo seguras.</string>
+    <string name="intro_title1">Protege cualquier archivo.</string>
+    <string name="intro_desc1">Elige los archivos de tu dispositivo que quieres bloquear, y seleciona compartir con Lock</string>
+    <string name="intro_title2">Luego Lock hará su trabajo.</string>
+    <string name="intro_desc2">Podrás fijarte en una notificación su avance. Y una vez termine podrás encontrar el archivo bloqueado.</string>
+    <string name="intro_title3">Para desbloquear es igual de sencillo.</string>
+    <string name="intro_desc3">Para desbloquear seleciona compartir y luego Lock.</string>
+    <string name="r0">Esta app es gratis, sin anuncios y puedes encontrar el código fuente en github. Si crees que te ha sido útil sería bueno que mandes algunas monedas para el café. Donar es la mejor forma de contribuir con nuevas funcionalidades, cada poco cuenta.\n A continuación puedes encontrar algunas preguntas frecuentes</string>
+    <string name="q1">¿Es seguro Lock?</string>
+    <string name="r1">La respuesta corta sí.\nPero en realidad es un poco más larga, en muchas partes de la aplicación se habla de bloquear debido a que muchos usuarios no están relacionados con términos como cifrar o encriptar, pero lo que en realidad sucede es que sus datos se cifran utilizando AES, el mismo algoritmo de cifrado utilizado como el estándar nacional en los Estados Unidos. Lock utiliza claves de 128 bits para el cifrado, lo que significa que un criminal necesitará millones de años para descifrar los datos mediante un ataque de fuerza bruta.</string>
+    <string name="q2">¿Están mis datos protegidos?</string>
+    <string name="r2">A diferencia de otras aplicaciones sólo tiene un permiso. Sólo puede acceder a su almacenamiento para cifrar sus archivos. No tiene acceso a Internet u otras redes, ni a sus SMS, ni a sus llamadas. Por lo tanto no tiene manera de enviar los  datos fuera de su teléfono.\nPor otro lado el código de Lock se encuentra alojado en github y quién quiera puede mirarlo.</string>
+    <string name="q3">¿Puedo compartir imágenes cifradas?</string>
+    <string name="r3">Si, para compartir una imagen cifrada tienes que abrirla y encontrarás el icono de compartir en la barra de acción del visor de imágenes que incorpora Lock.\nDe momento esta es la única forma de hacerlo, ya que muchas aplicaciones a la hora de enviar imágenes le reducen su tamaño causando que el contenido cifrado se pierda, por lo que no podrás compartir imágenes cifradas desde la galería. Pero se está trabajando en mejorar esta experiencia.</string>
+    <string name="intro_tittle0">Échale un vistazo al funcionamiento de Lock.</string>
+    <string name="intro_play">Con Lock puedes bloquear cualquier archivo de forma fácil y segura, es ideal para protejer y compartir tus archivos personales, tanto fotos como videos. Esta app es gratis, sin anuncios y puedes encontrar el código fuente en github. A continuación pudes encontrar algunas preguntas frecuentes:</string>
+</resources>

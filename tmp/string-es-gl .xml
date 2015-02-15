@@ -1,0 +1,97 @@
+	<?xml version="1.0" encoding="utf-8"?>
+	<resources> 
+		<string name="action_share">Compartir</string>
+		<string name="app_name">Lock</string> 
+		<string name="hello_world">Hello world!</string> 
+		<string name="action_settings">Opcións</string>
+		<string name="default_settings">Restablecer opcións</string>
+		<string name="secure_view">Vista Segura</string> 
+		<string name="action_newpicture">Nova Imaxe</string> 
+		<string name="action_addtogallery">Engadir á galeria</string>
+		<string name="title_activity_error">Error</string> 
+		<string name="lock">Bloquear</string> 
+		<string name="lockm">BLOQUEAR</string> 
+		<string name="unlock">Desbloquear</string> 
+		<string name="unlockm">DESBLOQUEAR</string> 
+		<string name="empty_password">Contrasinal vacío</string> 
+		<string name="re_password">Reintroduza o contrasinal</string>
+		<string name="nomatch_password">Os contrasinais non coinciden</string>
+		<string name="save_changes">Os cambios foron guardados</string>
+		<string name="new_expiration">Nova data de vencemento: %1$s</string>
+		<string name="error_noblock">O archivo non puido ser bloqueado</string>
+		<string name="error_nofind">O archivo non se atopa no dispositivo</string>
+		<string name="open_all">Tódalas imaxes foron abertas.</string> 
+		<string name="working">Traballando</string> 
+		<string  name="workingL">Bloqueo en progreso</string>
+		<string name="workingU">Desbloqueo en progreso</string> 
+		<string name="error">Error</string>
+		<string name="unlocked">Foi desbloqueado correctamente</string> 
+		<string name="error_open">O archivo %1$s non puido ser aberto polo motivo: %2$s</string> 
+		<string name="error_open2">O archivo non puido ser aberto. Polo motivo: %1$s</string> 
+		<string name="error_unlock">Non puido desbloquearse o archivo %1$s polo motivo: %2$s</string> 
+		<string name="error_lock">Non puido bloquear o archivo %1$s polo motivo: %2$s</string> 
+		<string name="error_lock2">O archivo non puido bloquease. Polo motivo: %1$s</string> 
+		<string name="error_version">Versión do programa obsoleta, instale una nova versión</string> 
+		<string name="error_defeated">O archivo caducou</string> 
+		<string name="error_nosecureview">Este archivo non soporta a vista segura, intente extraelo</string>
+		<string name="error_password">Asegúrese de que o contrasinal sea correcto</string> 
+		<string name="error_delete">Non pode eliminarse o archivo. Polo motivo: %1$s</string> 
+		<string name="error_delete2">Non se pode eliminar el archivo %1$s. Polo motivo: %2$s</string>
+		<string name="locked_correct">Bloqueóuse correctamente</string>
+		<string name="error_notfound">O archivo non foi atopado</string>
+		<string name="error_notfound2">O archivo %1$s non existe</string>
+		<string name="open">Abrir</string> 
+		<string name="openm">ABRIR</string>
+		<string name="extract">Extraer</string> 
+		<string name="extractm">EXTRAER</string>
+		<string name="password">Contrasinal</string>
+		<string name="repassword">Reintroduza o contrasinal</string>
+		<string name="error_mal">Algo saliu mal.\nMoi, moi, moi mal.</string> 
+		<string name="expiration_date">Data de vencemento</string> 
+		<string name="only_device">Só abrir neste dispositivo</string> 
+		<string name="configL">CONFIGURACIÓN AO ENCRIPTAR</string>
+		<string name="configU">CONFIGURACIÓN AO DESENCRIPTAR</string>
+		<string name="image_mode">Modo imaxe</string>
+		<string name="always_password">Usar sempre o mesmo contrasinal</string> 
+		<string name="cancel">Cancelar</string>
+		<string name="save">Gardar</string> 
+		<string name="files">%1$s Archivos</string> 
+		<string name="file">1 Archivo</string> 
+		<string name="tut">TUTORIAL</string> 
+		<string name="cons">CONTACTO</string>
+		<string name="donar">DOAR</string>
+
+		<string name="send_to">Enviar a</string> 
+		<string name="exp">Estas funcións son experimentais, e aún no son do todo seguras.</string>
+
+		<string name="intro_title1">Protexe calqueira archivo.</string>
+		<string name="intro_desc1">Seleciona os archivos do teu dispositivo que queres bloquear, e seleciona compartir con Lock</string> 
+
+		<string name="intro_title2">Logo Lock fará o seu traballo.</string>
+		<string name="intro_desc2">Poderás fixarte nunha notificación o seu avance. E una vez termine poderás encontrar o archivo bloqueado.</string>
+
+		<string name="intro_title3">Para desbloquearlo é igual de sencillo.</string>
+		<string name="intro_desc3">Para desbloquealo seleciona compartir e logo Lock.</string>
+
+		<string name="r0">A app é gratis, sen anuncios e podes encontrar o código fonte en &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>. Se crees que che foi útil sería bó que mandes algunhas moediñas para o café. Doar é a mellor forma de contribuir con novas funcionalidades, cada pouco conta.\n A continuación podes atopar algunhas preguntas frecuentes</string>
+
+		<string name="q1">¿É seguro Lock?</string> 
+		<string name="r1">A respuesta corta é sí.\nPero en realidade é un pouquiño máis longa, en moitas partes da aplicación fálase de bloquear debido a que moitos usuarios non están relacionados con términos como cifrar ou encriptar, pero o que en realidade sucede é que os seus datos cífranse utilizando AES, o mesmo algoritmo de cifrado utilizado como o estándar nacional nos Estados Unidos. Lock utiliza claves de 128 bits para o cifrado, o que significa que un criminal necesitará millóns de anos para descifrar os datos mediante un ataque de forza bruta.</string>
+
+		<string name="q2">¿Están os meus datos protexidos?</string> 
+		<string name="r2">A diferenza de otras aplicacións só ten un permiso. Só pode acceder ao seu almaceamento para cifrar os seus archivos. Non ten acceso a Internet u otras redes, nin a os seus SMS, nin ás súas chamadas. Por o tanto non ten maneira de enviar os datos fora do seu teléfono.\nPor outro lado o código de Lock atópase aloxado en github e quen queira pode miralo.</string> 
+
+		<string name="q3">¿Podo compartir imaxes cifradas?</string> 
+		<string name="r3">Sí, para compartir una imaxe cifrada tes que abrila e atoparás o icono de compartir na barra de acción do visor de imaxes de Lock.\nDe momento esta é a única forma de facelo, xa que moitas aplicacións á hora de enviar imaxes redúcenlle o tamaño por o que o contido cifrado se perde, por o que non podrás compartir imaxes cifradas desde a galería. Pero estase a traballar en mellorar esta experiencia.</string>
+
+		<string name="intro_tittle0">Échalle un vistazo ao funcionamento de Lock.</string> 
+		<string name="intro_desc0">Con Lock podes bloquear calquer archivo de forma fácil e segura.</string> 
+
+		<string name="ok1">Entendido</string>
+		<string name="skip">Saltar</string> 
+
+		<string name="VideoView_error_text_invalid_progressive_playback">Este vídeo non se pode transmitir ao dispositivo.</string> 
+		<string name="VideoView_error_text_unknown" >Non se poede reproducir o vídeo.</string> 
+		<string name="VideoView_error_button">"Aceptar"</string> 
+		
+	</resources>
