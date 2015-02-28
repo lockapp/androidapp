@@ -33,7 +33,7 @@
                 <ImageView
                     android:id="@+id/header_logo"
                     android:layout_width="wrap_content"
-                    android:layout_height="150dp"
+                    android:layout_height="110dp"
                     android:layout_gravity="center"
                     android:src="@drawable/lock_open" />
             </FrameLayout>
