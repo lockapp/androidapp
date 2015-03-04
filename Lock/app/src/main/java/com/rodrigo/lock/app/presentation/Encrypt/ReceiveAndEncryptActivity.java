@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
@@ -101,9 +102,17 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("->recive", "oncreate()");
+        if (getIntent().hasExtra(Constants.FINISH)) {
+            //Log.d("->recive", "finish");
+            finish();
+            return;
+        }
+
         controler = ManejadorFile.createControler(getApplicationContext());
         encontrAraccion();
-        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_ecrrypt);
 
         if (controler.getAccion() == Accion.EncryptarConImagen || controler.getAccion() == Accion.Encyptar) {
@@ -140,6 +149,20 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         }
 
     }
+/*
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) {
+            finalizar();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+*/
+
+
+
 
     public void ImagenNoValida(String error){
         new AlertDialog.Builder(this)
@@ -170,10 +193,18 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
                 cabezal = new FileHeader();
 
             } else {
+                Log.d("->recive", "llama a DecryptActivity");
+
                 Intent i = new Intent(this, DecryptActivity.class);
+                //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                //i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK|Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
                 i.putExtra(Constants.FILE_CONTROLLER, controler.getId());
                 startActivity(i);
+
                 //finish();
+
+
             }
 
         } catch (Exception e) {
@@ -358,7 +389,9 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
                 this.startService(i);
 
                 ManejadorFile.quitarControldor(controler.getId());
+
                 this.finish();
+                // finalizar();
             }else{
                 focusView.requestFocus();
             }
@@ -368,6 +401,9 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         }
 
     }
+
+
+
 
 
     /*****************************************************************************/

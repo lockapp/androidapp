@@ -14,4 +14,6 @@ public final class Constants {
     public static final String PATH= "path";
     public static final String POSICION= "pos";
 
+    public static final String FINISH= "finish";
+
 }

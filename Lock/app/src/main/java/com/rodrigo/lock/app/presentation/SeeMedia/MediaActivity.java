@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.devspark.appmsg.AppMsg;
 import com.rodrigo.lock.app.Constants;
@@ -14,6 +16,9 @@ import com.rodrigo.lock.app.Core.Utils.Utils;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
+import com.rodrigo.lock.app.presentation.DecryptActivity;
+import com.rodrigo.lock.app.presentation.Encrypt.ReciveImageAndVideo;
+import com.rodrigo.lock.app.presentation.MainActivity;
 import com.rodrigo.lock.app.services.ExtractService;
 
 /**
@@ -56,7 +61,7 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+/*
         if (isFinishing()) {
             if (clearCacheFiles){
                 mediaCryptoController.setSalir(true);
@@ -64,7 +69,7 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
             }
             if (deleteMediaController) ManejadorCrypto.quitarControldor(idCC);
         }
-
+*/
     }
 
 
@@ -120,8 +125,9 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
             return true;
 
         }else if (id == R.id.action_donar){
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU"));
-            startActivity(browserIntent);
+            salir ();
+          //  Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU"));
+         //   startActivity(browserIntent);
             return true;
         }else{
             return super.onOptionsItemSelected(item);
@@ -130,6 +136,15 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
 
 
 
+    public void salir (){
+       // Toast.makeText(getApplicationContext(), "salir!! =)", Toast.LENGTH_LONG).show();
+        Log.d("->media", "llama a DecryptActivity");
+
+        Intent intent = new Intent(this, DecryptActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS );
+        intent.putExtra(Constants.FINISH, true);
+        startActivity(intent);
+    }
 
 
 

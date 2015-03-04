@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
+import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileType;
@@ -42,8 +43,14 @@ public class ReciveImageAndVideo extends ReceiveAndEncryptActivity{
         }
 
     }
-
-
+/*
+    @Override
+    public void finalizar(){
+        Intent intent = new Intent(this, ReciveImageAndVideo.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        intent.putExtra(Constants.FINISH, true);
+        startActivity(intent);
+    }*/
 
     void handle1Multimedia(Intent intent) {
         Uri uri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);

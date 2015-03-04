@@ -15,6 +15,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".presentation.InstructionsActivity"
@@ -31,8 +32,9 @@
         <activity
             android:name=".presentation.Encrypt.ReciveImageAndVideo"
             android:excludeFromRecents="true"
-            android:label="@string/app_name"
             android:noHistory="true"
+            android:taskAffinity=""
+            android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/Principal.Light.NoActionBar">
             <intent-filter>
@@ -53,11 +55,13 @@
                 <data android:mimeType="video/*" />
             </intent-filter>
         </activity>
+        <!--
         <activity
             android:name=".presentation.Encrypt.ReceiveOther"
+            android:taskAffinity=""
             android:excludeFromRecents="true"
-            android:label="@string/app_name"
             android:noHistory="true"
+            android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/Principal.Light.NoActionBar">
             <intent-filter>
@@ -77,55 +81,42 @@
                 <data android:pathPattern=".*\\.pbx" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.Encrypt.ReceiveAndEncryptActivity"
-            android:excludeFromRecents="true"
-            android:label="@string/app_name"
-            android:noHistory="true"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Principal.Light.NoActionBar">
-        </activity>
 
-        <service
-            android:name=".services.ExtractService"
-            android:exported="false" />
+-->
 
         <activity
             android:name=".presentation.DecryptActivity"
-            android:excludeFromRecents="true"
             android:label="@string/unlock"
-            android:noHistory="true"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".presentation.SeeMedia.ListMediaActivity"
-            android:excludeFromRecents="true"
             android:label="@string/secure_view"
-            android:noHistory="true"
             android:theme="@style/Light.NoActionBar.BlinkFeed" >
-        </activity>
-        <activity
-            android:name=".presentation.ErrorActivity"
-            android:label="@string/title_activity_error" >
         </activity>
         <activity
             android:name=".presentation.SeeMedia.PlayVideoActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
             android:theme="@style/Light.NoActionBar.BlinkFeed" >
+        </activity>
+        <activity
+            android:name=".presentation.SeeMedia.GridMediaActivity"
+            android:theme="@style/BlinkFeed" >
+        </activity>
+
+
+
+        <activity
+            android:name=".presentation.ErrorActivity"
+            android:label="@string/title_activity_error" >
         </activity>
 
         <service
             android:name=".services.SeeMediaService"
             android:exported="false" >
         </service>
-
-        <activity
-            android:name=".presentation.SeeMedia.GridMediaActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:theme="@style/BlinkFeed" >
-        </activity>
+        <service
+            android:name=".services.ExtractService"
+            android:exported="false" />
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

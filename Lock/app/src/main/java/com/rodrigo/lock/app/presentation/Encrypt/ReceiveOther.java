@@ -2,6 +2,8 @@ package com.rodrigo.lock.app.presentation.Encrypt;
 
 import android.content.Intent;
 
+import com.rodrigo.lock.app.Constants;
+
 /**
  * Created by Rodrigo on 30/09/2014.
  */

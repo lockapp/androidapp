@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,20 +45,30 @@ public class DecryptActivity extends LockActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
+        Log.d("->decrypt", "onCreate");
+
+        if (getIntent().hasExtra(Constants.FINISH)) {
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_decrypt);
         ButterKnife.inject(this);
 
-        int idC = getIntent().getExtras().getInt(Constants.FILE_CONTROLLER);
-        this.controller = ManejadorFile.getControlador(idC);
-        preferences = PreferencesController.getPreferencesController(this);
 
-        // regularAccion();
-        if (controller.getAccion() != Accion.DesencryptarConImagen ){
-            dobleopcion.setVisibility(View.GONE);
-            extraer2.setVisibility(View.VISIBLE);
-        }else{
+        if (getIntent().getExtras().containsKey(Constants.FILE_CONTROLLER)){
+            int idC = getIntent().getExtras().getInt(Constants.FILE_CONTROLLER);
+            this.controller = ManejadorFile.getControlador(idC);
+            preferences = PreferencesController.getPreferencesController(this);
 
+            // regularAccion();
+            if (controller.getAccion() != Accion.DesencryptarConImagen ){
+                dobleopcion.setVisibility(View.GONE);
+                extraer2.setVisibility(View.VISIBLE);
+            }else{
+
+            }
         }
+
 
     }
 
@@ -109,7 +120,7 @@ public class DecryptActivity extends LockActivity {
         startActivity(i);
 
         ManejadorFile.quitarControldor(controller.getId());
-        finish();
+       // finish();
 
     }
 
