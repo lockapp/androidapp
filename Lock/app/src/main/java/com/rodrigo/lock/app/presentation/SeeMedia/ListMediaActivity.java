@@ -1,17 +1,15 @@
 package com.rodrigo.lock.app.presentation.SeeMedia;
 
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.FileType;
@@ -71,13 +69,19 @@ public class ListMediaActivity extends MediaActivity {
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
-        //se crea la tarea que desencripta
+        initText();
+    }
+
+
+    public  synchronized void initText(){
+        cantimages = mediaCryptoController.getCantImages();
+        adapter.notifyDataSetChanged();
         setTitle(mediaCryptoController.isComplete());
     }
+
 
 
 
@@ -94,27 +98,6 @@ public class ListMediaActivity extends MediaActivity {
         setTitle(titulo);
     }
 
-
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if (keyCode == KeyEvent.KEYCODE_BACK ) {
-            retroceder();
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-
-
-    public void retroceder(){
-        clearCacheFiles = false;
-        deleteMediaController =false;
-        Intent i = new Intent(this,GridMediaActivity.class );
-        i.putExtra(Constants.CRYPTO_CONTROLLER, idCC);
-        startActivity(i);
-        finish();
-    }
 
 
 
@@ -153,7 +136,6 @@ public class ListMediaActivity extends MediaActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.donate, menu);
-
         return true;
     }
 
@@ -161,7 +143,8 @@ public class ListMediaActivity extends MediaActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home){
-            retroceder();
+            FLAG_IS_FINISH_TASK =false;
+            finish();
             return true;
         }else{
             return super.onOptionsItemSelected(item);
@@ -186,29 +169,14 @@ public class ListMediaActivity extends MediaActivity {
     // This snippet hides the system bars.
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void hideSystemUI() {
-      /*  getWindow().getDecorView().setSystemUiVisibility(
-                          View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                          | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                          | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-                          | View.SYSTEM_UI_FLAG_IMMERSIVE
-        );*/
         getSupportActionBar().hide();
     }
 
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void showSystemUI() {
-    /*  getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        );*/
        getSupportActionBar().show();
     }
-
-
 
 
 
@@ -234,7 +202,6 @@ public class ListMediaActivity extends MediaActivity {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-               // setSupportProgressBarIndeterminateVisibility(false);
                 setTitle(true);
             }
         });

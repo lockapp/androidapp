@@ -62,11 +62,9 @@ public class VideoViweFragment extends Fragment {
         intent.putExtra(Constants.SEE_VIDEO_PATH, f.getAbsolutePath());
         intent.putExtra(Constants.SEE_IMAGE_ID, imageid);
         intent.putExtra(Constants.CRYPTO_CONTROLLER, padre.getIdCC());
-        ((ListMediaActivity) getActivity()).setClearCacheFiles(false);
-        ((ListMediaActivity) getActivity()).setDeleteMediaController(false);
 
+        padre.setFlagIsFinishTask(false);
         padre.startActivity(intent);
-        padre.finish();
     }
 
 

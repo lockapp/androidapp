@@ -7,13 +7,12 @@ import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -25,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.melnykov.fab.FloatingActionButton;
 import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileType;
@@ -38,6 +38,7 @@ import java.util.LinkedList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class GridMediaActivity extends MediaActivity {
 
@@ -47,6 +48,7 @@ public class GridMediaActivity extends MediaActivity {
     @InjectView(R.id.tapaheader)   FrameLayout tapaheader;
     @InjectView(R.id.logo)   View logo;
     @InjectView(R.id.progreso)   View progreso;
+    //@InjectView(R.id.fab)    FloatingActionButton fab;
 
     MediaAdapter adapter;
     LinkedList<Archivo> archivos;
@@ -56,7 +58,7 @@ public class GridMediaActivity extends MediaActivity {
     @InjectView(R.id.header)  View header;
     @InjectView(R.id.toolbar) android.support.v7.widget.Toolbar toolbar;
 
-
+    //private int myLastVisiblePos;
     private int mHeaderHeight;
     private int mMinHeaderTranslation;
     private int mActionBarTitleColor;
@@ -72,10 +74,12 @@ public class GridMediaActivity extends MediaActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("->GridA", "On Create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_media);
         ButterKnife.inject(this);
         setSupportActionBar(toolbar);
+
 
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_mediabar);
         mMinHeaderTranslation = -mHeaderHeight + getActionBarHeight();
@@ -100,23 +104,34 @@ public class GridMediaActivity extends MediaActivity {
         mSpannableString = new SpannableString(getResources().getString(R.string.secure_view));
         mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(mActionBarTitleColor);
 
-
         setupGridView();
-
-        synchronized (lock) {
-            updateText(mediaCryptoController.isComplete());
-        }
 
         tapaheader.setAlpha(0);
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        synchronized (lock) {
+            cantimages = mediaCryptoController.getCantImages();
+            adapter.notifyDataSetChanged();
+            updateText(mediaCryptoController.isComplete());
+        }
+
+    }
 
 
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) {
+            exitTask();
+            return true;
+        }
 
-
-
+        return super.onKeyDown(keyCode, event);
+    }
 
 
     private void setupGridView() {
@@ -124,10 +139,23 @@ public class GridMediaActivity extends MediaActivity {
         gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
+
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+               /* int currentFirstVisPos = view.getFirstVisiblePosition();
+                if(currentFirstVisPos > myLastVisiblePos) {
+                    //scroll down
+                    fab.hide();
+                }
+                if(currentFirstVisPos < myLastVisiblePos) {
+                    //scroll up
+                    fab.show();
+                }
+                myLastVisiblePos = currentFirstVisPos;*/
+
+
                 int scrollY = getScrollY();
                 //sticky actionbar
                 header.setTranslationY(Math.max(-scrollY, mMinHeaderTranslation));
@@ -145,6 +173,7 @@ public class GridMediaActivity extends MediaActivity {
 
 
             }
+
         });
     }
 
@@ -192,8 +221,8 @@ public class GridMediaActivity extends MediaActivity {
 
 
     public void viewMedia(AdapterView<?> parent, View v, int position, long id){
-        clearCacheFiles = false;
-        deleteMediaController =false;
+        FLAG_IS_FINISH_TASK =false;
+
         int image = position - 3;
 
         Intent i = new Intent(this,ListMediaActivity.class );
@@ -206,7 +235,6 @@ public class GridMediaActivity extends MediaActivity {
                         this,  v.findViewById(R.id.picture),  getString(R.string.image_grid));
         ActivityCompat.startActivity(this, i, options.toBundle());
 */
-        //finish();
 
 
     }
@@ -398,5 +426,14 @@ public class GridMediaActivity extends MediaActivity {
 
     }
 
+/*
+    @OnClick(R.id.fab)
+    public void addImage(){
+        FLAG_IS_FINISH_TASK = false;
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        galleryIntent.setType("image/* video/*");
+        startActivity(galleryIntent);
+    }
+*/
 
 }

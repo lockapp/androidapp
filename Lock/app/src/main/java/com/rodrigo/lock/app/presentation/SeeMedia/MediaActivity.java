@@ -5,8 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.devspark.appmsg.AppMsg;
 import com.rodrigo.lock.app.Constants;
@@ -16,9 +16,6 @@ import com.rodrigo.lock.app.Core.Utils.Utils;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
-import com.rodrigo.lock.app.presentation.DecryptActivity;
-import com.rodrigo.lock.app.presentation.Encrypt.ReciveImageAndVideo;
-import com.rodrigo.lock.app.presentation.MainActivity;
 import com.rodrigo.lock.app.services.ExtractService;
 
 /**
@@ -26,12 +23,9 @@ import com.rodrigo.lock.app.services.ExtractService;
  */
 public class MediaActivity extends ActionBarActivity implements NotifyMediaChange {
 
-    boolean clearCacheFiles = true;
-    boolean deleteMediaController = true;
+    boolean FLAG_IS_FINISH_TASK = true;
     int idCC;
-
     DecryptControllerSeeMedia mediaCryptoController;
-   // FileController fc;
 
 
     @Override
@@ -42,6 +36,12 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
         mediaCryptoController = (DecryptControllerSeeMedia)ManejadorCrypto.getControlador(idCC);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mediaCryptoController.setNotificarCambio(this);
+
+    }
 
     @Override
     public synchronized void notificarCantImages(int cantImages) {
@@ -58,42 +58,33 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
     }
 
 
+    public void exitTask(){
+        mediaCryptoController.setSalir(true);
+        mediaCryptoController.delteCache();
+        ManejadorCrypto.quitarControldor(idCC);
+        finish();
+    }
+
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-/*
-        if (isFinishing()) {
-            if (clearCacheFiles){
-                mediaCryptoController.setSalir(true);
-                mediaCryptoController.delteCache();
-            }
-            if (deleteMediaController) ManejadorCrypto.quitarControldor(idCC);
+    public void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        if (FLAG_IS_FINISH_TASK){
+            exitTask();
         }
-*/
+        FLAG_IS_FINISH_TASK = true;
     }
-
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mediaCryptoController.setNotificarCambio(this);
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) {
+            FLAG_IS_FINISH_TASK = false;
+            finish();
+            return true;
+        }
 
+        return super.onKeyDown(keyCode, event);
     }
-
-
-    public void setClearCacheFiles(boolean clearCacheFiles) {
-        this.clearCacheFiles = clearCacheFiles;
-    }
-
-    public void setDeleteMediaController(boolean deleteMediaController) {
-        this.deleteMediaController = deleteMediaController;
-    }
-
-
-    public int getIdCC() {
-        return idCC;
-    }
-
 
 
 
@@ -103,16 +94,13 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
         int id = item.getItemId();
         if (id == R.id.action_addtogallery) {
             try {
-                clearCacheFiles = true;
-                deleteMediaController =true;
-
                 CryptoController cc = mediaCryptoController.getDecryptController(this.getApplicationContext());
                 int ccid = ManejadorCrypto.add(cc);
                 Intent i = new Intent(getApplicationContext(), ExtractService.class);
                 i.putExtra(Constants.CRYPTO_CONTROLLER, ccid);
                 startService(i);
 
-                finish();
+                exitTask();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -125,9 +113,8 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
             return true;
 
         }else if (id == R.id.action_donar){
-            salir ();
-          //  Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU"));
-         //   startActivity(browserIntent);
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU"));
+            startActivity(browserIntent);
             return true;
         }else{
             return super.onOptionsItemSelected(item);
@@ -136,24 +123,15 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
 
 
 
-    public void salir (){
-       // Toast.makeText(getApplicationContext(), "salir!! =)", Toast.LENGTH_LONG).show();
-        Log.d("->media", "llama a DecryptActivity");
-
-        Intent intent = new Intent(this, DecryptActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS );
-        intent.putExtra(Constants.FINISH, true);
-        startActivity(intent);
+    public void setFlagIsFinishTask(boolean FLAG_IS_FINISH){
+        this.FLAG_IS_FINISH_TASK = FLAG_IS_FINISH ;
     }
 
 
 
-
-
-
-
-
-
+    public int getIdCC() {
+        return idCC;
+    }
 
 
 

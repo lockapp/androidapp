@@ -1,21 +1,18 @@
 package com.rodrigo.lock.app.presentation.Encrypt;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
+import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
@@ -35,18 +32,16 @@ import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
+import com.rodrigo.lock.app.Core.Clases.FileType;
 import com.rodrigo.lock.app.Core.Interfaces.IPreferences;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorCrypto;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
-import com.rodrigo.lock.app.Core.controllers.FileController;
+import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.Core.controllers.PreferencesController;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.R;
-import com.rodrigo.lock.app.presentation.DecryptActivity;
-import com.rodrigo.lock.app.presentation.UI.ViewUtils;
 import com.rodrigo.lock.app.services.ExtractService;
 
-import java.io.File;
 import java.text.ParseException;
 import java.util.Calendar;
 
@@ -56,7 +51,7 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 
-public class ReceiveAndEncryptActivity extends ActionBarActivity  implements ObservableScrollViewCallbacks, DatePickerDialog.OnDateSetListener {
+public class EncryptAndReciveActivity extends ReceiveActivity implements ObservableScrollViewCallbacks, DatePickerDialog.OnDateSetListener {
 /*
     @InjectView(R.id.textureView)
     com.rodrigo.lock.app.presentation.UI.TextureVideoView videoVew;
@@ -80,8 +75,6 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
     int mToolbarColor;
     float flexibleTextRange;
 
-    FileController controler;
-    FileHeader cabezal;
 
     /** config **/
     @InjectView(R.id.fecha)   TextView fecha;
@@ -104,14 +97,6 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("->recive", "oncreate()");
-        if (getIntent().hasExtra(Constants.FINISH)) {
-            //Log.d("->recive", "finish");
-            finish();
-            return;
-        }
-
-        controler = ManejadorFile.createControler(getApplicationContext());
-        encontrAraccion();
 
         setContentView(R.layout.activity_ecrrypt);
 
@@ -149,108 +134,6 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         }
 
     }
-/*
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if (keyCode == KeyEvent.KEYCODE_BACK ) {
-            finalizar();
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-*/
-
-
-
-
-    public void ImagenNoValida(String error){
-        new AlertDialog.Builder(this)
-                .setTitle(getResources().getString(R.string.error_noblock))
-                .setMessage(error)
-                .setCancelable(false)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-
-
-    }
-
-
-
-
-    //resuelve si manda a desecryptar o se queda aca y lo encrypta
-    void resolverAccion() {
-        try {
-            controler.resolverAccion();
-
-            if ((controler.getAccion() == Accion.Encyptar) || (controler.getAccion() == Accion.EncryptarConImagen)) {
-                //se queda aca
-                cabezal = new FileHeader();
-
-            } else {
-                Log.d("->recive", "llama a DecryptActivity");
-
-                Intent i = new Intent(this, DecryptActivity.class);
-                //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                //i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK|Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-                i.putExtra(Constants.FILE_CONTROLLER, controler.getId());
-                startActivity(i);
-
-                //finish();
-
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-
-    void handleFile(Intent intent) {
-        Uri returnUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-
-        if(returnUri == null)
-            returnUri = (Uri) intent.getData();
-
-        if (returnUri != null) {
-            String path = returnUri.toString().substring(returnUri.toString().indexOf(":///")+ 4);
-
-            if (TextUtils.isEmpty(path)){
-                ImagenNoValida(getResources().getString(R.string.error_nofind));
-
-            }else {
-                File myFile = new File(path);
-
-                if (!myFile.exists())
-                    myFile = new File( path.replaceAll("%20", " "));
-
-                if (!myFile.exists()){
-                    ImagenNoValida(getResources().getString(R.string.error_nofind));
-                }else{
-                    Archivo a = new Archivo(myFile);
-                    controler.addFile(a);
-                    resolverAccion();
-                }
-
-            }
-        } else{
-            ImagenNoValida(getResources().getString(R.string.error_nofind));
-        }
-    }
-
-
-
-    public void encontrAraccion() {
-    }
 
 
     public void mostrarError(String error){
@@ -274,16 +157,10 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         return actionBarSize;
     }
 
-
-
-
     @Override
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
         mover(scrollY);
     }
-
-
-
 
     public void mover (int scrollY){
         // Translate overlay and image
@@ -322,9 +199,6 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         }
     }
 
-
-
-
     @Override
     public void onDownMotionEvent() {
     }
@@ -339,9 +213,12 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
         view.setBackgroundColor(a + rgb);
     }
 
-    /*****************************************************************************/
-    /**  encriptar **/
-    /*****************************************************************************/
+
+
+
+/*****************************************************************************/
+/**  encriptar **/
+/*****************************************************************************/
     @OnClick(R.id.bloquear)
     void encrypt() {
         View focusView = null;
@@ -391,7 +268,6 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
                 ManejadorFile.quitarControldor(controler.getId());
 
                 this.finish();
-                // finalizar();
             }else{
                 focusView.requestFocus();
             }
@@ -526,6 +402,100 @@ public class ReceiveAndEncryptActivity extends ActionBarActivity  implements Obs
 
 
 
+
+
+/*****************************************************************************/
+/**  actualizador de imagenes **/
+    /*****************************************************************************/
+    private final static int INTERVAL_UPDATEBG = 1000 * 6  ; //4 segundos
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if (controler.getAccion() == Accion.EncryptarConImagen){
+            stopRepeatingTask();
+        }
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if (controler.getAccion() == Accion.EncryptarConImagen){
+            startRepeatingTask();
+        }
+
+    }
+
+
+    void startRepeatingTask(){
+        mHandlerTask =new Runnable()
+        {
+            @Override
+            public void run() {
+                imgIter = imgIter % controler.getInFiles().size();
+                boolean res = generarProximaIagen();
+                actualizarUI(res);
+
+                if (controler.getInFiles().size() > 1){
+                    imgIter++;
+                    mHandler.postDelayed(mHandlerTask, INTERVAL_UPDATEBG);
+                }
+
+            }
+        };
+        mHandlerTask.run();
+    }
+
+    void stopRepeatingTask() {
+        if (controler.getInFiles().size() > 1){
+            mHandler.removeCallbacks(mHandlerTask);
+            mHandlerTask= null;
+        }
+    }
+
+
+
+
+    int imgIter =0;
+    Runnable mHandlerTask = null;
+
+
+
+    Archivo actual;
+    Bitmap actualImg;
+
+
+    private Boolean generarProximaIagen() {
+        try {
+            actual = controler.getInFiles().get(imgIter);
+            if (actual.getTipo() == FileType.Imagen){
+                actualImg = MediaUtils.TransformImage(actual.getFile().getAbsolutePath());
+            } else   if (actual.getTipo() == FileType.Video){
+                actualImg = ThumbnailUtils.createVideoThumbnail(actual.getFile().getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+            }
+            return true;
+
+        } catch (Exception e) {
+            Log.d("actualizador imagenes", "exepcion al generar nueva imagen");
+            return false;
+        }
+    }
+
+    private void actualizarUI(Boolean result) {
+        try {
+            if (result == true) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        bg.setVisibility(View.VISIBLE);
+                        MediaUtils.ImageViewAnimatedChange(EncryptAndReciveActivity.this, bg, actualImg);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Log.d("actualizador imagenes", "dio exepcion al acctualizar");
+        }
+    }
 
 
 

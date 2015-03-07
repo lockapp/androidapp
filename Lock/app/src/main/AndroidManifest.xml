@@ -2,12 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rodrigo.lock.app" >
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/PrincipalTheme" >
         <activity
+            android:excludeFromRecents="true"
             android:name=".presentation.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Principal.Light.NoActionBar" >
@@ -15,7 +20,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".presentation.InstructionsActivity"
@@ -27,81 +31,57 @@
             android:label="@string/app_name" >
         </activity>
 
-        <!-- recibe image and video
-         -->
+<!--  recibe image and video -->
         <activity
-            android:name=".presentation.Encrypt.ReciveImageAndVideo"
+            android:name=".presentation.Encrypt.EncryptAndReciveActivity"
             android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:taskAffinity=""
+            android:clearTaskOnLaunch="true"
+            android:finishOnTaskLaunch="true"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Principal.Light.NoActionBar">
+            android:theme="@style/Principal.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.SEND_MULTIPLE" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="image/*" />
-                <data android:mimeType="video/*" />
-            </intent-filter>
-            <intent-filter >
-                <action android:name="android.intent.action.SEND_MULTIPLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="image/*" />
-            </intent-filter>
-            <intent-filter >
-                <action android:name="android.intent.action.SEND_MULTIPLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="video/*" />
+                <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
-        <!--
-        <activity
-            android:name=".presentation.Encrypt.ReceiveOther"
-            android:taskAffinity=""
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Principal.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="*/*" />
-                <data android:scheme="content" />
-                <data android:scheme="file" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="*/*" />
-                <data android:scheme="file" />
-                <data android:scheme="content" />
-                <data android:host="*" />
-                <data android:pathPattern=".*\\.pbx" />
-            </intent-filter>
-        </activity>
-
--->
-
         <activity
             android:name=".presentation.DecryptActivity"
+            android:excludeFromRecents="true"
+            android:clearTaskOnLaunch="true"
+            android:finishOnTaskLaunch="true"
             android:label="@string/unlock"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".presentation.SeeMedia.ListMediaActivity"
+            android:excludeFromRecents="true"
+            android:clearTaskOnLaunch="true"
+            android:finishOnTaskLaunch="true"
             android:label="@string/secure_view"
             android:theme="@style/Light.NoActionBar.BlinkFeed" >
         </activity>
         <activity
             android:name=".presentation.SeeMedia.PlayVideoActivity"
+            android:excludeFromRecents="true"
+            android:clearTaskOnLaunch="true"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Light.NoActionBar.BlinkFeed" >
         </activity>
         <activity
             android:name=".presentation.SeeMedia.GridMediaActivity"
+            android:excludeFromRecents="true"
+            android:clearTaskOnLaunch="true"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/BlinkFeed" >
         </activity>
+
 
 
 
@@ -117,10 +97,8 @@
         <service
             android:name=".services.ExtractService"
             android:exported="false" />
-    </application>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.STORAGE" />
+
+    </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.rodrigo.lock.app.presentation.SeeMedia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.MediaController;
@@ -27,6 +28,8 @@ public class PlayVideoActivity extends MediaActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("->Playvideo", "On Create");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_video);
         ButterKnife.inject(this);
@@ -55,29 +58,13 @@ public class PlayVideoActivity extends MediaActivity  {
     }
 
 
-
-
-    boolean back=false;
-
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if (keyCode == KeyEvent.KEYCODE_BACK ) {
-            clearCacheFiles = false;
-            deleteMediaController =false;
-            Intent i = new Intent(this,ListMediaActivity.class );
-            i.putExtra(Constants.CRYPTO_CONTROLLER, idCC);
-            i.putExtra(Constants.MEDIA_ACTIVITY_OPENFILE,imageid);
-            startActivity(i);
-            finish();
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
+    public void onDestroy() {
+        Log.d("->PlayVideo", "On Destroy");
+        super.onDestroy();
     }
 
 
-
-    ///////////////////////////////////////////////////
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         videoController.show();

@@ -23,4 +23,6 @@
     <dimen name="margin_standard">16dp</dimen>
     <dimen name="parallax_image_height">180dp</dimen>
 
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="toolbar_flat">0dp</dimen>
 </resources>

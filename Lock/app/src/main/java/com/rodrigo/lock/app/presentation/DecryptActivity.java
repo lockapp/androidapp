@@ -45,12 +45,6 @@ public class DecryptActivity extends LockActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
-        Log.d("->decrypt", "onCreate");
-
-        if (getIntent().hasExtra(Constants.FINISH)) {
-            finish();
-            return;
-        }
         setContentView(R.layout.activity_decrypt);
         ButterKnife.inject(this);
 

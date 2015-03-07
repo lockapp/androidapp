@@ -72,5 +72,9 @@
     <color name="bg_edittext">#ffffffff</color>
 
 
+    <!-- -->
+    <color name="fab_primary">#ff4081</color>
+    <color name="fab_primary_pressed">#f50057</color>
+    <color name="fab_ripple">#ff80ab</color>
 
 </resources>
