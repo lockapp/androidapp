@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
@@ -19,6 +18,9 @@ import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.presentation.DecryptActivity;
 import com.rodrigo.lock.app.services.ExtractService;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by Rodrigo on 02/10/2014.
  */
@@ -27,6 +29,35 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
     boolean FLAG_IS_FINISH_TASK = true;
     int idCC;
     DecryptControllerSeeMedia mediaCryptoController;
+
+    private static Timer backgroundTimer;
+    private static TimerTask backgroundTimerTask;
+    private static boolean wasInBackground;
+    private static final long MAX_BACKGROUND_TIME_MS = 2*60*1000;
+
+
+    public void startBackgroundTimer() {
+        this.backgroundTimer = new Timer();
+        this.backgroundTimerTask = new TimerTask() {
+            public void run() {
+                wasInBackground = true;
+                exitTask();
+            }
+        };
+        backgroundTimer.schedule(backgroundTimerTask, MAX_BACKGROUND_TIME_MS);
+    }
+
+    public void stopBackgroundTimer() {
+        if (this.backgroundTimerTask != null) {
+            this.backgroundTimerTask.cancel();
+        }
+        if (this.backgroundTimer != null) {
+            this.backgroundTimer.cancel();
+        }
+        this.wasInBackground = false;
+    }
+
+
 
 
     @Override
@@ -37,12 +68,29 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
         mediaCryptoController = (DecryptControllerSeeMedia)ManejadorCrypto.getControlador(idCC);
     }
 
+
+
+
     @Override
     protected void onResume() {
         super.onResume();
         mediaCryptoController.setNotificarCambio(this);
+        /*if (wasInBackground){
+        }*/
+        stopBackgroundTimer();
 
     }
+
+
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        startBackgroundTimer();
+    }
+
+
+
 
     @Override
     public synchronized void notificarCantImages(int cantImages) {
@@ -75,9 +123,9 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
     @Override
     protected void onUserLeaveHint() {
        // Log.d("------>", "onUserLeaveHint");
-
         super.onUserLeaveHint();
         if (FLAG_IS_FINISH_TASK){
+            stopBackgroundTimer();
             exitTask();
         }
         FLAG_IS_FINISH_TASK = true;
