@@ -175,11 +175,11 @@ public void initToolbar(){
     private boolean isFirstTime()
     {
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        boolean ranBefore = preferences.getBoolean("RanBefore", false);
+        boolean ranBefore = preferences.getBoolean("RunBefore", false);
         if (!ranBefore) {
             // first time
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("RanBefore", true);
+            editor.putBoolean("RunBefore", true);
             editor.commit();
         }
         return !ranBefore;

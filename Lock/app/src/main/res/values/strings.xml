@@ -74,7 +74,7 @@ Quam libero nulla netus eu porta curae, ut nulla bibendum facilisis et urna sed,
     <string name="exp">These features are experimental, and are still not entirely safe.</string>
 
     <string name="intro_title1">It protects any  files.</string>
-    <string name="intro_desc1">Select the files on your device that you want to block, and select share with Lock</string>
+    <string name="intro_desc1">Share files that you want to lock, for example from your gallery app. And select share with Lock</string>
 
     <string name="intro_title2">Lock will then do its job.</string>
     <string name="intro_desc2">You may view the advance in a notification. And once it finished, you can find the locked file.</string>
