@@ -28,8 +28,6 @@ public class PlayVideoActivity extends MediaActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("->Playvideo", "On Create");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_video);
         ButterKnife.inject(this);
@@ -58,11 +56,6 @@ public class PlayVideoActivity extends MediaActivity  {
     }
 
 
-    @Override
-    public void onDestroy() {
-        Log.d("->PlayVideo", "On Destroy");
-        super.onDestroy();
-    }
 
 
     @Override

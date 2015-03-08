@@ -6,7 +6,7 @@ import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
 import com.rodrigo.lock.app.Core.Clases.FileType;
-import com.rodrigo.lock.app.Core.Utils.Utils;
+import com.rodrigo.lock.app.Core.Utils.FileUtils;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
@@ -16,7 +16,6 @@ import com.rodrigo.lock.app.R;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -121,7 +120,7 @@ public class FileController  {
     }
 
 
-    public Accion getActionForFile(Archivo inF) throws Exception {
+    private Accion getActionForFile(Archivo inF) throws Exception {
 
         //es cualquier archivo
         if (inF.getTipo() == FileType.OpenPBX) {
@@ -194,27 +193,27 @@ public class FileController  {
 
 
     private int isImageEncrypted(File f) throws Exception {
-        byte[] PANDORABOX = Utils.getPANDORABOX();
+        //byte[] PANDORABOX = FileUtils.PANDORABOX;
         long size = contex.getAssets().openFd("imagenbloqueada.jpg").getLength();
 
-        if (size + PANDORABOX.length > f.length())
+        if (size + FileUtils.PANDORABOX.length > f.length())
             return -1;
 
         InputStream in = new FileInputStream(f);
         in.skip(size);
 
-        byte[] bFile = new byte[PANDORABOX.length];
+        byte[] bFile = new byte[FileUtils.PANDORABOX.length];
         int leido = 0;
-        while (leido<PANDORABOX.length){
-            leido+=in.read(bFile, leido, PANDORABOX.length-leido);
+        while (leido<FileUtils.PANDORABOX.length){
+            leido+=in.read(bFile, leido, FileUtils.PANDORABOX.length-leido);
         }
         in.close();
 
         int iter = 0;
         boolean ret = true;
 
-        while ( iter < PANDORABOX.length ) {
-            if  (PANDORABOX[iter] != bFile[ iter])
+        while ( iter < FileUtils.PANDORABOX.length ) {
+            if  (FileUtils.PANDORABOX[iter] != bFile[ iter])
                 return  -1;
             iter++;
         }
@@ -289,7 +288,7 @@ public class FileController  {
 
     public String getName(){
         if(this.inFileList.size() == 1){
-            return inFileList.getFirst().getFile().getName();
+            return (contex.getResources().getString(R.string.file));
         }else{
             return (String.format(contex.getResources().getString(R.string.files), inFileList.size() ));
         }
@@ -305,21 +304,22 @@ public class FileController  {
                     throw new Exception(String.format(this.contex.getResources().getString(R.string.error_notfound2), inF.getFile().getName()));
                 }
             }
+
             //se pone el nombre del primero
             File inF= inFileList.getFirst().getFile();
             String extension;
-            String name = inF.getName().replace(".", "");
+            String name = "lockFile";//inF.getName().replace(".", "");
 
             if (accion == Accion.EncryptarConImagen) {
                 extension = ".jpg";
             }else {
-                extension = "."+Utils.getEncExtension();
+                extension = "."+FileUtils.ENC_EXTENSION;
             }
 
             outFS = inF.getParent() + File.separator + name + extension;
 
             if ((new File(outFS)).exists()) {
-                outFS = Utils.getPathFileNoExists(inF.getParent() + File.separator ,name,extension);
+                outFS = FileUtils.createNewFileNameInPath(inF.getParent() + File.separator, name, extension);
             }
 
 
@@ -341,11 +341,7 @@ public class FileController  {
 
     /////////////////////
     public CryptoController getDecryptController(Context appContext) throws Exception {
-        DecryptController d =new DecryptController(appContext,getInFiles().getFirst().getFile() ,getPassword(),getAccion(),getOffset(), getName()
-
-
-
-        );
+        DecryptController d =new DecryptController(appContext,getInFiles().getFirst().getFile() ,getPassword(),getAccion(),getOffset(), getName());
         return d;
     }
 

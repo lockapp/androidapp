@@ -96,8 +96,6 @@ public class EncryptAndReciveActivity extends ReceiveActivity implements Observa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("->recive", "oncreate()");
-
         setContentView(R.layout.activity_ecrrypt);
 
         if (controler.getAccion() == Accion.EncryptarConImagen || controler.getAccion() == Accion.Encyptar) {

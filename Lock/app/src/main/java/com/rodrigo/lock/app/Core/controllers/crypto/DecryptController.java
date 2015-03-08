@@ -11,6 +11,7 @@ import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.DataError;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
 import com.rodrigo.lock.app.Core.Clases.FileType;
+import com.rodrigo.lock.app.Core.Utils.FileUtils;
 import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.Core.Utils.Utils;
 import com.rodrigo.lock.app.Core.crypto.AES.Crypto;
@@ -69,6 +70,7 @@ public class DecryptController extends CryptoController {
     ZipInputStream zipInput = null;
 
     boolean checkAndInit = false;
+    @Override
     public void checkAndInit() throws Exception {
         if (!checkAndInit){
             if (Accion.DesencryptarConImagen == accion){
@@ -150,7 +152,7 @@ public class DecryptController extends CryptoController {
             if (this.idImage > 0) {
                 MediaUtils.deleteImageGallery(idImage, ctx);
             } else {
-                Utils.delete(this.inFile);
+                FileUtils.delete(this.inFile);
             }
         } catch (Exception ex) {
             Log.d("en desencriptar", "error al borrar origina");
@@ -209,7 +211,7 @@ public class DecryptController extends CryptoController {
             //cabezal.setCaducidad(true);
             byte[] caducidad = new byte[4];
             in.read(caducidad);
-            int fechaCaducidad = Utils.byteArrayToInt(caducidad);
+            int fechaCaducidad = FileUtils.byteArrayToInt(caducidad);
 
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
@@ -270,7 +272,7 @@ public class DecryptController extends CryptoController {
 
                 if (newFile.exists()) {
                     //throw new Exception("Ya existe un archivo con el mismo nombre a desbloquear " + newFile.getAbsolutePath());
-                    newFile =new File (Utils.getPathFileNoExists(inFile.getParent() + File.separator, Utils.removeExtensionFile(fileName) ,Utils.getExtensionFile(fileName)));
+                    newFile =new File (FileUtils.createNewFileNameInPath(inFile.getParent() + File.separator, FileUtils.removeExtensionFile(fileName) ,FileUtils.getExtensionFile(fileName)));
 
                 }
 
@@ -301,7 +303,7 @@ public class DecryptController extends CryptoController {
             // String mensaje;
             for (Archivo f : this.outFileList) {
                 try {
-                    Utils.delete(f.getFile());
+                    FileUtils.delete(f.getFile());
                 } catch (Exception ex) {
                     // error = true;
                     // mensaje = ex.getMessage();

@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+import com.rodrigo.lock.app.Core.Utils.FileUtils;
 import com.rodrigo.lock.app.Core.Utils.Utils;
 
 import java.io.File;
@@ -21,16 +22,33 @@ public class Archivo {
     File file;
     FileType tipo;
 
+    public Archivo(File f) {
+        this.file = f;
+
+        String extension = FileUtils.getExtensionFile(file.getName());
+        if(FileUtils.isEncExtension(extension)){
+            tipo = FileType.OpenPBX;
+        } else if (FileUtils.isExtensionImage(extension)){
+            tipo = FileType.Imagen;
+        } else if (FileUtils.isExtensionVideo(extension)){
+            tipo = FileType.Video;
+        } else {
+            tipo = FileType.Otro;
+        }
+
+    }
+
+
     public Archivo(Context ctx, Uri uri) {
         String path = getPath(ctx,uri );
         this.file = new File(path);
 
-        String extension = Utils.getExtensionFile(file.getName());
-        if(isEncExtension(extension)){
+        String extension = FileUtils.getExtensionFile(file.getName());
+        if(FileUtils.isEncExtension(extension)){
             tipo = FileType.OpenPBX;
-        } else if (isExtensionImage(extension)){
+        } else if (FileUtils.isExtensionImage(extension)){
             tipo = FileType.Imagen;
-        } else if (isExtensionVideo(extension)){
+        } else if (FileUtils.isExtensionVideo(extension)){
             tipo = FileType.Video;
         } else {
             tipo = FileType.Otro;
@@ -38,21 +56,6 @@ public class Archivo {
 
     }
 
-    public Archivo(File f) {
-        this.file = f;
-
-        String extension = Utils.getExtensionFile(file.getName());
-        if(isEncExtension(extension)){
-            tipo = FileType.OpenPBX;
-        } else if (isExtensionImage(extension)){
-            tipo = FileType.Imagen;
-        } else if (isExtensionVideo(extension)){
-            tipo = FileType.Video;
-        } else {
-            tipo = FileType.Otro;
-        }
-
-    }
 
     public File getFile() {
         return file;
@@ -68,24 +71,8 @@ public class Archivo {
     }
 
 
-    public static boolean isExtensionImage(String extension) {
-        return (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("jpe") || extension.equals("bmp") || extension.equals("webp")
-                || extension.equals("png")
-                || extension.equals("gif"));
-    }
-
-    public static boolean isExtensionVideo(String extension) {
-        return (extension.equals("3gp") || extension.equals("mp4") || extension.equals("ts") || extension.equals("webm") || extension.equals("mkv") );
-    }
-
-
-    public  static boolean isEncExtension(String extension) {
-        return  extension.equals("pbx");
-    }
-
-    /////////////////////////////////
-
-    public static String getPath(final Context context, final Uri uri) {
+//
+    private static String getPath(final Context context, final Uri uri) {
 
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 

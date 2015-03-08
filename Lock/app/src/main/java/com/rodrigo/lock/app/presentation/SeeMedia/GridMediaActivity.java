@@ -74,7 +74,6 @@ public class GridMediaActivity extends MediaActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("->GridA", "On Create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_media);
         ButterKnife.inject(this);

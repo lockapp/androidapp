@@ -6,13 +6,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 
 import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileHeader;
 import com.rodrigo.lock.app.Core.Manejadores.ManejadorFile;
+import com.rodrigo.lock.app.Core.Utils.FileUtils;
 import com.rodrigo.lock.app.Core.controllers.FileController;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.presentation.DecryptActivity;
@@ -53,11 +53,11 @@ public class ReceiveActivity extends ActionBarActivity {
 
     void handle1File(final Intent intent) {
         Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-        if (uri != null) {
-            handleData(uri);
+        if ( FileUtils.isLocalUri(uri)) {
+            handleUri(uri);
             resolverAccion();
         }else {
-            ImagenNoValida(getResources().getString(R.string.error_nofind));
+            FileNotFound(uri);
         }
     }
 
@@ -65,10 +65,10 @@ public class ReceiveActivity extends ActionBarActivity {
     void handleMultipleFile(final Intent intent) {
         ArrayList<Uri> uris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
         for (Uri uri : uris){
-            if (uri != null){
-                handleData(uri);
+            if ( FileUtils.isLocalUri(uri)){
+                handleUri(uri);
             }else {
-                ImagenNoValida(getResources().getString(R.string.error_nofind));
+                FileNotFound(uri);
                 return;
             }
         }
@@ -78,7 +78,8 @@ public class ReceiveActivity extends ActionBarActivity {
 
 
 
-    void handleData(final Uri data) {
+
+    void handleUri(final Uri data) {
         Archivo a= new Archivo(this, data);
         controler.addFile(a);
     }
@@ -113,7 +114,14 @@ public class ReceiveActivity extends ActionBarActivity {
 
 
 
-    public void ImagenNoValida(String error){
+    public void FileNotFound(Uri uri){
+        String error;
+        if (uri != null) {
+            error = String.format(getResources().getString(R.string.error_notfound2), uri.toString());
+        }else{
+            error = getResources().getString(R.string.error_nofind);
+        }
+
         new AlertDialog.Builder(this)
                 .setTitle(getResources().getString(R.string.error_noblock))
                 .setMessage(error)

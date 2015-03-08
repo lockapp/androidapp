@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import com.rodrigo.lock.app.Core.Clases.Accion;
 import com.rodrigo.lock.app.Core.Clases.Archivo;
 import com.rodrigo.lock.app.Core.Clases.FileType;
+import com.rodrigo.lock.app.Core.Utils.FileUtils;
 import com.rodrigo.lock.app.Core.Utils.MediaUtils;
 import com.rodrigo.lock.app.Core.Utils.Utils;
 import com.rodrigo.lock.app.Core.controllers.FileController;
@@ -166,7 +167,7 @@ public class EncryptController extends CryptoController {
             cabezalCompleto[1] = cavezalesActivos[0];
 
             if (cabezal != null && cabezal.isCaducidad()) {
-                byte[] caducidad = Utils.intToByteArray(cabezal.getFechaCaducidad());
+                byte[] caducidad = FileUtils.intToByteArray(cabezal.getFechaCaducidad());
                 for (int i = 0; i < caducidad.length; i++) {
                     cabezalCompleto[i + 2] = caducidad[i];
                 }
@@ -178,7 +179,7 @@ public class EncryptController extends CryptoController {
         } catch (Exception ex) {
             try {
                 //no se a a;adido ala galeria basta elimnar asi
-                Utils.delete(new File(toEncrypt));
+                FileUtils.delete(new File(toEncrypt));
             } catch (Exception e) {
             }
 
@@ -221,7 +222,7 @@ public class EncryptController extends CryptoController {
                     out.close();
                 }
                 //no se a a;adido ala galeria basta elimnar asi
-                Utils.delete(new File(toEncrypt));
+                FileUtils.delete(new File(toEncrypt));
             } catch (Exception e) {
             }
             throw new Exception(String.format(this.SM.getResources().getString(R.string.error_lock2), ex.getMessage()));
@@ -254,13 +255,12 @@ public class EncryptController extends CryptoController {
             }
 
             //se graba el nombre del programa para identifical la imagen
-            byte[] PANDORABOX = Utils.getPANDORABOX();
-            out.write(PANDORABOX, 0, PANDORABOX.length);
+            out.write(FileUtils.PANDORABOX, 0, FileUtils.PANDORABOX.length);
 
 
         } catch (Exception ex) {
             try {
-                Utils.delete(new File(toEncrypt));
+                FileUtils.delete(new File(toEncrypt));
             } catch (Exception e) {
             }
 
@@ -275,7 +275,7 @@ public class EncryptController extends CryptoController {
 
         } catch (Exception ex) {
             try {
-                Utils.delete(new File(toEncrypt));
+                FileUtils.delete(new File(toEncrypt));
             } catch (Exception e) {
             }
 
@@ -295,7 +295,7 @@ public class EncryptController extends CryptoController {
 
             try {
                 if (idImage ==-1) {
-                    Utils.delete(f.getFile());
+                    FileUtils.delete(f.getFile());
                 }else{
                     if (f.getTipo() == FileType.Imagen ){
                         MediaUtils.deleteImageGallery(idImage, SM);
@@ -304,7 +304,7 @@ public class EncryptController extends CryptoController {
                     }
 
                     if (f.getFile().exists()){
-                        Utils.delete(f.getFile());
+                        FileUtils.delete(f.getFile());
                     }
 
                 }

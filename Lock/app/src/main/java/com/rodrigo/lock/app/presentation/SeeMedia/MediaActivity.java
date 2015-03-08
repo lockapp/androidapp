@@ -16,6 +16,7 @@ import com.rodrigo.lock.app.Core.Utils.Utils;
 import com.rodrigo.lock.app.Core.controllers.crypto.CryptoController;
 import com.rodrigo.lock.app.Core.controllers.crypto.DecryptControllerSeeMedia;
 import com.rodrigo.lock.app.R;
+import com.rodrigo.lock.app.presentation.DecryptActivity;
 import com.rodrigo.lock.app.services.ExtractService;
 
 /**
@@ -59,15 +60,22 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
 
 
     public void exitTask(){
+        //Log.d("------>", "sale y limpia todo");
         mediaCryptoController.setSalir(true);
         mediaCryptoController.delteCache();
         ManejadorCrypto.quitarControldor(idCC);
-        finish();
+        //finish();
+        Intent intent = new Intent(this, DecryptActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        intent.putExtra(Constants.FINISH, true);
+        startActivity(intent);
     }
 
 
     @Override
-    public void onUserLeaveHint() {
+    protected void onUserLeaveHint() {
+       // Log.d("------>", "onUserLeaveHint");
+
         super.onUserLeaveHint();
         if (FLAG_IS_FINISH_TASK){
             exitTask();
@@ -92,6 +100,7 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.action_addtogallery) {
             try {
                 CryptoController cc = mediaCryptoController.getDecryptController(this.getApplicationContext());
@@ -108,13 +117,18 @@ public class MediaActivity extends ActionBarActivity implements NotifyMediaChang
             return true;
 
         }else if (id ==R.id.action_share){
+            exitTask();
+
             Intent sendIntent = Utils.shareExludingApp(this, Uri.fromFile(mediaCryptoController.getInFile()));
             startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
             return true;
 
         }else if (id == R.id.action_donar){
+            exitTask();
+
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU"));
             startActivity(browserIntent);
+
             return true;
         }else{
             return super.onOptionsItemSelected(item);

@@ -153,25 +153,25 @@ public class MediaUtils {
         Uri result =  ctx.getContentResolver().insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values);
     }
 
-
+/*
     public static void UpdateMediaStore(String pathFile, Context ctx) {
-        /*** se agrega la actual a la galeria **/
-      /*   File f = new File(pathFile);
+        // se agrega la actual a la galeria
+         File f = new File(pathFile);
         Uri contentUri = Uri.fromFile(f);
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,contentUri);
-        ctx.sendBroadcast(mediaScanIntent);*/
+        ctx.sendBroadcast(mediaScanIntent);
 
 
 
-/*
+
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(pathFile);
         Uri contentUri = Uri.fromFile(f.getParentFile());
         mediaScanIntent.setData(contentUri);
         ctx.sendBroadcast(mediaScanIntent);
-  */  }
+   }
 
-
+*/
 
 
 
