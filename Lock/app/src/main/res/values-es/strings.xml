@@ -2,13 +2,12 @@
 <resources>
     <string name="action_share">Compartir</string>
     <string name="app_name">Lock</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Opciones</string>
     <string name="default_settings">Restablecer opciones</string>
-    <string name="secure_view">Vista Segura</string>
-    <string name="action_newpicture">Nueva Imagen</string>
-    <string name="action_addtogallery">Añadir a galeria</string>
-    <string name="title_activity_error">Error</string>
+    <!--<string name="secure_view">Vista Segura</string>-->
+    <!--<string name="action_newpicture">Nueva Imagen</string>-->
+    <!--<string name="action_addtogallery">Añadir a galeria</string>-->
+    <!--<string name="title_activity_error">Error</string>-->
     <string name="lock">Bloquear</string>
     <string name="lockm">BLOQUEAR</string>
     <string name="unlock">Desbloquear</string>
@@ -16,64 +15,65 @@
     <string name="empty_password">Contraseña vacía</string>
     <string name="re_password">Re-introduzca la contraseña</string>
     <string name="nomatch_password">Las contraseñas no coinciden</string>
-    <string name="save_changes">Los cambios se han guardados</string>
-    <string name="new_expiration">Nueva fecha de vencimiento:  %1$s</string>
-    <string name="error_noblock">No se ha podido bloquear el archivo</string>
-    <string name="error_nofind">El archivo no se encuentra en el dispositivo</string>
-    <string name="open_all">Se han abierto todas las imágenes.</string>
+    <!--<string name="save_changes">Los cambios se han guardados</string>-->
+    <!--<string name="new_expiration">Nueva fecha de vencimiento:  %1$s</string>-->
+    <!--<string name="error_noblock">No se ha podido bloquear el archivo</string>-->
+    <!--<string name="error_nofind">El archivo no se encuentra en el dispositivo</string>-->
+    <!--<string name="open_all">Se han abierto todas las imágenes.</string>-->
     <string name="working">Trabajando</string>
-    <string name="workingL">Bloqueo en progreso</string>
-    <string name="workingU">Desbloqueo en progreso</string>
+    <!--<string name="workingL">Bloqueo en progreso</string>-->
+    <!--<string name="workingU">Desbloqueo en progreso</string>-->
     <string name="error">Error</string>
-    <string name="unlocked">Se ha desbloqueado correctamente</string>
-    <string name="error_open">No se ha podido abrir el archivo %1$s por el motivo: %2$s</string>
-    <string name="error_open2">No se ha podido abrir el archivo. por el motivo: %1$s</string>
-    <string name="error_unlock">No se ha podido desbloquear el archivo %1$s por el motivo: %2$s</string>
-    <string name="error_lock">No se ha podido bloquear el archivo %1$s por el motivo: %2$s</string>
-    <string name="error_lock2">No se ha podido bloquear el archivo. Por el motivo: %1$s</string>
-    <string name="error_version">Versión del programa obsoleta, instale una nueva versón</string>
-    <string name="error_defeated">El archivo ah caducado</string>
-    <string name="error_nosecureview">Este archivo no soporta la vista segura, intetne extraerlo</string>
-    <string name="error_password">Asegúrese de que la contraseña sea correcta</string>
-    <string name="error_delete">No se puede eliminar el archivo. Por el motivo: %1$s</string>
-    <string name="error_delete2">No se puede eliminar el archivo %1$s. Por el motivo: %2$s</string>
-    <string name="locked_correct">Se ah bloqueado correctamente</string>
-    <string name="error_notfound">Archivo no se ah encontrado</string>
-    <string name="error_notfound2">Archivo %1$s no existe</string>
+    <!--<string name="unlocked">Se ha desbloqueado correctamente</string>-->
+    <!--<string name="error_open">No se ha podido abrir el archivo %1$s por el motivo: %2$s</string>-->
+    <!--<string name="error_open2">No se ha podido abrir el archivo. por el motivo: %1$s</string>-->
+    <!--<string name="error_unlock">No se ha podido desbloquear el archivo %1$s por el motivo: %2$s</string>-->
+    <!--<string name="error_lock">No se ha podido bloquear el archivo %1$s por el motivo: %2$s</string>-->
+    <!--<string name="error_lock2">No se ha podido bloquear el archivo. Por el motivo: %1$s</string>-->
+    <!--<string name="error_version">Versión del programa obsoleta, instale una nueva versón</string>-->
+    <!--<string name="error_defeated">El archivo ah caducado</string>-->
+    <!--<string name="error_nosecureview">Este archivo no soporta la vista segura, intetne extraerlo</string>-->
+    <!--<string name="error_password">Asegúrese de que la contraseña sea correcta</string>-->
+    <!--<string name="error_delete">No se puede eliminar el archivo. Por el motivo: %1$s</string>-->
+    <!--<string name="error_delete2">No se puede eliminar el archivo %1$s. Por el motivo: %2$s</string>-->
+    <!--<string name="locked_correct">Se ah bloqueado correctamente</string>-->
+    <!--<string name="error_notfound">Archivo no se ah encontrado</string>-->
+    <!--<string name="error_notfound2">Archivo %1$s no existe</string>-->
     <string name="open">Abrir</string>
     <string name="openm">ABRIR</string>
     <string name="extract">Extraer</string>
     <string name="extractm">EXTRAER</string>
     <string name="password">Contraseña</string>
     <string name="repassword">Re-introduzca la contraseña</string>
-    <string name="error_mal">Algo salio mal.\nMuy, muy, muy mal.</string>
-    <string name="expiration_date">Fecha de vencimiento</string>
-    <string name="only_device">Solo abrir en este dispositivo</string>
-    <string name="configL">CONFIGURACION AL ENCRIPTAR</string>
-    <string name="configU">CONFIGURACION AL DESENCRIPTAR</string>
-    <string name="image_mode">Modo imagen</string>
-    <string name="always_password">Usar siempre la misma contraseña</string>
+    <!--<string name="error_mal">Algo salio mal.\nMuy, muy, muy mal.</string>-->
+    <!--<string name="expiration_date">Fecha de vencimiento</string>-->
+    <!--<string name="only_device">Solo abrir en este dispositivo</string>-->
+    <!--<string name="configL">CONFIGURACION AL ENCRIPTAR</string>-->
+    <!--<string name="configU">CONFIGURACION AL DESENCRIPTAR</string>-->
+    <!--<string name="image_mode">Modo imagen</string>-->
+    <!--<string name="always_password">Usar siempre la misma contraseña</string>-->
     <string name="cancel">Cancelar</string>
     <string name="save">Guardar</string>
     <string name="files">%1$s Archivos</string>
     <string name="file">1 Archivo</string>
-    <string name="tut">TUTORIAL</string>
-    <string name="cons">CONTACTO</string>
-    <string name="donar">DONAR</string>
+    <!--<string name="tut">TUTORIAL</string>-->
+    <!--<string name="cons">CONTACTO</string>-->
+    <!--<string name="donar">DONAR</string>-->
 
     <string name="send_to">Enviar a</string>
-    <string name="exp">Estas funciones son experimentales, y aún no son del todo seguras.</string>
+    <!--<string name="exp">Estas funciones son experimentales, y aún no son del todo seguras.</string>-->
 
-    <string name="intro_title1">Protege cualquier archivo.</string>
-    <string name="intro_desc1">Selecciona los archivos de tu dispositivo que quieres bloquear, y seleciona compartir con Lock</string>
+    <!--<string name="intro_title1">Protege cualquier archivo.</string>-->
+    <!--<string name="intro_desc1">Selecciona los archivos de tu dispositivo que quieres bloquear, y seleciona compartir con Lock</string>-->
 
-    <string name="intro_title2">Luego Lock hará su trabajo.</string>
-    <string name="intro_desc2">Podrás fijarte en una notificación su avance. Y una vez termine podrás encontrar el archivo bloqueado.</string>
+    <!--<string name="intro_title2">Luego Lock hará su trabajo.</string>-->
+    <!--<string name="intro_desc2">Podrás fijarte en una notificación su avance. Y una vez termine podrás encontrar el archivo bloqueado.</string>-->
 
-    <string name="intro_title3">Para desbloquear es igual de sencillo.</string>
-    <string name="intro_desc3">Para desbloquear seleciona compartir y luego Lock.</string>
+    <!--<string name="intro_title3">Para desbloquear es igual de sencillo.</string>-->
+    <!--<string name="intro_desc3">Para desbloquear seleciona compartir y luego Lock.</string>-->
 
     <string name="r0">Esta app es gratis, sin anuncios y puedes encontrar el código fuente en &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>. Si crees que te ha sido útil sería bueno que mandes algunas monedas para el café. Donar es la mejor forma de contribuir con nuevas funcionalidades, cada poco cuenta.\n A continuación puedes encontrar algunas preguntas frecuentes</string>
+    <string name="r00">Esta app es gratis, sin anuncios y puedes encontrar el código fuente en &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>.\nA continuación puedes encontrar algunas preguntas frecuentes</string>
 
     <string name="q1">¿Es seguro Lock?</string>
     <string name="r1">La respuesta corta sí.\nPero en realidad es un poco más larga, en muchas partes de la aplicación se habla de bloquear debido a que muchos usuarios no están relacionados con términos como cifrar o encriptar, pero lo que en realidad sucede es que sus datos se cifran utilizando AES, el mismo algoritmo de cifrado utilizado como el estándar nacional en los Estados Unidos. Lock utiliza claves de 256 bits para el cifrado, lo que significa que un criminal necesitará millones de años para descifrar los datos mediante un ataque de fuerza bruta.</string>
@@ -81,8 +81,8 @@
     <string name="q2">¿Están mis datos protegidos?</string>
     <string name="r2">A diferencia de otras aplicaciones sólo tiene un permiso. Sólo puede acceder a su almacenamiento para cifrar sus archivos. No tiene acceso a Internet u otras redes, ni a sus SMS, ni a sus llamadas. Por lo tanto no tiene manera de enviar los  datos fuera de su teléfono.\nPor otro lado el código fuente de Lock se encuentra alojado en github y quién quiera puede mirarlo.</string>
 
-    <string name="q3">¿Puedo compartir imágenes cifradas?</string>
-    <string name="r3">Si, para compartir una imagen cifrada tienes que abrirla y encontrarás el icono de compartir en la barra de acción del visor de imágenes de Lock. Y para versiones >= 4.1, también puedes encontrar el botón de compartir en la notificación que se genera al bloquear un archivo.\nDe momento esta es la única forma de hacerlo, ya que muchas aplicaciones a la hora de enviar imágenes le reducen su tamaño  por lo que el contenido cifrado se pierde, por lo que no podrás compartir imágenes cifradas desde la galería. Pero se está trabajando en mejorar esta experiencia.</string>
+    <string name="q3">¿Puedo compartir archivos cifrados?</string>
+    <string name="r3">Si, para compartir archivos cifrados tienes que abrir la bóveda y encontrarás el icono de compartir en la barra de acción del visor de archivos de Lock.</string>
 
     <string name="intro_tittle0">Échale un vistazo al funcionamiento de Lock.</string>
     <string name="intro_desc0">Con Lock puedes bloquear cualquier archivo de forma fácil y segura.</string>
@@ -90,25 +90,73 @@
     <string name="ok1">Entendido</string>
     <string name="skip">Saltar</string>
 
-    <string name="VideoView_error_text_invalid_progressive_playback">Este vídeo no se puede transmitir al dispositivo.</string>
-    <string name="VideoView_error_text_unknown" >No se puede reproducir el vídeo.</string>
-    <string name="VideoView_error_button">"Aceptar"</string>
+    <!--<string name="VideoView_error_text_invalid_progressive_playback">Este vídeo no se puede transmitir al dispositivo.</string>-->
+    <!--<string name="VideoView_error_text_unknown" >No se puede reproducir el vídeo.</string>-->
+    <!--<string name="VideoView_error_button">"Aceptar"</string>-->
 
 
     <string name="encrypt">Cifrar</string>
-    <string name="notextract">Prohibido extraer</string>
-    <string name="dejarcopia">Dejar copia sin bloquear</string>
+    <!--<string name="notextract">Prohibido extraer</string>-->
+    <!--<string name="dejarcopia">Dejar copia sin bloquear</string>-->
 
-    <string name="error_noextract">Este archivo no se permite extraer</string>
+    <!--<string name="error_noextract">Este archivo no se permite extraer</string>-->
     <string name="yourdatasafe">Sus datos están seguros</string>
     <string name="workcomplete">El trabajo se ha finalizado</string>
 
     <string name="enterhere">[Escriba aquí su mensaje]</string>
 
-    <string name="warning_encrypt">Si no cifra sus archivos, no estarán seguros.</string>
+    <!--<string name="warning_encrypt">Si no cifra sus archivos, no estarán seguros.</string>-->
 
 
    <string name="action_rate">Valorar</string>
     <string name="share_subject">Hecha un vistazo a esta app!</string>
+    <!--<string name="get_involved">INVOLÚCRATE</string>-->
+    <!--<string name="rate">VALORAR</string>-->
+    <!--<string name="z_no_vaults_all">No hay bóveda</string>-->
+    <!--<string name="z_no_vaults_add">No hay vaults, toque para a;adir una bobeda</string>-->
+    <string name="z_loading_tasks_error">Error al cargar bóvedas</string>
+    <string name="z_edit_task">Editar</string>
+    <string name="z_edit">Editar</string>
+    <string name="name_vault">Nombre de la bóveda</string>
+    <string name="empty_name">Introduzca un nombre</string>
+    <string name="exists_vault_whith_name">Ya existe un vault con ese nombre</string>
+    <string name="migrarTitleActivity">Migrar</string>
+    <string name="error_open_file">Error al abrir el archivo</string>
+    <string name="migrando_vault">Actualizando bóveda...</string>
+    <string name="vault_1">Bóveda:  %1$s</string>
+    <string name="loading">Cargando ...</string>
+    <string name="error_open_vault">Error al abrir bóveda</string>
+    <string name="menu_lista">Lista</string>
+    <string name="delete">Eliminar</string>
+    <string name="action_undo">Deshacer</string>
+    <string name="notice_removed">Item eliminado</string>
+    <string name="choose_file">Selecione un archivo</string>
+    <string name="aniadiendo_archivos">Añadiendo archivos</string>
+    <string name="desbloqueando_archivo">Desbloqueando archivos</string>
+    <string name="selecione_la_bobeda_a_aniadir">Seleccione la bóveda</string>
+    <string name="menu_grid">Cuadrícula</string>
+    <string name="contacto">Contacto</string>
+    <string name="preguntasFrecuentes">Preguntas Frecuentes</string>
+    <!--<string name="tutorial">Tutorial</string>-->
+    <string name="share">Compartir</string>
+    <string name="valorar">Valorar</string>
+    <string name="Share">Compartir</string>
+    <string name="contenido_bobeda_vacio_titulo">Añade tu primer archivo</string>
+    <string name="lista_bobeda_vacio_titulo">Crea tu primer bóveda</string>
+    <string name="archivo_no_encontrado">Archivo no encontrado:</string>
+    <string name="string_intro">Con Lock puedes bloquear cualquier archivo de forma fácil y segura.\n Los archivos cifrados se guardan en una carpeta llamada Lock ubicada en el directorio base de tu dispositivo. Por ello necesitamos permiso a tus archivos.</string>
+    <string name="z_add_task">Crear bóveda</string>
+    <string name="empty_vault_message">La bóveda no puede ser vacía</string>
+    <string name="extrayendo_archivo">Extrayendo Arhivos</string>
+    <string name="archivo_extraido_correcto">Archivo desbloqueade correctamente</string>
+    <string name="archivo_desbloqueado_correcto">Archivo desbloqueade correctamente</string>
+    <string name="contenido_bobeda_vacio_descripcion">Esta bóveda está vacía, toca para añadir tu primer archivo</string>
+    <string name="lista_bobeda_vacio_descripcion">Toca para crear tu primer bóveda, y dentro de ella podrás guardar archivos de forma segura</string>
+    <string name="abrir_boveda" >Abrir bóveda</string>
+    <string name="actualPassword">Contraseña Actual</string>
+    <string name="edit">Editar</string>
+    <string name="delete_message">¿Seguro desea eliminar?</string>
+    <string name="error_delete_file">No se pudo eliminar el archivo</string>
+
 
 </resources>

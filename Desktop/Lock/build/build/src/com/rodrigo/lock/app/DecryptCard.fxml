@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="basePane" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane styleClass="tarjeta" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="8.0">
+         <children>
+            <AnchorPane maxHeight="104.0" maxWidth="104.0" minHeight="104.0" minWidth="104.0" prefHeight="104.0" prefWidth="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fx:id="image" fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0">
+                     <image>
+                        <Image url="file:resources/images/lock.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+               <children>
+                  <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label fx:id="title" styleClass="title" text="Cifrar 5 archivos">
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="subTitle" styleClass="subhead" text="15kb">
+                        </Label>
+                        <AnchorPane fx:id="marginSubTitle" prefHeight="8.0" />
+                        <AnchorPane fx:id="progressBar">
+                           <children>
+                              <ProgressBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="error" styleClass="error" text="ERROR: las contraseñas no coinciden">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                        <PasswordField fx:id="passwordField1" promptText="Password">
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin>
+                        </PasswordField>
+                        <CheckBox fx:id="conservarOriginal" mnemonicParsing="false" text="Conservar original">
+                           <VBox.margin>
+                              <Insets bottom="8.0" top="8.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <AnchorPane />
+                        <AnchorPane fx:id="encryptPane">
+                           <children>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

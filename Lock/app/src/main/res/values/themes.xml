@@ -18,7 +18,8 @@
 
 
     <!-- se usa para el visor e imagenes en forma de grid-->
-    <style name="BlinkFeed" parent="Light.NoActionBar">
+    <style name="BlinkFeed" parent="BlinkFeedBase"/>
+    <style name="BlinkFeedBase" parent="Light.NoActionBar">
         <!-- colorPrimary is used for the default action bar background -->
         <item name="colorPrimary">@color/bg_blinkfeed_primary</item>
         <!-- colorPrimaryDark is used for the status bar -->
@@ -33,7 +34,8 @@
 
 
     <!-- Estilo para may activity, introduccion y play video-->
-    <style name="Light.NoActionBar.BlinkFeed" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Light.NoActionBar.BlinkFeed" parent="Light.NoActionBar.BlinkFeedBase"/>
+    <style name="Light.NoActionBar.BlinkFeedBase" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/bg_blinkfeed_primary</item>
         <!-- colorAccent is used as the default value for colorControlActivated
      which is used to tint widgets -->

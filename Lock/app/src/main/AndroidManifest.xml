@@ -1,107 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rodrigo.lock.app" >
+    package="com.rodrigo.lock.app">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.STORAGE" />
 
     <application
+        android:name=".LockApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/PrincipalTheme" >
+        android:theme="@style/AppTheme">
+        <service
+            android:name=".migracion.MigracionService"
+            android:exported="false" />
+        <service
+            android:name=".addFileToVault.AddFileToVaultService"
+            android:exported="false" />
+        <service
+            android:name=".extract.ExtractService"
+            android:exported="false" />
+
+        <provider
+            android:name=".data.source.CacheAccessProvider"
+            android:authorities="com.rodrigo.lock.app"
+            android:exported="true" />
+
         <activity
-            android:name=".presentation.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Principal.Light.NoActionBar"
-            android:excludeFromRecents="true"
+            android:name=".mvp.listVaults.VaultsActivity"
             android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true"
+            android:theme="@style/AppTheme.OverlapSystemBar">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".mvp.createVault.CreateEditVaultActivity"
+            android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true" />
+        <activity
+            android:name=".mvp.migrar.MigrarActivity"
+            android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true"
+            android:label="@string/migrarTitleActivity" />
+        <activity
+            android:name=".mvp.addToVault.AddToVaultActivity"
+            android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
             android:finishOnTaskLaunch="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".presentation.InstructionsActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Principal.Light.NoActionBar.BlackStatusBar" >
-        </activity>
-        <activity
-            android:name=".presentation.ConfigActivity"
-            android:label="@string/app_name" >
-        </activity>
-
-<!--  recibe image and video -->
-        <activity
-            android:name=".presentation.Encrypt.EncryptAndReciveActivity"
-            android:excludeFromRecents="true"
-            android:clearTaskOnLaunch="true"
-            android:finishOnTaskLaunch="true"
-            android:label="@string/app_name"
-            android:theme="@style/Principal.Light.NoActionBar"
-            android:windowSoftInputMode="stateHidden" >
-            <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="*/*" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND_MULTIPLE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.DecryptActivity"
-            android:excludeFromRecents="true"
+            android:name=".mvp.openVault.OpenVaultActivity"
             android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true" />
+        <activity
+            android:name=".mvp.viewVault.ViewVaultActivity"
+            android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true" />
+        <activity
+            android:name=".mvp.preguntasFrecuentes.PreguntasFrecuentes"
+            android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true" />
+        <activity
+            android:name=".mvp.intro.IntroActivity"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
             android:finishOnTaskLaunch="true"
-            android:label="@string/unlock"
-            android:screenOrientation="portrait" >
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.SeeMedia.ListMediaActivity"
-            android:excludeFromRecents="true"
-            android:clearTaskOnLaunch="true"
-            android:finishOnTaskLaunch="true"
-            android:label="@string/secure_view"
-            android:theme="@style/Light.NoActionBar.BlinkFeed" >
+            android:name="com.ipaulpro.afilechooser.FileChooserActivity"
+            android:exported="true"
+            android:icon="@drawable/ic_chooser"
+            android:label="@string/choose_file">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+
+                <data android:mimeType="*/*" />
+            </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.SeeMedia.PlayVideoActivity"
-            android:excludeFromRecents="true"
-            android:clearTaskOnLaunch="true"
-            android:finishOnTaskLaunch="true"
-            android:theme="@style/Light.NoActionBar.BlinkFeed" >
-        </activity>
-        <activity
-            android:name=".presentation.SeeMedia.GridMediaActivity"
-            android:excludeFromRecents="true"
-            android:clearTaskOnLaunch="true"
-            android:finishOnTaskLaunch="true"
-            android:theme="@style/BlinkFeed" >
-        </activity>
-
-
-
-
-        <activity
-            android:name=".presentation.ErrorActivity"
-            android:label="@string/title_activity_error" >
-        </activity>
-
-
-        <service
-            android:name=".services.SeeMediaService"
-            android:exported="false" >
-        </service>
-        <service
-            android:name=".services.ExtractService"
-            android:exported="false" />
-
-
+        <activity android:name=".mvp.editVault.EditVault"></activity>
     </application>
 
 </manifest>

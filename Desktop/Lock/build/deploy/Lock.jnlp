@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Lock.jnlp">
+  <information>
+    <title>Lock</title>
+    <vendor>Rodrigo</vendor>
+    <description>Lock</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Lock.jar" size="62483" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="com.rodrigo.lock.app.Main"  name="Lock" />
+  <update check="background"/>
+</jnlp>

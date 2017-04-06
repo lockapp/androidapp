@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="basePane" style="-fx-background-color: #E5E5E5;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <AnchorPane styleClass="tarjeta" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="8.0">
+      <children>
+        <AnchorPane maxHeight="104.0" maxWidth="104.0" minHeight="104.0" minWidth="104.0" prefHeight="104.0" prefWidth="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <children>
+            <ImageView fx:id="image" fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0">
+              <image>
+                <Image url="file:resources/images/unlock.png" />
+              </image>
+            </ImageView>
+          </children>
+        </AnchorPane>
+        <AnchorPane AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+          <children>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <HBox>
+                  <children>
+                    <Label fx:id="title" styleClass="title" text="Cifrar 5 archivos" />
+                  </children>
+                </HBox>
+                <Label fx:id="subTitle" styleClass="subhead" text="15kb" />
+                <AnchorPane fx:id="marginSubTitle" prefHeight="8.0" />
+                <AnchorPane fx:id="progressBar">
+                  <children>
+                    <ProgressBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+                <Label fx:id="error" styleClass="error" text="ERROR: las contraseñas no coinciden">
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </Label>
+                <TextField fx:id="fileName" prefWidth="200.0" promptText="Vault Name" text="" >
+                   <VBox.margin>
+                    <Insets top="8.0" />
+                  </VBox.margin>
+                </TextField>
+                <PasswordField fx:id="passwordField1" promptText="Password">
+                  <VBox.margin>
+                    <Insets top="8.0" />
+                  </VBox.margin>
+                </PasswordField>
+                <PasswordField fx:id="passwordField2" promptText="Password">
+                  <VBox.margin>
+                    <Insets top="8.0" />
+                  </VBox.margin>
+                </PasswordField>
+                <AnchorPane />
+                <AnchorPane >
+                  <children>
+                    <HBox fx:id="encryptPane" layoutX="0.0" layoutY="0.0" prefHeight="-1.0" prefWidth="-1.0" />
+                  </children>
+                  <VBox.margin>
+                    <Insets top="8.0" />
+                  </VBox.margin>
+                </AnchorPane>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>

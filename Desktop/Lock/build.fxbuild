@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="${project}/build">
+  <deploy packagingFormat="dmg">
+    <application name="java-fx" mainclass="com.rodrigo.lock.app.Main" version="1.0.0"/>
+    <info title="Lock" vendor="Rodrigo"/>
+  </deploy>
+  <signjar/>
+</anttasks:AntTask>

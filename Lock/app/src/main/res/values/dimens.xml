@@ -1,9 +1,10 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--&lt;!&ndash; Default screen margins, per the Android Design guidelines. &ndash;&gt;-->
+    <!--&lt;!&ndash; <dimen name="activity_horizontal_margin">16dp</dimen>-->
+    <!--<dimen&ndash;&gt; name="activity_vertical_margin">16dp</dimen>-->
     <dimen name="activity_small_margin">5dp</dimen>
     <dimen name="activity_big_margin">32dp</dimen>
+    <dimen name="activity_margin_top_card">64dp</dimen>
     <dimen name="thumbnail_height">120dp</dimen>
 
     <dimen name="FlatToggleButton_space">14dp</dimen>
@@ -12,9 +13,9 @@
     <dimen name="header_bar">170dp</dimen>
     <dimen name="header_mediabar">128dp</dimen>
 
-    <dimen name="indicator_heigth" >48dp</dimen>
+    <dimen name="indicator_heigth">48dp</dimen>
 
-    <dimen name="size_dropdwon" >42dp</dimen>
+    <dimen name="size_dropdwon">42dp</dimen>
 
     <dimen name="flexible_space_image_height">250dp</dimen>
     <dimen name="flexible_space_image_scroll">190dp</dimen>
@@ -25,4 +26,14 @@
 
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="toolbar_flat">0dp</dimen>
+
+
+    <!--nuevos tama;os -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="list_item_padding">8dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
 </resources>

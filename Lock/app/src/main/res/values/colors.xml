@@ -15,9 +15,9 @@
 
 
     <color name="bg_blue">#007ee5</color>
-    <color name="bg_blinkfeed_primary">#4CAF50</color><!-- 4EA770  -->
-    <color name="bg_blinkfeed_dark">#388E3C</color><!-- 469665  -->
-    <color name="bg_blinkfeed_accent">#69F0AE</color><!-- 4EA770  -->
+    <color name="bg_blinkfeed_primary">#159B78</color><!--4CAF50 4EA770  -->
+    <color name="bg_blinkfeed_dark">#0E5B47</color><!--388E3C 469665  -->
+    <color name="bg_blinkfeed_accent">#07DBB2</color><!--69F0AE 4EA770  -->
 
     <color name="bg_listgallery_start">#ff000000</color>
     <color name="bg_listgallery_medium">#141414</color>
@@ -25,7 +25,7 @@
 
     <color name="blur_color_superpuesto">#aa6e7982</color>
     <color name="blur_color_superpuesto2">#66000000</color>
-<!-- 66000000 bfe5e5e5  e4292f33 ca292f33-->
+    <!-- 66000000 bfe5e5e5  e4292f33 ca292f33-->
 
 
     <color name="bg_primario">#607D8B</color> <!-- 6E7982  -->
@@ -41,7 +41,6 @@
     <color name="btn_primary_bg_press_bottom">#3276B1</color>
     <color name="brand_primary">#7796A6</color> <!-- 85929D  -->
     <color name="brand_press_primary">#2F3943</color>
-
 
 
     <color name="white">#ffffff</color>
@@ -60,10 +59,7 @@
     <color name="edittext_disabled">#ffe0e0e0</color>
 
 
-
     <color name="text_title">#2F3943</color>
-
-
 
 
     <color name="transparent_bar">#80000000</color>
@@ -77,4 +73,15 @@
     <color name="fab_primary_pressed">#f50057</color>
     <color name="fab_ripple">#ff80ab</color>
 
+
+    <!-- la app nueva -->
+    <color name="colorPrimary">#455A64</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="colorAccent">#FFAB00</color>
+
+    <drawable name="completedTaskBackground">#CCCCCC</drawable>
+
+    <drawable name="touchFeedback">#CFD8DC</drawable>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

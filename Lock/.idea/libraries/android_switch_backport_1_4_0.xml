@@ -1,10 +1,12 @@
 <component name="libraryTable">
   <library name="android-switch-backport-1.4.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.jraf/android-switch-backport/1.4.0/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.jraf/android-switch-backport/1.4.0/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.jraf/android-switch-backport/1.4.0/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jraf/android-switch-backport/1.4.0/5d905978c51f5f2fa39fca1741937e168cb5607c/android-switch-backport-1.4.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
