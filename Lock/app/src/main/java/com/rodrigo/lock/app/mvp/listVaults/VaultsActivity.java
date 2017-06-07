@@ -105,6 +105,9 @@ public class VaultsActivity extends AppCompatActivity {
                             case R.id.rate:
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.rodrigo.lock.app")));
                                 break;
+                            case R.id.open_web_site:
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://lockapp.github.io")));
+                                break;
                             case R.id.contacto:
                                 Intent i = new Intent(Intent.ACTION_SEND);
                                 i.setType("message/rfc822");

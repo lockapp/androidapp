@@ -157,6 +157,7 @@
     <string name="edit">Editar</string>
     <string name="delete_message">¿Seguro desea eliminar?</string>
     <string name="error_delete_file">No se pudo eliminar el archivo</string>
+    <string name="webSite">Sitio Web</string>
 
 
 </resources>

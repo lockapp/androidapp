@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="appmsg-1.2.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.johnkil.android-appmsg/appmsg/1.2.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.johnkil.android-appmsg/appmsg/1.2.0/res" />
+      <root url="jar://C:/Android/.android/build-cache/bf4c1f8b0154055b21e723b379661bcdcc0252a5/output/jars/classes.jar!/" />
+      <root url="file://C:/Android/.android/build-cache/bf4c1f8b0154055b21e723b379661bcdcc0252a5/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

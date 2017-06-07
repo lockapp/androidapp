@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Proyectos\\lock-github\\Lock\\aFileChooser\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-es\\values-es.xml",
+        "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-es\\values-es.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 112
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\lock-github\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
+                    "file": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 173
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\lock-github\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
+                    "file": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 254
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\lock-github\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
+                    "file": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 345
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\lock-github\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
+                    "file": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\Proyectos\lock-github\Lock\aFileChooser\src\main\assets"/><source path="D:\Proyectos\lock-github\Lock\aFileChooser\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\Proyectos\lock-github\Lock\aFileChooser\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\Proyectos\lock-github\androidapp\Lock\aFileChooser\src\main\assets"/><source path="D:\Proyectos\lock-github\androidapp\Lock\aFileChooser\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\Proyectos\lock-github\androidapp\Lock\aFileChooser\src\release\assets"/></dataSet></merger>

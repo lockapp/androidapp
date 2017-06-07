@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="android-switch-backport-1.4.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.jraf/android-switch-backport/1.4.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.jraf/android-switch-backport/1.4.0/res" />
+      <root url="file://C:/Android/.android/build-cache/4e2e7421c7e1189304373378ccec036ef76a8c86/output/res" />
+      <root url="jar://C:/Android/.android/build-cache/4e2e7421c7e1189304373378ccec036ef76a8c86/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

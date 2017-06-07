@@ -87,6 +87,7 @@
     <string name="edit">Edit</string>
     <string name="delete_message">Are you sure to delete?</string>
     <string name="error_delete_file">Failed to delete file</string>
+    <string name="webSite">Website</string>
 
     <!--<string name="title_activity_intro">IntroActivity</string>-->
     <!--<string name="dummy_button">Dummy Button</string>-->

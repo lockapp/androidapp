@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="material-tap-target-prompt-1.6.3">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/uk.co.samuelwall/material-tap-target-prompt/1.6.3/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/uk.co.samuelwall/material-tap-target-prompt/1.6.3/res" />
+      <root url="file://C:/Android/.android/build-cache/667323b8a56c84a8aea901c3e7af1a6b2b7f3bff/output/res" />
+      <root url="jar://C:/Android/.android/build-cache/667323b8a56c84a8aea901c3e7af1a6b2b7f3bff/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

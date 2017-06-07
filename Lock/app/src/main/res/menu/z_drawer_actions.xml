@@ -28,6 +28,12 @@
         android:id="@+id/rate"
         android:icon="@drawable/z_ic_star_black_24dp"
         android:title="@string/valorar" />
+
+    <item
+        android:id="@+id/open_web_site"
+        android:icon="@drawable/ic_open_in_new_black_24dp"
+        android:title="@string/webSite" />
+
     <item
         android:id="@+id/contacto"
         android:icon="@drawable/z_ic_email_black"
