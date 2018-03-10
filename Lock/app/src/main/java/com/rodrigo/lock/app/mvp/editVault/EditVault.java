@@ -9,11 +9,11 @@ import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.utils.ActivityUtils;
 import com.rodrigo.lock.app.utils.Injection;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class EditVault extends AppCompatActivity {
-    @InjectView(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     public  static final String VAULT_PATH = "VAULT_PATH";
@@ -22,7 +22,7 @@ public class EditVault extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_edit_vault_activity);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         // Set up the toolbar.
         setSupportActionBar(toolbar);

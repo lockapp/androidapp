@@ -8,6 +8,8 @@ import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.LockApplication;
 
 import java.io.File;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Created by Rodrigo on 19/11/2016.
@@ -25,6 +27,13 @@ public class Preferences {
         editor.putBoolean(preference, value);
         editor.commit();
     }
+    public static void savePreference(String preference, String value){
+        SharedPreferences settings  =PreferenceManager.getDefaultSharedPreferences(LockApplication.getAppContext());
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(preference, value);
+        editor.commit();
+    }
+
 
 
     public static String getPreference(String preference, String defaultValue) {
@@ -50,4 +59,22 @@ public class Preferences {
     public static void saveGridViewInVault(Boolean value){
         savePreference(Constants.Preferences.PREFERENCE_IS_GRID_VIEW_IN_VAULT, value);
     }
+
+
+
+
+    public static void saveVaultsToSync(Set<String> value){
+        SharedPreferences settings  =PreferenceManager.getDefaultSharedPreferences(LockApplication.getAppContext());
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putStringSet(Constants.Preferences.PREFERENCE_VAULTS_TO_SYNC, value);
+        editor.commit();
+    }
+
+    public static Set<String> getVaultsToSync(){
+        SharedPreferences settings  =PreferenceManager.getDefaultSharedPreferences(LockApplication.getAppContext());
+        return settings.getStringSet(Constants.Preferences.PREFERENCE_VAULTS_TO_SYNC, new LinkedHashSet<String>());
+
+    }
+
+
 }

@@ -29,7 +29,7 @@
     <string name="q1">Is Lock safe?</string>
     <string name="r1">The short answer is yes.\nBut in reality, this is a bit longer; in many parts of the application it talks about blocking due to many users not being familiar with term such as encrypting, but what really happens is that your information is encrypted using AES; the same state-of-the-art encryption algorithm used as the national standard in the United States. Lock uses 256-bit keys for encryption, which means that it would take millions of years for a criminal to decrypt your data using a brute force attack.</string>
     <string name="q2">Is my information protected?</string>
-    <string name="r2">The difference from other applications is that it has only one permission. It can only access external storage (SD Card) to encrypt your files. It has no access to the internet, SMS or other networks. Therefore Lock has no way to send your data out of your phone.\nOn the other hand, Lock is hosted on github and anyone who wishes to may see it.</string>
+    <string name="r2">The difference from other applications is that it has only one permission. It can only access external storage (SD Card) to encrypt your files.\nOn the other hand, Lock is hosted on github and anyone who wishes to may see it.</string>
     <string name="q3">Can I share encrypted files?</string>
     <string name="r3">Yes, to share an encrypted file, you have to open it and find the share icon in the action bar of the files viewer that incorporates Lock.</string>
     <string name="intro_tittle0">Take a look at the Lock operation.</string>
@@ -88,6 +88,50 @@
     <string name="delete_message">Are you sure to delete?</string>
     <string name="error_delete_file">Failed to delete file</string>
     <string name="webSite">Website</string>
+
+
+    <string name="activity_backup_drive_automatic">Automatic backup</string>
+    <string name="activity_backup_drive_desc">Backing up your data to Google Drive allows you to restore all your readings in case you lose or change devices. A maximum of 7 backups will be saved by vault, then the oldest ones will be deleted</string>
+    <string name="activity_backup_drive_message_restaurada">Restored vault.</string>
+    <!--<string name="activity_backup_drive_desc_1">Sync Registro\'s database in the cloud with Google Drive.</string>-->
+    <!--<string name="activity_backup_drive_desc_2">You\'ll be able to restore all your readings if you lost or change phone or sync Registro\'s data between your devices.</string>-->
+    <string name="activity_backup_drive_success">Vault successfully backed up to Drive</string>
+    <string name="activity_backup_drive_restore_success">Successfully restored database from Drive</string>
+    <string name="activity_backup_drive_failed">Something went wrong. Please try again :/</string>
+    <string name="activity_backup_drive_last">Last backup:</string>
+    <string name="activity_backup_drive_folder">Backup folder</string>
+    <string name="activity_backup_drive_folder_not_set">Not set</string>
+    <string name="activity_backup_drive_button_backup">Backup now</string>
+    <string name="activity_backup_drive_recent">Recent backups</string>
+    <string name="activity_backup_drive_more">See more Backups</string>
+    <string name="activity_backup_drive_dialog_restore_title">Revert to previous version</string>
+    <string name="activity_backup_drive_dialog_restore_desc">Restoring the backup will overwrite all the existing data with the backup.</string>
+    <string name="activity_backup_drive_dialog_restore_details">Backup details</string>
+    <string name="activity_backup_drive_dialog_restore_button_cancel">Cancel</string>
+    <string name="activity_backup_drive_dialog_restore_button_restore">Restore backup</string>
+    <string name="activity_backup_drive_button_restore">Restore from Drive</string>
+    <string name="activity_backup_drive_error_restore">Unable to find a valid backup to restore from Drive</string>
+    <string name="activity_main_error_play_services">Lock needs Play Services to enable Google Drive backup.</string>
+    <string name="activity_backup_drive_button_open_drive">Manage on Drive</string>
+    <string name="title_activity_backup_drive">Google Drive Backup</string>
+    <string name="activity_main_dialog_backup_export_title">Backup &amp; Export</string>
+    <string name="activity_main_dialog_csv_title">Exportar en archivo CSV</string>
+
+
+
+    <string name="Respaldo">Backup</string>
+    <string name="configuracion_sin_configurar">The backups are unconfigured. To enable this option you need to select a folder in Google Drive where your backups will be saved</string>
+    <string name="habilitar_respaldos">Enable backups</string>
+    <string name="respaldo_automatico">Automatic backup</string>
+    <string name="publicidad">Advertising...</string>
+    <!--<string name="crear_cliente">Create Client</string>-->
+    <!--<string name="crear_producto">Create Product</string>-->
+    <string name="campo_no_vacio">This field can not be empty</string>
+
+
+
+
+
 
     <!--<string name="title_activity_intro">IntroActivity</string>-->
     <!--<string name="dummy_button">Dummy Button</string>-->

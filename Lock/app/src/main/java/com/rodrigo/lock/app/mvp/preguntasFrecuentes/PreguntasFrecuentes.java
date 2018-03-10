@@ -10,18 +10,18 @@ import android.widget.TextView;
 
 import com.rodrigo.lock.app.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class PreguntasFrecuentes extends AppCompatActivity {
 
-    @InjectView(R.id.r0)
+    @BindView(R.id.r0)
     TextView r0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preguntas_frecuentes_activity);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
 
         // Set up the toolbar.

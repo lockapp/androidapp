@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/Toolbar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- inicia contenido -->
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff">
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/view_respaldo_configurado"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:text="@string/activity_backup_drive_desc"
+                                android:textColor="@color/glucosio_text" />
+
+                            <CheckBox
+                                android:id="@+id/respaldoAutomatico"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:text="@string/respaldo_automatico" />
+
+                            <Button
+                                android:id="@+id/activity_backup_drive_button_backup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:padding="16dp"
+                                android:text="@string/activity_backup_drive_button_backup"
+                                style="@style/btnAccent"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="16dp"
+                                    android:text="@string/activity_backup_drive_last" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:text="N/A" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:layout_marginTop="8dp"
+                                android:background="@color/glucosio_separator" />
+
+                            <LinearLayout
+                                android:id="@+id/activity_backup_drive_button_folder"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:orientation="horizontal"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="@string/activity_backup_drive_folder"
+                                    android:textColor="@color/glucosio_text"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/activity_backup_drive_textview_folder"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    android:gravity="right"
+                                    android:paddingRight="16dp"
+                                    android:text="@string/activity_backup_drive_folder_not_set" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/activity_backup_drive_button_manage_drive"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="12dp"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:padding="4dp"
+                                android:text="@string/activity_backup_drive_button_open_drive"
+                                android:textAllCaps="true"
+                                android:textColor="@color/glucosio_text_light"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="8dp"
+                                android:background="@color/glucosio_separator" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:text="@string/activity_backup_drive_recent"
+                                android:textAllCaps="true"
+                                android:textColor="@color/glucosio_text"
+                                android:textStyle="bold" />
+
+                            <com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
+                                android:id="@+id/activity_backup_drive_listview_restore"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"></com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView>
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/view_respaldo_sin_configurar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imagen_sin_configurar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="120dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_cloud_off_black_100dp" />
+
+                <TextView
+                    android:id="@+id/texto_sin_configurar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/imagen_sin_configurar"
+                    android:layout_centerInParent="false"
+                    android:gravity="center"
+                    android:text="@string/configuracion_sin_configurar"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/boton_sin_configurar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/habilitar_respaldos"
+                    android:layout_below="@+id/texto_sin_configurar"
+                    android:layout_centerHorizontal="true"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+
+            </RelativeLayout>
+
+
+        </FrameLayout>
+
+
+
+
+
+
+
+        <!-- finaliza contenido -->
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

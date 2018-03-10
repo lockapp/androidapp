@@ -27,8 +27,8 @@ import com.rodrigo.lock.app.mvp.openVault.OpenVaultActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -39,7 +39,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class VaultsFragment extends Fragment implements VaultsContract.View  {
 
-    @InjectView(R.id.tasks_list) ListView listView;
+    @BindView(R.id.tasks_list) ListView listView;
 
 
     private VaultsContract.Presenter mPresenter;
@@ -52,7 +52,7 @@ public class VaultsFragment extends Fragment implements VaultsContract.View  {
 
     //@InjectView(R.id.noTasksAdd)  TextView mNoTaskAddView;
 
-    @InjectView(R.id.tasksLL) LinearLayout mTasksView;
+    @BindView(R.id.tasksLL) LinearLayout mTasksView;
     FloatingActionButton fab;
 
 
@@ -93,7 +93,7 @@ public class VaultsFragment extends Fragment implements VaultsContract.View  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.vaults_frag, container, false);
-        ButterKnife.inject(this, root);
+        ButterKnife.bind(this, root);
 
         // Set up tasks view
         listView.setAdapter(mListAdapter);

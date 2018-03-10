@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import com.rodrigo.lock.app.LockApplication;
 import com.rodrigo.lock.app.bus.EventType;
 import com.rodrigo.lock.app.bus.Event;
 import com.rodrigo.lock.app.bus.EventBus;
@@ -97,6 +98,8 @@ public class AddFileToVaultService extends IntentService {
                 } catch (Exception e) {
                 }
             }
+
+            LockApplication.requestForcedSync();
         } catch (Exception e) {
         } finally {
             Event eventEnd = new Event();

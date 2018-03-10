@@ -22,11 +22,20 @@ public class CacheAccessProvider extends ContentProvider {
     }
 
 
-    @Override
-    public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
+    public ParcelFileDescriptor openFile (Uri uri, String mode) throws FileNotFoundException {
         File privateFile = new File(uri.getPath());
+        if (!uri.getPath().contains(Constants.Storage.DEFAULT_OPEN_VAULT_DIRECTORY)/*f.getCanonicalPath().startsWith(DIR)*/) {
+            throw new IllegalArgumentException();
+        }
         return ParcelFileDescriptor.open(privateFile, ParcelFileDescriptor.MODE_READ_ONLY);
     }
+
+
+//    @Override
+//    public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
+//        File privateFile = new File(uri.getPath());
+//        return ParcelFileDescriptor.open(privateFile, ParcelFileDescriptor.MODE_READ_ONLY);
+//    }
 
     @Override
     public int delete(Uri arg0, String arg1, String[] arg2) {

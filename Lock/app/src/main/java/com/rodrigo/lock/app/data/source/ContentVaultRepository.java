@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.rodrigo.lock.app.Constants;
+import com.rodrigo.lock.app.LockApplication;
 import com.rodrigo.lock.app.data.Clases.ImageToVault;
 import com.rodrigo.lock.app.data.Clases.VaultContent;
 import com.rodrigo.lock.app.data.Clases.VideoToVault;
@@ -159,6 +160,7 @@ public class ContentVaultRepository {
             public Object call() throws Exception {
                 LockFile lockFile = fileSystem.getFile(idFile);
                 fileSystem.deleteFiles(idFile);
+                LockApplication.requestForcedSync();
                 return null;
             }
         });

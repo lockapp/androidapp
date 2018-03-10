@@ -47,8 +47,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -64,15 +64,15 @@ public class ViewVaultFragment extends Fragment implements ViewVaultContract.Vie
     private static final int REQUEST_CHOOSER = 1234;
 
 
-    @InjectView(R.id.cargando)
+    @BindView(R.id.cargando)
     View cargando;
-    @InjectView(R.id.contenidoPrincipal)
+    @BindView(R.id.contenidoPrincipal)
     View contenidoPrincipal;
-    @InjectView(R.id.recyclerview)
+    @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
-    @InjectView(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.fab_add_task)
+    @BindView(R.id.fab_add_task)
     FloatingActionButton fab;
 
     private ViewVaultContract.Presenter mPresenter;
@@ -113,7 +113,7 @@ public class ViewVaultFragment extends Fragment implements ViewVaultContract.Vie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.view_vault_frag, container, false);
-        ButterKnife.inject(this, root);
+        ButterKnife.bind(this, root);
 
         setHasOptionsMenu(true);
         setRetainInstance(true);

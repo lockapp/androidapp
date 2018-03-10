@@ -1,0 +1,200 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ru_values-ru.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-ru\\values-ru.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,109,166,239",
+                        "endColumns": "53,56,72,77",
+                        "endOffsets": "104,161,234,312"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-v11_values-v11.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "53",
+                        "endOffsets": "104"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,97,140,189,232,286,346,416,478,556",
+                        "endLines": "2,3,4,5,6,7,8,9,10,19",
+                        "endColumns": "41,42,48,42,53,59,69,61,77,12",
+                        "endOffsets": "92,135,184,227,281,341,411,473,551,1066"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ga_values-ga.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-ga\\values-ga.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,112,175,266",
+                        "endColumns": "56,62,90,91",
+                        "endOffsets": "107,170,261,353"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ko_values-ko.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-ko\\values-ko.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,101,152,210",
+                        "endColumns": "45,50,57,57",
+                        "endOffsets": "96,147,205,263"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-it_values-it.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-it\\values-it.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,115,175,255",
+                        "endColumns": "59,59,79,98",
+                        "endOffsets": "110,170,250,349"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ca_values-ca.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-ca\\values-ca.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,117,175,255",
+                        "endColumns": "61,57,79,85",
+                        "endOffsets": "112,170,250,336"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-pl_values-pl.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-pl\\values-pl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,108,166,246",
+                        "endColumns": "52,57,79,84",
+                        "endOffsets": "103,161,241,326"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-pt-rBR_values-pt-rBR.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-pt-rBR\\values-pt-rBR.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,116,172,250",
+                        "endColumns": "60,55,77,86",
+                        "endOffsets": "111,167,245,332"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-es_values-es.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-es\\values-es.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,117,178,259",
+                        "endColumns": "61,60,80,90",
+                        "endOffsets": "112,173,254,345"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-v19_values-v19.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-v19\\values-v19.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,98",
+                        "endColumns": "42,41",
+                        "endOffsets": "93,135"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-fr_values-fr.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,119,176,264",
+                        "endColumns": "63,56,87,80",
+                        "endOffsets": "114,171,259,340"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-de_values-de.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-de\\values-de.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,112,170,248",
+                        "endColumns": "56,57,77,70",
+                        "endOffsets": "107,165,243,314"
+                    }
+                }
+            ]
+        }
+    ]
+}

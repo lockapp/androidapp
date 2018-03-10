@@ -75,13 +75,31 @@
 
 
     <!-- la app nueva -->
+    <color name="primary">#607D8B</color>
+    <color name="primary_dark">#455A64</color>
+    <color name="primary_light">#CFD8DC</color>
+    <color name="accent">#FFC107</color>
+    <color name="primary_text">#212121</color>
+    <color name="text_color_primary">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+
     <color name="colorPrimary">#455A64</color>
     <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#FFAB00</color>
-
     <drawable name="completedTaskBackground">#CCCCCC</drawable>
-
     <drawable name="touchFeedback">#CFD8DC</drawable>
-
     <color name="black_overlay">#66000000</color>
+
+
+
+    <!-- eliminar -->
+
+    <color name="glucosio_text">#323232</color>
+    <color name="glucosio_accent">#F0D04C</color>
+    <color name="glucosio_separator">#eaeaea</color>
+    <color name="glucosio_text_light">#686E71</color>
+    <color name="glucosio_text_dark">#000000</color>
 </resources>

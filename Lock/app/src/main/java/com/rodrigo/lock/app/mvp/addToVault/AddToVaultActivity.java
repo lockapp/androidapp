@@ -21,8 +21,8 @@ import com.rodrigo.lock.app.utils.Injection;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class AddToVaultActivity extends AppCompatActivity implements AddTovaultContract.irLuegoDeRecibir {
 
@@ -30,9 +30,9 @@ public class AddToVaultActivity extends AppCompatActivity implements AddTovaultC
     protected VaultPresenetr mTasksPresenter;
 
 
-    @InjectView(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
 
@@ -46,7 +46,7 @@ public class AddToVaultActivity extends AppCompatActivity implements AddTovaultC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_to_vault_activity);
 
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         // Set up the toolbar.
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();

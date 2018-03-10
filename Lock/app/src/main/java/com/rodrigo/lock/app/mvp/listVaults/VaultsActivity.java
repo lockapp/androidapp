@@ -12,29 +12,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.rodrigo.lock.app.mvp.backup.BackupActivity;
 import com.rodrigo.lock.app.mvp.preguntasFrecuentes.PreguntasFrecuentes;
 import com.rodrigo.lock.app.utils.Injection;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.utils.ActivityUtils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class VaultsActivity extends AppCompatActivity {
 
 
     protected VaultPresenetr mTasksPresenter;
 
-    @InjectView(R.id.toolbar)   Toolbar toolbar;
-    @InjectView(R.id.drawer_layout)   DrawerLayout mDrawerLayout;
-    @InjectView(R.id.nav_view)  NavigationView navigationView;
+    @BindView(R.id.toolbar)   Toolbar toolbar;
+    @BindView(R.id.drawer_layout)   DrawerLayout mDrawerLayout;
+    @BindView(R.id.nav_view)  NavigationView navigationView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vaults_activity);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         // Set up the toolbar.
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
@@ -107,6 +108,10 @@ public class VaultsActivity extends AppCompatActivity {
                                 break;
                             case R.id.open_web_site:
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://lockapp.github.io")));
+                                break;
+
+                            case R.id.backup:
+                                startActivity(new Intent(getApplicationContext(), BackupActivity.class));
                                 break;
                             case R.id.contacto:
                                 Intent i = new Intent(Intent.ACTION_SEND);

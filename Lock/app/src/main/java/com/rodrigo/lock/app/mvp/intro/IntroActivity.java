@@ -33,7 +33,7 @@ public class IntroActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro_activity);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
 
 

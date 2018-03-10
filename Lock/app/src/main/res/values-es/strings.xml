@@ -79,7 +79,7 @@
     <string name="r1">La respuesta corta sí.\nPero en realidad es un poco más larga, en muchas partes de la aplicación se habla de bloquear debido a que muchos usuarios no están relacionados con términos como cifrar o encriptar, pero lo que en realidad sucede es que sus datos se cifran utilizando AES, el mismo algoritmo de cifrado utilizado como el estándar nacional en los Estados Unidos. Lock utiliza claves de 256 bits para el cifrado, lo que significa que un criminal necesitará millones de años para descifrar los datos mediante un ataque de fuerza bruta.</string>
 
     <string name="q2">¿Están mis datos protegidos?</string>
-    <string name="r2">A diferencia de otras aplicaciones sólo tiene un permiso. Sólo puede acceder a su almacenamiento para cifrar sus archivos. No tiene acceso a Internet u otras redes, ni a sus SMS, ni a sus llamadas. Por lo tanto no tiene manera de enviar los  datos fuera de su teléfono.\nPor otro lado el código fuente de Lock se encuentra alojado en github y quién quiera puede mirarlo.</string>
+    <string name="r2">A diferencia de otras aplicaciones sólo tiene un permiso. Sólo puede acceder a su almacenamiento para cifrar sus archivos.\nPor otro lado el código fuente de Lock se encuentra alojado en github y quién quiera puede mirarlo.</string>
 
     <string name="q3">¿Puedo compartir archivos cifrados?</string>
     <string name="r3">Si, para compartir archivos cifrados tienes que abrir la bóveda y encontrarás el icono de compartir en la barra de acción del visor de archivos de Lock.</string>
@@ -158,6 +158,47 @@
     <string name="delete_message">¿Seguro desea eliminar?</string>
     <string name="error_delete_file">No se pudo eliminar el archivo</string>
     <string name="webSite">Sitio Web</string>
+
+
+
+    <string name="activity_backup_drive_automatic">Copia de seguridad automática</string>
+    <string name="activity_backup_drive_desc">Respaldar tus datos en Google Drive te permite recuperarlos en caso de cambio o pérdida del teléfono móvil. Se guardarán un máximo de 7 respaldos por bóveda, y luego se eliminarán los más antiguos</string>
+    <string name="activity_backup_drive_message_restaurada">Bóveda restaurada</string>
+    <!--<string name="activity_backup_drive_desc_1">Sincronizar la base de datos de Registro en la nube con Google Drive.</string>-->
+    <!--<string name="activity_backup_drive_desc_2">Será posible restaurar todas las lecturas si has perdido o te has cambiado de móvil o en caso de sincronizar los datos de Registro entre dispositivos.</string>-->
+    <string name="activity_backup_drive_success">Bóveda respaldada exitósamente en Drive</string>
+    <string name="activity_backup_drive_restore_success">Base de datos correctamente restaurada desde Drive</string>
+    <string name="activity_backup_drive_failed">Algo salió mal. Inténtalo de nuevo :/</string>
+    <string name="activity_backup_drive_last">Última copia de seguridad:</string>
+    <string name="activity_backup_drive_folder">Carpeta de las copias de seguridad</string>
+    <string name="activity_backup_drive_folder_not_set">Sin configurar</string>
+    <string name="activity_backup_drive_button_backup">Respaldar ahora</string>
+    <string name="activity_backup_drive_recent">Copias de seguridad recientes</string>
+    <string name="activity_backup_drive_more">Ver más copias de seguridad</string>
+    <string name="activity_backup_drive_dialog_restore_title">Regresar a la versión anterior</string>
+    <string name="activity_backup_drive_dialog_restore_desc">Al restaurar la copia de seguridad se sobrescribirá todos los datos existentes con la copia de seguridad.</string>
+    <string name="activity_backup_drive_dialog_restore_details">Detalles de la copia de seguridad</string>
+    <string name="activity_backup_drive_dialog_restore_button_cancel">Cancelar</string>
+    <string name="activity_backup_drive_dialog_restore_button_restore">Restaurar la copia de seguridad</string>
+    <string name="activity_backup_drive_button_restore">Restaurar desde Drive</string>
+    <string name="activity_backup_drive_error_restore">No es posible encontrar una copia de seguridad válida para restaurarla desde Drive</string>
+    <string name="activity_main_error_play_services">Lock necesita Play Services para habilitar la copia de seguridad en Google Drive.</string>
+    <string name="activity_main_dialog_csv_title">Exportar en archivo CSV</string>
+    <string name="activity_backup_drive_button_open_drive">Gestionar en Drive</string>
+    <string name="title_activity_backup_drive">Copia de seguridad en Google Drive</string>
+    <string name="activity_main_dialog_backup_export_title">Respaldar y exportar</string>
+
+    <!-- fin de lo traducido -->
+
+
+    <string name="Respaldo">Respaldo</string>
+    <string name="configuracion_sin_configurar">Los respaldos se encuentran sin configurar. Para habilitar esta opción es necesario que seleccione una carpeta en Google Drive donde se guardarán sus respaldos</string>
+    <string name="habilitar_respaldos">Habilitar respaldos</string>
+    <string name="respaldo_automatico">Respaldo automático</string>
+    <string name="publicidad">Publicidad...</string>
+    <!--<string name="crear_cliente">Crear cliente</string>-->
+    <!--<string name="crear_producto">Crear Producto</string>-->
+    <string name="campo_no_vacio">Este campo no puede ser vacío</string>
 
 
 </resources>

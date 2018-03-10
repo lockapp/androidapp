@@ -24,6 +24,12 @@
         android:id="@+id/compartir"
         android:icon="@drawable/z_ic_share_black"
         android:title="@string/share" />
+
+    <item
+        android:id="@+id/backup"
+        android:icon="@drawable/ic_backup_black_24dp"
+        android:title="@string/Respaldo" />
+
     <item
         android:id="@+id/rate"
         android:icon="@drawable/z_ic_star_black_24dp"

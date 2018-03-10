@@ -7,6 +7,7 @@ import com.rodrigo.lock.app.data.converters.Converter;
 import com.rodrigo.lock.core.utils.FileUtils;
 
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 
 import rx.Observable;
@@ -19,19 +20,29 @@ import rx.functions.Func2;
 
 public class VaultsRepository {
 
-    public static Observable<List<Vault>> getVaults() {
+    public static List<File> getVaultsFiles(){
+        List<File> res = new LinkedList();
+
         File baseFile = new File(Preferences.getDefaultVaultDirectory());
         if (!baseFile.exists()) {
             baseFile.mkdirs();
         }
 
-        return Observable.from(baseFile.listFiles())
-                .filter(new Func1<File, Boolean>() {
-                    @Override
-                    public Boolean call(File o) {
-                        return FileUtils.esBobeda(o);
-                    }
-                })
+        for (File f : baseFile.listFiles()){
+            if ( FileUtils.esBobeda(f)){
+                res.add(f);
+            }
+        }
+
+        return res;
+    }
+
+
+
+
+
+    public static Observable<List<Vault>> getVaults() {
+        return Observable.from(getVaultsFiles())
                 .map((new Func1<File, Vault>() {
                     @Override
                     public Vault call(File srcObj) {

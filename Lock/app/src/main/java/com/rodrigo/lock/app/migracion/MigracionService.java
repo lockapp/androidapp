@@ -10,6 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import com.rodrigo.lock.app.Constants;
+import com.rodrigo.lock.app.LockApplication;
 import com.rodrigo.lock.app.data.converters.FileConverter;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.core.datatype.AddFileListener;
@@ -94,6 +95,8 @@ public class MigracionService extends IntentService {
                    FileUtils.delete(baseFolder);
                 }
             }
+
+            LockApplication.requestForcedSync();
 
         } catch (Exception e) {
             //terminoConError(e.getMessage(), /*fc.getInF().getAbsolutePath()*/"");

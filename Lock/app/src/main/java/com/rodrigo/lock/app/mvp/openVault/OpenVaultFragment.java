@@ -25,8 +25,8 @@ import com.rodrigo.lock.app.utils.ActivityUtils;
 import java.io.File;
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -45,8 +45,8 @@ public class OpenVaultFragment extends Fragment implements OpenVaultContract.Vie
     private OpenVaultContract.Presenter mPresenter;
 
 
-    @InjectView(R.id.nombreVault)    TextView nameVault;
-    @InjectView(R.id.password1)    PasswordEditText password1;
+    @BindView(R.id.nombreVault)    TextView nameVault;
+    @BindView(R.id.password1)    PasswordEditText password1;
 
     public static OpenVaultFragment newInstance(String path) {
         Bundle arguments = new Bundle();
@@ -73,7 +73,7 @@ public class OpenVaultFragment extends Fragment implements OpenVaultContract.Vie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.open_vault_frag, container, false);
-        ButterKnife.inject(this, root);
+        ButterKnife.bind(this, root);
         setHasOptionsMenu(true);
 
         return root;

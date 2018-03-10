@@ -10,11 +10,11 @@ import com.rodrigo.lock.app.migracion.MigrarUtilsDeprecated;
 
 import com.rodrigo.lock.app.utils.ActivityUtils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class MigrarActivity extends AppCompatActivity {
-    @InjectView(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
 
@@ -22,7 +22,7 @@ public class MigrarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.migrar_activity);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         // Set up the toolbar.
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

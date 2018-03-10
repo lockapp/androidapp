@@ -110,4 +110,20 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
+    <style name="btnAccent" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/ab_accent</item>
+        <item name="android:textColor">@color/white</item>
+        <!--<item name="android:textSize">@dimen/text_btn</item>-->
+        <!--<item name="android:textColor">#FFFFFF</item>-->
+        <!--<item name="android:gravity">center</item>-->
+        <!--<item name="android:background">@drawable/btn_primary</item>-->
+    </style>
+
 </resources>

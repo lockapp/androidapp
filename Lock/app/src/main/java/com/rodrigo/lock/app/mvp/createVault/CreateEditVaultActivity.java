@@ -9,17 +9,17 @@ import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.utils.ActivityUtils;
 import com.rodrigo.lock.app.utils.Injection;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class CreateEditVaultActivity extends AppCompatActivity {
-    @InjectView(R.id.toolbar)   Toolbar toolbar;
+    @BindView(R.id.toolbar)   Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_edit_vault_activity);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         // Set up the toolbar.
         setSupportActionBar(toolbar);

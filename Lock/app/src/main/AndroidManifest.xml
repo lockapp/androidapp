@@ -2,8 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rodrigo.lock.app">
 
+    <uses-permission
+        android:name="android.permission.AUTHENTICATE_ACCOUNTS"
+        android:maxSdkVersion="22" />
+    <uses-permission
+        android:name="android.permission.GET_ACCOUNTS"
+        android:maxSdkVersion="22" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
     <application
         android:name=".LockApplication"
@@ -111,7 +121,50 @@
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.editVault.EditVault"></activity>
+        <activity android:name=".mvp.editVault.EditVault" />
+        <activity
+            android:name=".mvp.backup.BackupActivity"
+            android:theme="@style/AppTheme"></activity>
+
+        <!-- CONTENT PROVIDER -->
+        <provider
+            android:name=".provider.DummyProvider"
+            android:authorities="com.rodrigo.lock.app.provider.dummyprovider"
+            android:exported="false"
+            android:label="Lock - Google Drive Sync."
+            android:syncable="true" />
+
+        <!-- ACCOUNT SERVICE -->
+        <service
+            android:name=".account.GenericAccountService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <!-- SYNC ADAPTER -->
+        <service
+            android:name=".sync.SyncService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+
+
+
+
+
     </application>
 
 </manifest>

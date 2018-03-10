@@ -14,8 +14,8 @@ import android.widget.EditText;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.mvp.UI.PasswordEditText;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -29,10 +29,10 @@ public class MigrarFragment extends Fragment implements MigrarContract.View {
 
     private MigrarContract.Presenter mPresenter;
 
-    @InjectView(R.id.nombre)    EditText name;
-    @InjectView(R.id.password1)    PasswordEditText password1;
+    @BindView(R.id.nombre)    EditText name;
+    @BindView(R.id.password1)    PasswordEditText password1;
 
-    @InjectView(R.id.fab_edit_task_done)  FloatingActionButton fab;
+    @BindView(R.id.fab_edit_task_done)  FloatingActionButton fab;
 
     public static MigrarFragment newInstance() {
         return new MigrarFragment();
@@ -65,7 +65,7 @@ public class MigrarFragment extends Fragment implements MigrarContract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.migrar_fragment, container, false);
-        ButterKnife.inject(this, root);
+        ButterKnife.bind(this, root);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

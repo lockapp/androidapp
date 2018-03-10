@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ca\\values-ca.xml",
+            "map": [
+                {
+                    "source": "D:\\Proyectos\\lock-github\\androidapp\\Lock\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\values-ca\\values-ca.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,117,175,255",
+                        "endColumns": "61,57,79,85",
+                        "endOffsets": "112,170,250,336"
+                    }
+                }
+            ]
+        }
+    ]
+}

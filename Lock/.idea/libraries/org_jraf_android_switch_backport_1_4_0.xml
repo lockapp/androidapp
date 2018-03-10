@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="org.jraf:android-switch-backport-1.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-switch-backport-1.4.0.aar/c87b678750f3b432116ea3e1848d8fd5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-switch-backport-1.4.0.aar/c87b678750f3b432116ea3e1848d8fd5/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jraf/android-switch-backport/1.4.0/5d905978c51f5f2fa39fca1741937e168cb5607c/android-switch-backport-1.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

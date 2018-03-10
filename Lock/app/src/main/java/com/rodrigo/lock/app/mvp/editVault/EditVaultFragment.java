@@ -15,8 +15,8 @@ import android.widget.EditText;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.mvp.UI.PasswordEditText;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -30,12 +30,12 @@ public class EditVaultFragment extends Fragment implements EditVaultContract.Vie
 
     private EditVaultContract.Presenter mPresenter;
 
-    @InjectView(R.id.nombre)    EditText name;
+    @BindView(R.id.nombre)    EditText name;
 //    @InjectView(R.id.actualPassword)    EditText actualPassword;
 //    @InjectView(R.id.password1)    PasswordEditText password1;
 //    @InjectView(R.id.password2)  PasswordEditText password2;
 
-    @InjectView(R.id.fab_edit_task_done)  FloatingActionButton fab;
+    @BindView(R.id.fab_edit_task_done)  FloatingActionButton fab;
 
     public static EditVaultFragment newInstance() {
         return new EditVaultFragment();
@@ -72,7 +72,7 @@ public class EditVaultFragment extends Fragment implements EditVaultContract.Vie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.edit_vault_frag, container, false);
-        ButterKnife.inject(this, root);
+        ButterKnife.bind(this, root);
 
         //fab.setImageResource(R.drawable.z_ic_done);
         fab.setOnClickListener(new View.OnClickListener() {

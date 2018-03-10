@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="lock-core">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/lock-core.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
