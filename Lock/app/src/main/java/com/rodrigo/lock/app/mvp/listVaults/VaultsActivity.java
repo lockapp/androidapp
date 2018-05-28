@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -17,6 +18,8 @@ import com.rodrigo.lock.app.mvp.preguntasFrecuentes.PreguntasFrecuentes;
 import com.rodrigo.lock.app.utils.Injection;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.utils.ActivityUtils;
+import java.util.Date;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +33,9 @@ public class VaultsActivity extends AppCompatActivity {
     @BindView(R.id.drawer_layout)   DrawerLayout mDrawerLayout;
     @BindView(R.id.nav_view)  NavigationView navigationView;
 
+    //Wed May 16 2018 17:15:20 GMT-0300 (Local Standard Time)
+    private Date fechaHabilitaPagos = new Date(1526501720653L);
+    //private Date fechaHabilitaPagos = new Date();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +67,21 @@ public class VaultsActivity extends AppCompatActivity {
                 Injection.provideSchedulerProvider());
 
 
+        Date actual = new Date();
+        if (actual.compareTo(fechaHabilitaPagos) < 0){
+            hideDonar();
+        }
     }
 
+
+    private void hideDonar() {
+        try{
+            Menu nav_Menu = navigationView.getMenu();
+            nav_Menu.findItem(R.id.donar).setVisible(false);
+        }catch (Throwable t){
+
+        }
+    }
 
 
     @Override
@@ -109,7 +128,9 @@ public class VaultsActivity extends AppCompatActivity {
                             case R.id.open_web_site:
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://lockapp.github.io")));
                                 break;
-
+                            case R.id.donar:
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU")));
+                                break;
                             case R.id.backup:
                                 startActivity(new Intent(getApplicationContext(), BackupActivity.class));
                                 break;

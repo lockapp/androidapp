@@ -199,6 +199,7 @@
     <!--<string name="crear_cliente">Crear cliente</string>-->
     <!--<string name="crear_producto">Crear Producto</string>-->
     <string name="campo_no_vacio">Este campo no puede ser vacío</string>
+    <string name="Donar">Donar</string>
 
 
 </resources>

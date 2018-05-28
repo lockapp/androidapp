@@ -19,8 +19,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
 //        minSdkVersion 14
 //        targetSdkVersion 21
-        versionCode 18
-        versionName "0.2.6"
+        versionCode 19
+        versionName "0.2.7"
         //renderscriptTargetApi 21
         //renderscriptSupportMode true
         multiDexEnabled true
