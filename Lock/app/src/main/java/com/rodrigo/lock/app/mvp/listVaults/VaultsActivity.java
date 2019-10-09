@@ -13,11 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.wallet.Wallet;
 import com.rodrigo.lock.app.mvp.backup.BackupActivity;
 import com.rodrigo.lock.app.mvp.preguntasFrecuentes.PreguntasFrecuentes;
 import com.rodrigo.lock.app.utils.Injection;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.utils.ActivityUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
 
 
@@ -129,7 +135,7 @@ public class VaultsActivity extends AppCompatActivity {
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://lockapp.github.io")));
                                 break;
                             case R.id.donar:
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU")));
+                                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU")));
                                 break;
                             case R.id.backup:
                                 startActivity(new Intent(getApplicationContext(), BackupActivity.class));
@@ -156,5 +162,105 @@ public class VaultsActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+
+    private static JSONObject getBaseRequest() throws JSONException {
+        return new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
+    }
+    private static JSONObject getGatewayTokenizationSpecification() throws JSONException {
+        return new JSONObject(){{      put("type", "PAYMENT_GATEWAY");
+            put("parameters", new JSONObject(){{        put("gateway", "example");
+                put("gatewayMerchantId", "exampleGatewayMerchantId");
+            }
+            });
+        }};
+    }
+
+    private static JSONArray getAllowedCardNetworks() {
+        return new JSONArray()
+                .put("AMEX")
+                .put("DISCOVER")
+                .put("INTERAC")
+                .put("JCB")
+                .put("MASTERCARD")
+                .put("VISA");
+    }
+
+    private static JSONArray getAllowedCardAuthMethods() {
+        return new JSONArray()
+                .put("PAN_ONLY")
+                .put("CRYPTOGRAM_3DS");
+    }
+
+
+    private static JSONObject getBaseCardPaymentMethod() throws JSONException {
+        JSONObject cardPaymentMethod = new JSONObject();
+        cardPaymentMethod.put("type", "CARD");
+
+        JSONObject parameters = new JSONObject();
+        parameters.put("allowedAuthMethods", getAllowedCardAuthMethods());
+        parameters.put("allowedCardNetworks", getAllowedCardNetworks());
+        // Optionally, you can add billing address/phone number associated with a CARD payment method.
+      //  parameters.put("billingAddressRequired", true);
+
+        JSONObject billingAddressParameters = new JSONObject();
+        billingAddressParameters.put("format", "FULL");
+
+        parameters.put("billingAddressParameters", billingAddressParameters);
+
+        cardPaymentMethod.put("parameters", parameters);
+
+        return cardPaymentMethod;
+    }
+
+
+/*
+    public static PaymentsClient createPaymentsClient(Activity activity) {
+        Wallet.WalletOptions walletOptions =
+                new Wallet.WalletOptions.Builder().setEnvironment(Constants.PAYMENTS_ENVIRONMENT).build();
+        return Wallet.getPaymentsClient(activity, walletOptions);
+    }
+
+    public static Optional<JSONObject> getIsReadyToPayRequest() {
+        try {
+            JSONObject isReadyToPayRequest = getBaseRequest();
+            isReadyToPayRequest.put(
+                    "allowedPaymentMethods", new JSONArray().put(getBaseCardPaymentMethod()));
+
+            return Optional.of(isReadyToPayRequest);
+        } catch (JSONException e) {
+            return Optional.empty();
+        }
+    }
+
+
+    private void possiblyShowGooglePayButton() {
+        final Optional<JSONObject> isReadyToPayJson = PaymentsUtil.getIsReadyToPayRequest();
+        if (!isReadyToPayJson.isPresent()) {
+            return;
+        }
+        IsReadyToPayRequest request = IsReadyToPayRequest.fromJson(isReadyToPayJson.get().toString());
+        if (request == null) {
+            return;
+        }
+
+        // The call to isReadyToPay is asynchronous and returns a Task. We need to provide an
+        // OnCompleteListener to be triggered when the result of the call is known.
+        Task<Boolean> task = mPaymentsClient.isReadyToPay(request);
+        task.addOnCompleteListener(this,
+                new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        if (task.isSuccessful()) {
+                            setGooglePayAvailable(task.getResult());
+                        } else {
+                            Log.w("isReadyToPay failed", task.getException());
+                        }
+                    }
+                });
+    }
+*/
+
 
 }
