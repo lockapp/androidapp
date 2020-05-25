@@ -2,12 +2,11 @@ package com.rodrigo.lock.app.migracion;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.LockApplication;
@@ -19,7 +18,6 @@ import com.rodrigo.lock.core.utils.FileUtils;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Map;
 

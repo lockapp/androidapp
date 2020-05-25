@@ -4,15 +4,13 @@ import android.app.IntentService;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 
 import com.rodrigo.lock.app.LockApplication;
 import com.rodrigo.lock.app.bus.EventType;
 import com.rodrigo.lock.app.bus.Event;
 import com.rodrigo.lock.app.bus.EventBus;
 import com.rodrigo.lock.app.R;
-import com.rodrigo.lock.app.data.Clases.ImageToVault;
-import com.rodrigo.lock.app.data.Clases.VideoToVault;
 import com.rodrigo.lock.app.data.converters.FileConverter;
 import com.rodrigo.lock.app.utils.MediaUtils;
 import com.rodrigo.lock.core.EncryptedFileSystem;

@@ -1,18 +1,13 @@
 package com.rodrigo.lock.app.mvp.backup;
 
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -43,13 +38,10 @@ import com.rodrigo.lock.app.data.source.Preferences;
 import com.rodrigo.lock.app.mvp.listVaults.VaultsActivity;
 import com.rodrigo.lock.app.sync.Backup;
 import com.rodrigo.lock.app.sync.GoogleDriveBackup;
-import com.rodrigo.lock.core.EncryptedFileSystem;
 import com.rodrigo.lock.core.EncryptedFileSystemHandler;
-import com.rodrigo.lock.core.utils.FileUtils;
 
 import java.io.Closeable;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;

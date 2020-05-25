@@ -46,6 +46,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="MaterialTapTargetPromptTheme">@style/MaterialTapTargetPromptTheme</item>
     </style>
 
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -80,8 +82,9 @@
     <style name="MaterialTapTargetPromptTheme"></style>
     <!-- This style is an example of what can be changed and not necessarily what should be changed! -->
     <style name="MaterialTapTargetPromptTheme.FabTarget" parent="MaterialTapTargetPromptTheme">
-        <item name="backgroundColour">@color/colorPrimary</item>
-        <!--<item name="focalColour">@color/colorPrimary</item>-->
+        <item name="mttp_backgroundColour">@color/colorPrimary</item>
+        <!-- <item name="backgroundColour">@color/colorPrimary</item>-->
+         <!--<item name="focalColour">@color/colorPrimary</item>-->
         <!--<item name="primaryText">@string/FabTarget.primaryText</item>
         <item name="secondaryText">@string/FabTarget.secondaryText</item>
         <item name="primaryTextColour">@color/green_200</item>

@@ -2,17 +2,14 @@ package com.rodrigo.lock.app;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 
 import com.rodrigo.lock.app.account.Authenticator;
 import com.rodrigo.lock.app.provider.DummyProvider;
-import com.squareup.picasso.OkHttpDownloader;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by Rodrigo on 19/11/2016.

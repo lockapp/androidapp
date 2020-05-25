@@ -1,23 +1,18 @@
 package com.rodrigo.lock.app.mvp.editVault;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.rodrigo.lock.app.data.Clases.Vault;
 import com.rodrigo.lock.app.data.converters.Converter;
 import com.rodrigo.lock.app.data.source.Preferences;
-import com.rodrigo.lock.app.data.source.VaultsRepository;
 import com.rodrigo.lock.app.util.schedulers.BaseSchedulerProvider;
 import com.rodrigo.lock.app.utils.MediaUtils;
-import com.rodrigo.lock.core.EncryptedFileSystem;
-import com.rodrigo.lock.core.EncryptedFileSystemHandler;
 import com.rodrigo.lock.core.utils.FileUtils;
 
 import java.io.File;
 
-import rx.Observer;
-import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 import static com.google.common.base.Preconditions.checkNotNull;

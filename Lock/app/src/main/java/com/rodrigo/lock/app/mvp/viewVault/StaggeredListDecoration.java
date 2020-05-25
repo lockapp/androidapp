@@ -1,8 +1,8 @@
 package com.rodrigo.lock.app.mvp.viewVault;
 
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 
 /**

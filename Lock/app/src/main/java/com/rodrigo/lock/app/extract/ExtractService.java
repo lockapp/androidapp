@@ -7,30 +7,23 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.webkit.MimeTypeMap;
 
-import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.bus.Event;
 import com.rodrigo.lock.app.bus.EventBus;
 import com.rodrigo.lock.app.bus.EventType;
-import com.rodrigo.lock.app.data.converters.FileConverter;
 import com.rodrigo.lock.app.data.source.Preferences;
 import com.rodrigo.lock.app.utils.MediaUtils;
 import com.rodrigo.lock.core.EncryptedFileSystem;
 import com.rodrigo.lock.core.EncryptedFileSystemHandler;
 import com.rodrigo.lock.core.clases.LockFile;
-import com.rodrigo.lock.core.datatype.AddFileListener;
-import com.rodrigo.lock.core.datatype.INewFile;
 import com.rodrigo.lock.core.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Rodrigo on 29/05/14.

@@ -67,7 +67,7 @@
                         android:fontFamily="sans-serif"
                         android:textColor="@color/white"/>
 
-                    <android.support.design.widget.FloatingActionButton
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/fab_done"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

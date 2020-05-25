@@ -1,6 +1,6 @@
 package com.rodrigo.lock.app.mvp.listVaults;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.rodrigo.lock.app.data.Clases.Vault;
 import com.rodrigo.lock.app.data.source.VaultsRepository;

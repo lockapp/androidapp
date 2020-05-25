@@ -7,19 +7,19 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.view.menu.MenuBuilder;
-import android.support.v7.view.menu.MenuPopupHelper;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -178,7 +178,7 @@ public class ViewVaultFragment extends Fragment implements ViewVaultContract.Vie
                 //.setCaptureTouchEventOutsidePrompt(true)
                 .setPrimaryText(getResources().getString(R.string.contenido_bobeda_vacio_titulo))
                 .setSecondaryText(getResources().getString(R.string.contenido_bobeda_vacio_descripcion))
-                .setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener(){
+                /*.setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener(){
                     @Override
                     public void onHidePrompt(MotionEvent event, boolean tappedTarget){
                         //Do something such as storing a value so that this prompt is never shown again
@@ -191,7 +191,7 @@ public class ViewVaultFragment extends Fragment implements ViewVaultContract.Vie
                     public void onHidePromptComplete(){
 
                     }
-                })
+                })*/
                 .show();
     }
     public void hideEmptyListMessage(){

@@ -15,6 +15,15 @@
 
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+
+
+
+
+
+
+
     <application
         android:name=".LockApplication"
         android:allowBackup="true"

@@ -56,7 +56,7 @@
         android:orientation="horizontal"
         android:paddingBottom="16dp">
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/dialog_backup_restore_button_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:textColor="@color/ab_accent"
             android:textStyle="bold" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/dialog_backup_restore_button_restore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

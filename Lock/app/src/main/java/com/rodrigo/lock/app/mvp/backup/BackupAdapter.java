@@ -2,7 +2,7 @@ package com.rodrigo.lock.app.mvp.backup;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.format.Formatter;
 import android.view.LayoutInflater;
 import android.view.View;

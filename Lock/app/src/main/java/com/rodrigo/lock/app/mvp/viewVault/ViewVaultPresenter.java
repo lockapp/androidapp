@@ -2,8 +2,8 @@ package com.rodrigo.lock.app.mvp.viewVault;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.rodrigo.lock.app.bus.Event;
@@ -20,11 +20,9 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
 import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.subscriptions.CompositeSubscription;
 
 import static com.google.common.base.Preconditions.checkNotNull;

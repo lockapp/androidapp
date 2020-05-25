@@ -7,8 +7,8 @@ package com.rodrigo.lock.app.sync;
 import android.app.Activity;
 import android.content.IntentSender;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -33,14 +33,11 @@ import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.LockApplication;
 import com.rodrigo.lock.app.data.Clases.GlucosioBackup;
 import com.rodrigo.lock.app.data.source.VaultsRepository;
-import com.rodrigo.lock.app.old.Core.Utils.Utils;
 import com.rodrigo.lock.core.utils.FileUtils;
 //import com.google.firebase.crash.FirebaseCrash;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.util.Date;

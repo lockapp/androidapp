@@ -4,7 +4,7 @@ package com.rodrigo.lock.app.util.schedulers;
  * Created by Rodrigo on 19/11/2016.
  */
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import rx.Scheduler;
 import rx.schedulers.Schedulers;

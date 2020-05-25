@@ -2,11 +2,10 @@ package com.rodrigo.lock.app.mvp.openVault;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,13 +15,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rodrigo.lock.app.R;
-import com.rodrigo.lock.app.data.source.Preferences;
 import com.rodrigo.lock.app.mvp.UI.PasswordEditText;
 import com.rodrigo.lock.app.mvp.editVault.EditVault;
 import com.rodrigo.lock.app.mvp.viewVault.ViewVaultActivity;
-import com.rodrigo.lock.app.utils.ActivityUtils;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;

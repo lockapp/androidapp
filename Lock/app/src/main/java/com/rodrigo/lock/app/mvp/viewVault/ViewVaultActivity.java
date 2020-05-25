@@ -1,18 +1,13 @@
 package com.rodrigo.lock.app.mvp.viewVault;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 
 import com.rodrigo.lock.app.R;
-import com.rodrigo.lock.app.mvp.listVaults.VaultsActivity;
 import com.rodrigo.lock.app.utils.ActivityUtils;
 import com.rodrigo.lock.app.utils.Injection;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ViewVaultActivity extends AppCompatActivity {
 /*

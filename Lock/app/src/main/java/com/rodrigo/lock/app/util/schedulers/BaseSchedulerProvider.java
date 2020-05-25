@@ -1,6 +1,6 @@
 package com.rodrigo.lock.app.util.schedulers;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import rx.Scheduler;
 
