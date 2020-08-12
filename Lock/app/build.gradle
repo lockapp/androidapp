@@ -1,22 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
+    /*signingConfigs {
         config {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
             storeFile file('C:/Users/Rodrigo/.android/debug.keystore')
             storePassword 'android'
         }
-    }
+    }*/
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.rodrigo.lock.app"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 20
-        versionName "0.2.8"
+        versionCode 21
+        versionName "0.2.9"
         //renderscriptTargetApi 21
         //renderscriptSupportMode true
         multiDexEnabled true
@@ -26,9 +26,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug {
+        /*debug {
             signingConfig signingConfigs.config
-        }
+        }*/
     }
 
     dexOptions {

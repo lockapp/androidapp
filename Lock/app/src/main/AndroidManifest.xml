@@ -10,11 +10,8 @@
         android:maxSdkVersion="22" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 
@@ -51,6 +48,16 @@
             android:name=".data.source.CacheAccessProvider"
             android:authorities="com.rodrigo.lock.app"
             android:exported="true" />
+
+        <provider
+            android:name=".extract.GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
 
         <activity
             android:name=".mvp.listVaults.VaultsActivity"

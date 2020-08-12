@@ -39,6 +39,8 @@ public interface ViewVaultContract {
         void addFilesToVault(ArrayList<String> archivos);
 
         void errorToDelete();
+
+        void setTitle(String title);
     }
 
     interface Presenter extends BasePresenter {

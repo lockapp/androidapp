@@ -12,6 +12,7 @@ import com.rodrigo.lock.app.Constants;
 import com.rodrigo.lock.app.LockApplication;
 import com.rodrigo.lock.app.data.converters.FileConverter;
 import com.rodrigo.lock.app.R;
+import com.rodrigo.lock.app.util.NotificationUtils;
 import com.rodrigo.lock.core.datatype.AddFileListener;
 import com.rodrigo.lock.core.datatype.INewFile;
 import com.rodrigo.lock.core.utils.FileUtils;
@@ -55,6 +56,20 @@ public class MigracionService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         id++;
 
+
+        mNotifyManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+        mBuilder = new NotificationCompat.Builder(this, NotificationUtils.getNotificationChannelId(this.getApplicationContext()));
+
+
+        mBuilder.setContentTitle(getResources().getString(R.string.migrando_vault))
+                .setSmallIcon(R.drawable.ic_action_secure);
+
+        mBuilder.setProgress(0, 0, true);
+        mBuilder.setOngoing(true);
+        startForeground(id, mBuilder.build());
+
+
+        /*
         mNotifyManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
         mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setContentTitle(getResources().getString(R.string.migrando_vault));
@@ -63,7 +78,7 @@ public class MigracionService extends IntentService {
         mBuilder.setProgress(0, 0, true);
         mBuilder.setOngoing(true);
         startForeground(id, mBuilder.build());
-
+*/
 
         int idcc = intent.getExtras().getInt(Constants.CRYPTO_CONTROLLER);
         try {

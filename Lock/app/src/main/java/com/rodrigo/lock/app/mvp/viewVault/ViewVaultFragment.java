@@ -88,6 +88,10 @@ public class ViewVaultFragment extends Fragment implements ViewVaultContract.Vie
         return fragment;
     }
 
+    @Override
+    public void setTitle(String title){
+        ((ViewVaultActivity) getActivity()).getSupportActionBar().setTitle(title);
+    }
 
     @Override
     public void onResume() {
@@ -123,6 +127,9 @@ public class ViewVaultFragment extends Fragment implements ViewVaultContract.Vie
         ActionBar actionBar = activity.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        //actionBar.setTitle("arroz con leche");
+
+
         //inicializa recycler veiw
         mAdapter = new Recycler_View_Adapter();
         mAdapter.setContext(this.getActivity().getApplicationContext());
@@ -261,12 +268,12 @@ public class ViewVaultFragment extends Fragment implements ViewVaultContract.Vie
                 loadLayautManager();
                 getActivity().invalidateOptionsMenu();
                 return true;
-
+/*
             case R.id.share:
                 Intent sendIntent = ActivityUtils.shareExludingApp(getContext(), Uri.fromFile(new File(mPresenter.getVaultPath())));
                 startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
                 return true;
-
+*/
             case R.id.delete:
                 new AlertDialog.Builder(getActivity())
                         .setTitle(getString(R.string.delete))

@@ -59,75 +59,7 @@ public class ViewVaultActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-/*
 
-    public void startBackgroundTimer() {
-        this.backgroundTimer = new Timer();
-        this.backgroundTimerTask = new TimerTask() {
-            public void run() {
-                wasInBackground = true;
-                exitTask();
-            }
-        };
-        backgroundTimer.schedule(backgroundTimerTask, MAX_BACKGROUND_TIME_MS);
-    }
-
-    public void stopBackgroundTimer() {
-        if (this.backgroundTimerTask != null) {
-            this.backgroundTimerTask.cancel();
-        }
-        if (this.backgroundTimer != null) {
-            this.backgroundTimer.cancel();
-        }
-        this.wasInBackground = false;
-    }
-
-
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        stopBackgroundTimer();
-
-    }
-
-    @Override
-    protected void onPause(){
-        super.onPause();
-        startBackgroundTimer();
-    }
-
-
-    public void exitTask(){
-        finish();
-       startActivity(new Intent(this, VaultsActivity.class));
-    }
-*/
-
-
-
-//    @Override
-//    protected void onUserLeaveHint() {
-//        // Log.d("------>", "onUserLeaveHint");
-//        super.onUserLeaveHint();
-//        if (FLAG_IS_FINISH_TASK){
-//            stopBackgroundTimer();
-//            exitTask();
-//        }
-//        FLAG_IS_FINISH_TASK = true;
-//    }
-//
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-//        if (keyCode == KeyEvent.KEYCODE_BACK ) {
-//            FLAG_IS_FINISH_TASK = false;
-//            finish();
-//            return true;
-//        }
-//
-//        return super.onKeyDown(keyCode, event);
-//    }
 
 
 }

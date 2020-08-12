@@ -4,12 +4,15 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.rodrigo.lock.app.bus.Event;
 import com.rodrigo.lock.app.bus.EventBus;
 import com.rodrigo.lock.app.bus.EventType;
 import com.rodrigo.lock.app.data.Clases.VaultContent;
+import com.rodrigo.lock.app.data.converters.Converter;
 import com.rodrigo.lock.app.data.source.ContentVaultRepository;
 import com.rodrigo.lock.app.util.schedulers.BaseSchedulerProvider;
 import com.rodrigo.lock.core.utils.FileUtils;
@@ -72,6 +75,15 @@ public class ViewVaultPresenter implements ViewVaultContract.Presenter {
         loadContentRepository();
     }
 
+    private void setTitle(){
+        try{
+            this.view.setTitle(Converter.convertVault(new File(vaultPath)).getName());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void loadContentRepository() {
         ContentVaultRepository.openEncryptedFileSystem(vaultPath, vaultPassword)
@@ -112,6 +124,7 @@ public class ViewVaultPresenter implements ViewVaultContract.Presenter {
 
     @Override
     public void subscribe() {
+        setTitle();
         Subscription s = EventBus.getInstance().getEvents().subscribe(new Action1<Event>() {
             @Override
             public void call(Event event) {
@@ -216,6 +229,7 @@ public class ViewVaultPresenter implements ViewVaultContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.d("VerVault", "error al abrir contenido", e);
                             /*mVaultsView.showLoadingTasksError();*/
                     }
 

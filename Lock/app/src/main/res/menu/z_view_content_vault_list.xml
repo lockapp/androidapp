@@ -6,11 +6,6 @@
         android:title="@string/menu_grid"
         android:icon="@drawable/z_ic_view_module_ic"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/share"
-        android:title="@string/Share"
-        android:icon="@drawable/z_ic_share_ic"
-        app:showAsAction="always" />
 
     <item
         android:id="@+id/delete"

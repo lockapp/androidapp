@@ -1,9 +1,13 @@
 package com.rodrigo.lock.app.addFileToVault;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
 
 import com.rodrigo.lock.app.LockApplication;
@@ -12,6 +16,8 @@ import com.rodrigo.lock.app.bus.Event;
 import com.rodrigo.lock.app.bus.EventBus;
 import com.rodrigo.lock.app.R;
 import com.rodrigo.lock.app.data.converters.FileConverter;
+import com.rodrigo.lock.app.extract.ExtractService;
+import com.rodrigo.lock.app.util.NotificationUtils;
 import com.rodrigo.lock.app.utils.MediaUtils;
 import com.rodrigo.lock.core.EncryptedFileSystem;
 import com.rodrigo.lock.core.EncryptedFileSystemHandler;
@@ -32,6 +38,9 @@ public class AddFileToVaultService extends IntentService {
     public static final String EXTRA_VAULT_PASSWORD = "EXTRA_VAULT_PASSWORD";
     public static final String EXTRA_ARCHIVOS = "EXTRA_ARCHIVOS";
 
+    private static final String CHANNEL_ID = "1250012-2";
+    private static final String TAG = AddFileToVaultService.class.getSimpleName();
+
 
     static int id = 0;
     NotificationManager mNotifyManager;
@@ -47,19 +56,18 @@ public class AddFileToVaultService extends IntentService {
         id++;
 
         mNotifyManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
-        mBuilder = new NotificationCompat.Builder(this);
-        mBuilder.setContentTitle(getResources().getString(R.string.aniadiendo_archivos));
-        //mBuilder.setContentText(getResources().getString(R.string.workingU));
-        mBuilder.setSmallIcon(R.drawable.ic_action_secure);
-        mBuilder.setProgress(0, 0, true);
-        mBuilder.setOngoing(true);
-        startForeground(id, mBuilder.build());
+        mBuilder = new NotificationCompat.Builder(this, NotificationUtils.getNotificationChannelId(this.getApplicationContext()));
 
+        mBuilder.setContentTitle(getResources().getString(R.string.aniadiendo_archivos))
+                .setSmallIcon(R.drawable.ic_action_secure)
+                .setProgress(0, 0, true)
+                .setOngoing(true);
+
+        startForeground(id, mBuilder.build());
 
         String path = intent.getExtras().getString(EXTRA_VAULT_PATH);
         String password = intent.getExtras().getString(EXTRA_VAULT_PASSWORD);
         ArrayList<String> archivos = intent.getStringArrayListExtra(EXTRA_ARCHIVOS);
-
 
         try {
             Event eventIniti = new Event();
@@ -99,6 +107,7 @@ public class AddFileToVaultService extends IntentService {
 
             LockApplication.requestForcedSync();
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             Event eventEnd = new Event();
             eventEnd.setEventType(EventType.TERMINO_ANIADIR_ARCHICOS);
