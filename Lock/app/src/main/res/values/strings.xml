@@ -24,6 +24,9 @@
     <string name="files">%1$s Files</string>
     <string name="file">1 File</string>
     <string name="send_to">Send to</string>
+    <string name="retry">Retry</string>
+    <string name="donate_desc">This app is free, without ads, and you can find the source code on github. If you find that this was useful, it would be good of you to donate a few pennies to the coffee. Donating is the best way to contribute to new features and every little bit counts.</string>
+    <string name="error_general_desc">Oops, an error occurred, try again later</string>
     <string name="r0">This app is free, without ads, and you can find the source code on &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>. If you find that this was useful, it would be good of you to donate a few pennies to the coffee. Donating is the best way to contribute to new features and every little bit counts. You can find some FAQs below.</string>
     <string name="r00">This app is free, without ads, and you can find the source code on &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>.\nYou can find some FAQs below.</string>
     <string name="q1">Is Lock safe?</string>
@@ -118,7 +121,6 @@
     <string name="activity_main_dialog_csv_title">Exportar en archivo CSV</string>
 
 
-
     <string name="Respaldo">Backup</string>
     <string name="configuracion_sin_configurar">The backups are unconfigured. To enable this option you need to select a folder in Google Drive where your backups will be saved</string>
     <string name="habilitar_respaldos">Enable backups</string>
@@ -128,10 +130,15 @@
     <!--<string name="crear_producto">Create Product</string>-->
     <string name="campo_no_vacio">This field can not be empty</string>
     <string name="Donar">Donate</string>
+    <string name="title_activity_donate">DonateActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 
-
-
-
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
     <!--<string name="title_activity_intro">IntroActivity</string>-->

@@ -1,22 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    /*signingConfigs {
+    signingConfigs {
         config {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
-            storeFile file('C:/Users/Rodrigo/.android/debug.keystore')
+            storeFile file('/media/rodrigo/Data/Linux/.android/debug.keystore')
             storePassword 'android'
         }
-    }*/
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    }
+    compileSdkVersion 29
+    buildToolsVersion '29.0.3'
     defaultConfig {
         applicationId "com.rodrigo.lock.app"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 21
-        versionName "0.2.9"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 25
+        versionName "0.2.13"
         //renderscriptTargetApi 21
         //renderscriptSupportMode true
         multiDexEnabled true
@@ -26,9 +26,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        /*debug {
+        debug {
             signingConfig signingConfigs.config
-        }*/
+        }
     }
 
     dexOptions {
@@ -53,6 +53,8 @@ repositories {
 
 
 dependencies {
+    implementation 'androidx.navigation:navigation-fragment:2.3.1'
+    implementation 'androidx.navigation:navigation-ui:2.3.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.multidex:multidex:2.0.0'
@@ -69,7 +71,14 @@ dependencies {
     implementation "com.google.guava:guava:18.0"
     implementation "io.reactivex:rxjava:1.1.8"
     implementation "io.reactivex:rxandroid:1.2.1"
-    implementation 'com.google.android.gms:play-services:10.2.1'
+    //implementation 'com.google.android.gms:play-services:10.2.1'
+    implementation "com.google.android.gms:play-services-drive:17.0.0"
+    implementation "com.google.android.gms:play-services-gcm:17.0.0"
+
+    //donaciones
+    implementation "com.android.billingclient:billing:3.0.0"
+
+
     implementation 'com.github.paolorotolo:expandableheightlistview:1.0.0'
     // compile "com.squareup.sqlbrite:sqlbrite:$rootProject.sqlbriteVersion"
     //dependencias viejas
@@ -98,6 +107,4 @@ dependencies {
 }
 
 
-
-
-
+apply plugin: 'com.google.gms.google-services'

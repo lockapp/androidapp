@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.rodrigo.lock.app.mvp.backup.BackupActivity;
+import com.rodrigo.lock.app.mvp.donate.DonateActivity;
 import com.rodrigo.lock.app.mvp.preguntasFrecuentes.PreguntasFrecuentes;
 import com.rodrigo.lock.app.utils.Injection;
 import com.rodrigo.lock.app.R;
@@ -76,18 +77,18 @@ public class VaultsActivity extends AppCompatActivity {
         if (actual.compareTo(fechaHabilitaPagos) < 0){
             hideDonar();
         }*/
-        hideDonar();
+        //hideDonar();
     }
 
 
-    private void hideDonar() {
-        try{
-            Menu nav_Menu = navigationView.getMenu();
-            nav_Menu.findItem(R.id.donar).setVisible(false);
-        }catch (Throwable t){
-
-        }
-    }
+//    private void hideDonar() {
+//        try{
+//            Menu nav_Menu = navigationView.getMenu();
+//            nav_Menu.findItem(R.id.donar).setVisible(false);
+//        }catch (Throwable t){
+//
+//        }
+//    }
 
 
     @Override
@@ -135,6 +136,8 @@ public class VaultsActivity extends AppCompatActivity {
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://lockapp.github.io")));
                                 break;
                             case R.id.donar:
+                                Intent intent =new Intent(VaultsActivity.this, DonateActivity.class);
+                                startActivity(intent);
                                 //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7R9PXAXWHZ8HU")));
                                 break;
                             case R.id.backup:

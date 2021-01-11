@@ -55,6 +55,9 @@ public class GoogleDriveBackup implements Backup.BackupService, GoogleApiClient.
     private static final int REQUEST_CODE_CAPTURE_IMAGE = 1;
     private static final int REQUEST_CODE_CREATOR = 2;
     private static final int REQUEST_CODE_RESOLUTION = 3;
+
+    aparentemente ahora se accede asi a google api
+    https://developers.google.com/android/guides/api-client
 */
     @Override
     public void init(@NonNull final Backup.BackupClient activity) {

@@ -72,6 +72,9 @@
     <!--<string name="intro_title3">Para desbloquear es igual de sencillo.</string>-->
     <!--<string name="intro_desc3">Para desbloquear seleciona compartir y luego Lock.</string>-->
 
+    <string name="donate_desc">Esta app es gratis, sin anuncios y puedes encontrar el código fuente en github. Si crees que te ha sido útil sería bueno que mandes algunas monedas para el café. Donar es la mejor forma de contribuir con nuevas funcionalidades, cada poco cuenta.</string>
+    <string name="error_general_desc">Ups, ha ocurrido un error, intentalo más tarde</string>
+    <string name="retry">Reintentar</string>
     <string name="r0">Esta app es gratis, sin anuncios y puedes encontrar el código fuente en &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>. Si crees que te ha sido útil sería bueno que mandes algunas monedas para el café. Donar es la mejor forma de contribuir con nuevas funcionalidades, cada poco cuenta.\n A continuación puedes encontrar algunas preguntas frecuentes</string>
     <string name="r00">Esta app es gratis, sin anuncios y puedes encontrar el código fuente en &lt;a href=https://github.com/lockapp/androidapp>github&lt;/a>.\nA continuación puedes encontrar algunas preguntas frecuentes</string>
 

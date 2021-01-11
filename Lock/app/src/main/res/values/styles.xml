@@ -84,7 +84,7 @@
     <style name="MaterialTapTargetPromptTheme.FabTarget" parent="MaterialTapTargetPromptTheme">
         <item name="mttp_backgroundColour">@color/colorPrimary</item>
         <!-- <item name="backgroundColour">@color/colorPrimary</item>-->
-         <!--<item name="focalColour">@color/colorPrimary</item>-->
+        <!--<item name="focalColour">@color/colorPrimary</item>-->
         <!--<item name="primaryText">@string/FabTarget.primaryText</item>
         <item name="secondaryText">@string/FabTarget.secondaryText</item>
         <item name="primaryTextColour">@color/green_200</item>
@@ -118,8 +118,6 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-
-
     <style name="btnAccent" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/ab_accent</item>
         <item name="android:textColor">@color/white</item>
@@ -127,6 +125,11 @@
         <!--<item name="android:textColor">#FFFFFF</item>-->
         <!--<item name="android:gravity">center</item>-->
         <!--<item name="android:background">@drawable/btn_primary</item>-->
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

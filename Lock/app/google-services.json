@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "974481930427",
+    "firebase_url": "https://lockapp-192302.firebaseio.com",
+    "project_id": "lockapp-192302",
+    "storage_bucket": "lockapp-192302.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974481930427:android:0db858f0d3559590e1519e",
+        "android_client_info": {
+          "package_name": "com.rodrigo.lock.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974481930427-se67u87qf3f94j0uqr7kis6c02ocn4vr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rodrigo.lock.app",
+            "certificate_hash": "ff3c000bc9955fd00c2ed2a3f0efee88018dc60e"
+          }
+        },
+        {
+          "client_id": "974481930427-67h5t25lmd50k7qul4efpqonna031pla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOzfBI2jQBbL4kJ6bRrhycQgdGXUtdY3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974481930427-67h5t25lmd50k7qul4efpqonna031pla.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
